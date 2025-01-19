@@ -1,32 +1,5 @@
-import {
-  ChangeEvent,
-  ChangeEventHandler,
-  Dispatch,
-  SetStateAction,
-} from 'react';
-
-interface InputProps {
-  name: string;
-  label: string;
-  value: string;
-  onChange: ChangeEventHandler;
-  type?: string,
-}
-
-function Input({ name, label, value, type = 'email', onChange }: InputProps) {
-  return (
-    <>
-      <label htmlFor={name}>{label}</label>
-      <input
-        name={name}
-        id={name}
-        type={type}
-        value={value}
-        onChange={onChange}
-      />
-    </>
-  );
-}
+import { ChangeEvent, Dispatch, SetStateAction } from 'react';
+import Input from './Input';
 
 export interface ContactDetails {
   fullName: string;
@@ -79,7 +52,7 @@ function ContactForm({ contactDetails, setContactDetails }: ContactFormProps) {
       />
       <Input
         label='E-mail address'
-        type="email"
+        type='email'
         name='gmail'
         value={contactDetails.gmail || ''}
         onChange={handleFieldChange}
