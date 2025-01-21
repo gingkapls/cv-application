@@ -10,7 +10,9 @@ import {
   initialContactDetails,
   initialEducationDetails,
   initialExperienceDetails,
+  initialProjectDetails,
 } from './lib/initialState';
+import ProjectForm, { ProjectDetails } from './Components/ProjectForm';
 
 function App() {
   const [contactDetails, setContactDetails] = useState<ContactDetails>(
@@ -24,6 +26,8 @@ function App() {
   const [experienceDetails, setExperienceDetails] = useState<
     ExperienceDetails[]
   >(initialExperienceDetails);
+  
+  const [projectDetails, setProjectDetails] = useState<ProjectDetails[]>(initialProjectDetails);
 
   return (
     <>
@@ -39,7 +43,7 @@ function App() {
           setEducationDetails(educationDetails.concat(new EducationDetails({})))
         }
       >
-        Add new form
+        Add new education
       </button>
 
       {educationDetails.map((details) => {
@@ -63,6 +67,18 @@ function App() {
           />
         );
       })}
+      
+      {projectDetails.map((details) => {
+        return (
+          <ProjectForm
+            id={details.id}
+            key={details.id}
+            projectDetails={projectDetails}
+            setProjectDetails={setProjectDetails}
+          />
+        );
+      })}
+
     </>
   );
 }

@@ -1,6 +1,7 @@
 import { ContactDetails } from '../Components/ContactForm';
 import { EducationDetails } from '../Components/EducationForm';
 import { ExperienceDetails } from '../Components/ExperienceForm';
+import { ProjectDetails } from '../Components/ProjectForm';
 
 const initialContactDetails = {
   fullName: '',
@@ -27,4 +28,17 @@ const initialExperienceDetails = [
   }),
 ];
 
-export { initialContactDetails, initialEducationDetails, initialExperienceDetails };
+const initialProjectDetails = [
+  new ProjectDetails({
+    name: 'First Project',
+    techUsed: 'Javascript',
+    description: 'Very cool!',
+  }),
+];
+
+export {
+  initialContactDetails,
+  initialEducationDetails,
+  initialExperienceDetails,
+  initialProjectDetails,
+};
