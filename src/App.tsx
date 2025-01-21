@@ -2,35 +2,28 @@ import { useState } from 'react';
 import './App.css';
 import ContactForm, { ContactDetails } from './Components/ContactForm';
 import { ContactPreview } from './Components/ContactPreview';
-import EducationForm, { EducationDetails } from './Components/EducationForm';
+import { EducationDetails } from './Components/EducationForm';
+import Education from './Components/Education';
+import { ExperienceDetails } from './Components/ExperienceForm';
+import Experience from './Components/Experience';
+import {
+  initialContactDetails,
+  initialEducationDetails,
+  initialExperienceDetails,
+} from './lib/initialState';
 
 function App() {
-  const [contactDetails, setContactDetails] = useState<ContactDetails>({
-    fullName: '',
-    phoneNumber: '',
-    github: '',
-    linkedIn: '',
-    gmail: '',
-  });
+  const [contactDetails, setContactDetails] = useState<ContactDetails>(
+    initialContactDetails
+  );
 
-  const [educationDetails, setEducationDetails] = useState<EducationDetails[]>([
-    {
-      id: '1',
-      collegeName: 'Test College',
-      degree: 'MCA',
-      gpa: '9.4',
-      startDate: new Date(),
-      endDate: new Date(),
-    },
-    {
-      id: '2',
-      collegeName: 'Test College',
-      degree: 'BCA',
-      gpa: '9.4',
-      startDate: new Date(),
-      endDate: new Date(),
-    },
-  ]);
+  const [educationDetails, setEducationDetails] = useState<EducationDetails[]>(
+    initialEducationDetails
+  );
+
+  const [experienceDetails, setExperienceDetails] = useState<
+    ExperienceDetails[]
+  >(initialExperienceDetails);
 
   return (
     <>
@@ -40,13 +33,33 @@ function App() {
       />
 
       <ContactPreview contactDetails={contactDetails} />
+
+      <button
+        onClick={() =>
+          setEducationDetails(educationDetails.concat(new EducationDetails({})))
+        }
+      >
+        Add new form
+      </button>
+
       {educationDetails.map((details) => {
         return (
-          <EducationForm
+          <Education
             id={details.id}
             key={details.id}
             educationDetails={educationDetails}
             setEducationDetails={setEducationDetails}
+          />
+        );
+      })}
+
+      {experienceDetails.map((details) => {
+        return (
+          <Experience
+            id={details.id}
+            key={details.id}
+            experienceDetails={experienceDetails}
+            setExperienceDetails={setExperienceDetails}
           />
         );
       })}
