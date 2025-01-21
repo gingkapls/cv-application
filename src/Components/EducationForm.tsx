@@ -1,10 +1,10 @@
 import { ChangeEvent, Dispatch, FormEvent, SetStateAction } from 'react';
 import Input from './Input';
-
-type DateString = `${string}-${string}-${string}`;
+import { DateString, UUIDString } from '../lib/types';
+import generateUniqueId from '../lib/uniqueId';
 
 export class EducationDetails {
-  id: string;
+  id: UUIDString;
   collegeName: string;
   degree: string;
   gpa: string;
@@ -13,13 +13,14 @@ export class EducationDetails {
   [key: string]: string | (() => EducationDetails);
 
   constructor({
+    id = generateUniqueId(),
     collegeName = '',
     degree = '',
     gpa = '',
     startDate = new Date(),
     endDate = new Date(),
   } = {}) {
-    this.id = crypto.randomUUID();
+    this.id = id;
     this.collegeName = collegeName;
     this.degree = degree;
     this.gpa = gpa;
@@ -45,6 +46,7 @@ export class EducationDetails {
 
   clone(): EducationDetails {
     return new EducationDetails({
+      id: this.id,
       collegeName: this.collegeName,
       degree: this.degree,
       gpa: this.gpa,
