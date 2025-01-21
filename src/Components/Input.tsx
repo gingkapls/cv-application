@@ -8,7 +8,7 @@ interface InputProps {
   type?: string,
 }
 
-function Input({ name, label, value, type = 'email', onChange }: InputProps) {
+function Input({ name, label, value, type = 'text', onChange }: InputProps) {
   return (
     <>
       <label htmlFor={name}>{label}</label>
