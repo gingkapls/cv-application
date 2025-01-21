@@ -18,7 +18,7 @@ export class EducationDetails {
     gpa = '',
     startDate = new Date(),
     endDate = new Date(),
-  }) {
+  } = {}) {
     this.id = crypto.randomUUID();
     this.collegeName = collegeName;
     this.degree = degree;
