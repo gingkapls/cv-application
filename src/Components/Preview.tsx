@@ -12,7 +12,7 @@ interface PreviewProps {
 }
 
 function Preview({ children }: PreviewProps) {
-  return <aside className='preview'>{children}</aside>;
+  return <section className='preview'>{children}</section>;
 }
 
 export default Preview;
