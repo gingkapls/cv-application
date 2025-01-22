@@ -11,12 +11,12 @@ interface EducationProps {
 function Education({ educationDetails, setEducationDetails }: EducationProps) {
   const [activeId, setActiveId] = useState<UUIDString | null>(null);
 
-  const activeDetail = educationDetails.find(
-    (detail) => detail.id === activeId
-  );
+  const activeDetail =
+    activeId && educationDetails.find((detail) => detail.id === activeId);
 
   return (
     <div className='education'>
+    <h3>Education</h3>
       <button
         onClick={() => {
           const newDetails = new EducationDetails();
@@ -27,7 +27,7 @@ function Education({ educationDetails, setEducationDetails }: EducationProps) {
         Add new education
       </button>
 
-      {activeDetail === undefined ? (
+      {activeDetail === null || activeDetail === undefined ? (
         educationDetails.map((detail) => (
           <DetailItem
             key={detail.id}
