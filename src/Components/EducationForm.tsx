@@ -10,7 +10,7 @@ class EducationDetails {
   gpa: string;
   #startDate: Date = new Date();
   #endDate: Date = new Date();
-  [key: string]: string | (() => EducationDetails);
+  [key: string]: string | string []| (() => EducationDetails);
 
   constructor({
     id = generateUniqueId(),
