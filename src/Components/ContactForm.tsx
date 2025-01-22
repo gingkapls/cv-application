@@ -36,7 +36,7 @@ function ContactForm({ contactDetails, setContactDetails }: ContactFormProps) {
     const newDetails = { ...contactDetails, [field]: value };
     setContactDetails(newDetails);
   }
-  
+
   const { fullName, phoneNumber, github, linkedIn, gmail } = contactDetails;
   return (
     <form className='contact-details'>
@@ -76,5 +76,6 @@ function ContactForm({ contactDetails, setContactDetails }: ContactFormProps) {
   );
 }
 
+export type { ContactFormProps };
 export { ContactDetails };
 export default ContactForm;
