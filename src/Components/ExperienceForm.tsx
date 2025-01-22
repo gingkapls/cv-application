@@ -4,7 +4,7 @@ import TextArea from './TextArea';
 import { DateString, UUIDString } from '../lib/types';
 import generateUniqueId from '../lib/uniqueId';
 
-export class ExperienceDetails {
+class ExperienceDetails {
   id: UUIDString;
   orgName: string;
   jobTitle: string;
@@ -163,4 +163,5 @@ function ExperienceForm({
   );
 }
 
+export { ExperienceDetails };
 export default ExperienceForm;

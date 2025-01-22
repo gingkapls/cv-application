@@ -51,4 +51,5 @@ function Project({
   );
 }
 
+export type { ProjectProps };
 export default Project;

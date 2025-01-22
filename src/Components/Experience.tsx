@@ -51,4 +51,5 @@ function Experience({
   );
 }
 
+export type { ExperienceProps };
 export default Experience;

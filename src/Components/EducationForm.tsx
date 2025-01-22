@@ -3,7 +3,7 @@ import Input from './Input';
 import { DateString, UUIDString } from '../lib/types';
 import generateUniqueId from '../lib/uniqueId';
 
-export class EducationDetails {
+class EducationDetails {
   id: UUIDString;
   collegeName: string;
   degree: string;
@@ -151,4 +151,5 @@ function EducationForm({
   );
 }
 
+export { EducationDetails };
 export default EducationForm;

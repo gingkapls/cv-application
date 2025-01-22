@@ -49,4 +49,5 @@ function Education({ educationDetails, setEducationDetails }: EducationProps) {
   );
 }
 
+export type { EducationProps };
 export default Education;

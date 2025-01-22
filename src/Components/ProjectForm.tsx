@@ -4,7 +4,7 @@ import generateUniqueId from "../lib/uniqueId";
 import Input from "./Input";
 import TextArea from "./TextArea";
 
-export class ProjectDetails {
+class ProjectDetails {
   id: UUIDString;
   name: string;
   techUsed: string;
@@ -152,4 +152,5 @@ function ProjectForm({
   );
 }
 
+export { ProjectDetails };
 export default ProjectForm;

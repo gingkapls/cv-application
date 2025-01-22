@@ -1,7 +1,7 @@
 import { ChangeEvent, Dispatch, SetStateAction } from 'react';
 import Input from './Input';
 
-export class ContactDetails {
+class ContactDetails {
   fullName: string;
   phoneNumber: string;
   github: string;
@@ -76,4 +76,5 @@ function ContactForm({ contactDetails, setContactDetails }: ContactFormProps) {
   );
 }
 
+export { ContactDetails };
 export default ContactForm;
