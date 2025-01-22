@@ -76,12 +76,14 @@ interface ExperienceFormProps {
   id: string;
   experienceDetails: ExperienceDetails[];
   setExperienceDetails: Dispatch<SetStateAction<ExperienceDetails[]>>;
+  setActiveId: Dispatch<SetStateAction<UUIDString | null>>;
 }
 
 function ExperienceForm({
   id,
   experienceDetails,
   setExperienceDetails,
+  setActiveId,
 }: ExperienceFormProps) {
   const detailIndex = experienceDetails.findIndex(
     (detail: ExperienceDetails) => detail.id === id
@@ -107,6 +109,8 @@ function ExperienceForm({
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
     if (!(e.target instanceof HTMLFormElement)) return;
+
+    setActiveId(null);
 
     const formData = new FormData(e.target);
     console.log(formData);

@@ -1,40 +1,50 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 import ExperienceForm, { ExperienceDetails } from './ExperienceForm';
+import { UUIDString } from '../lib/types';
+import DetailItem from './DetailItem';
 
 interface ExperienceProps {
-  id: string;
   experienceDetails: ExperienceDetails[];
   setExperienceDetails: Dispatch<SetStateAction<ExperienceDetails[]>>;
 }
 
 function Experience({
-  id,
   experienceDetails,
   setExperienceDetails,
 }: ExperienceProps) {
-  const [isActive, setIsActive] = useState(false);
-
-  function handleToggle() {
-    setIsActive(!isActive);
-  }
-  function handleDelete() {
-      const newDetails = experienceDetails.filter(detail => detail.id !== id);
-      setExperienceDetails(newDetails);
-  }
+  const [activeId, setActiveId] = useState<UUIDString | null>(null);
+  const activeDetail =
+    activeId && experienceDetails.find((detail) => detail.id === activeId);
 
   return (
-    <div className='education'>
-      <button type='button' className='btn-toggle' onClick={handleToggle}>
-        Toggle Me
+    <div className='experience'>
+      <h3>Experience</h3>
+      <button
+        onClick={() => {
+          const newDetails = new ExperienceDetails();
+          setExperienceDetails(experienceDetails.concat(newDetails));
+          setActiveId(newDetails.id);
+        }}
+      >
+        Add new experience
       </button>
-      <button type='button' className='btn-close' onClick={handleDelete}>
-        X
-      </button>
-      {isActive && (
+
+      {activeDetail === null || activeDetail === undefined ? (
+        experienceDetails.map((detail) => (
+          <DetailItem
+            key={detail.id}
+            id={detail.id}
+            title={detail.orgName}
+            setActiveId={setActiveId}
+          />
+        ))
+      ) : (
         <ExperienceForm
-          id={id}
+          key={activeDetail.id}
+          id={activeDetail.id}
           experienceDetails={experienceDetails}
           setExperienceDetails={setExperienceDetails}
+          setActiveId={setActiveId}
         />
       )}
     </div>
