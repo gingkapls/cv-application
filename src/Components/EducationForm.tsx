@@ -44,6 +44,23 @@ class EducationDetails {
     return this.#formatDate(this.#endDate);
   }
 
+  get duration() { 
+    const start = `${EducationDetails.shortenDate(this.#startDate)}`
+    const end = `${EducationDetails.shortenDate(this.#endDate)}`
+    return [start, end];
+  }
+
+  static shortenDate(date: Date) {
+    const userLocale = navigator.languages[0];
+    const formatter = new Intl.DateTimeFormat(userLocale, {
+      month: 'short',
+      year: 'numeric',
+    });
+
+    const [month, year] = formatter.format(date).split(' ');
+    return `${month}. ${year}`;
+  }
+
   clone(): EducationDetails {
     return new EducationDetails({
       id: this.id,
