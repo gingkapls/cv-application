@@ -72,12 +72,14 @@ interface ProjectFormProps {
   id: string;
   projectDetails: ProjectDetails[];
   setProjectDetails: Dispatch<SetStateAction<ProjectDetails[]>>;
+  setActiveId: Dispatch<SetStateAction<UUIDString | null>>;
 }
 
 function ProjectForm({
   id,
   projectDetails,
   setProjectDetails,
+  setActiveId,
 }: ProjectFormProps) {
   const detailIndex = projectDetails.findIndex(
     (detail: ProjectDetails) => detail.id === id
@@ -103,6 +105,7 @@ function ProjectForm({
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
     if (!(e.target instanceof HTMLFormElement)) return;
+    setActiveId(null);
 
     const formData = new FormData(e.target);
     console.log(formData);
