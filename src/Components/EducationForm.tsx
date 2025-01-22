@@ -71,12 +71,14 @@ interface EducationFormProps {
   id: string;
   educationDetails: EducationDetails[];
   setEducationDetails: Dispatch<SetStateAction<EducationDetails[]>>;
+  setActiveId: Dispatch<SetStateAction<UUIDString | null>>;
 }
 
 function EducationForm({
   id,
   educationDetails,
   setEducationDetails,
+  setActiveId,
 }: EducationFormProps) {
   function handleFieldChange(e: ChangeEvent<HTMLInputElement>) {
     const field = e.target.name;
@@ -96,6 +98,7 @@ function EducationForm({
     e.preventDefault();
     if (!(e.target instanceof HTMLFormElement)) return;
 
+    setActiveId(null);
     const formData = new FormData(e.target);
     console.log(formData);
   }

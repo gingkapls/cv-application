@@ -26,8 +26,10 @@ function App() {
   const [experienceDetails, setExperienceDetails] = useState<
     ExperienceDetails[]
   >(initialExperienceDetails);
-  
-  const [projectDetails, setProjectDetails] = useState<ProjectDetails[]>(initialProjectDetails);
+
+  const [projectDetails, setProjectDetails] = useState<ProjectDetails[]>(
+    initialProjectDetails
+  );
 
   return (
     <>
@@ -35,50 +37,10 @@ function App() {
         contactDetails={contactDetails}
         setContactDetails={setContactDetails}
       />
-
-      <ContactPreview contactDetails={contactDetails} />
-
-      <button
-        onClick={() =>
-          setEducationDetails(educationDetails.concat(new EducationDetails({})))
-        }
-      >
-        Add new education
-      </button>
-
-      {educationDetails.map((details) => {
-        return (
-          <Education
-            id={details.id}
-            key={details.id}
-            educationDetails={educationDetails}
-            setEducationDetails={setEducationDetails}
-          />
-        );
-      })}
-
-      {experienceDetails.map((details) => {
-        return (
-          <Experience
-            id={details.id}
-            key={details.id}
-            experienceDetails={experienceDetails}
-            setExperienceDetails={setExperienceDetails}
-          />
-        );
-      })}
-      
-      {projectDetails.map((details) => {
-        return (
-          <ProjectForm
-            id={details.id}
-            key={details.id}
-            projectDetails={projectDetails}
-            setProjectDetails={setProjectDetails}
-          />
-        );
-      })}
-
+      <Education
+        educationDetails={educationDetails}
+        setEducationDetails={setEducationDetails}
+      />
     </>
   );
 }
