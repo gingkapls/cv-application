@@ -1,17 +1,17 @@
-import { ChangeEvent, Dispatch, FormEvent, SetStateAction } from "react";
-import { DateString, UUIDString } from "../lib/types";
-import generateUniqueId from "../lib/uniqueId";
-import Input from "./Input";
-import TextArea from "./TextArea";
+import { ChangeEvent, Dispatch, FormEvent, SetStateAction } from 'react';
+import { DateString, UUIDString } from '../lib/types';
+import generateUniqueId from '../lib/uniqueId';
+import Input from './Input';
+import TextArea from './TextArea';
 
 class ProjectDetails {
   id: UUIDString;
   name: string;
   techUsed: string;
-  description: string; 
+  description: string;
   #startDate: Date = new Date();
   #endDate: Date = new Date();
-  [key: string]: string| (() => ProjectDetails);
+  [key: string]: string | string[] | (() => ProjectDetails);
 
   constructor({
     id = generateUniqueId(),
@@ -43,6 +43,23 @@ class ProjectDetails {
 
   get endDate(): DateString {
     return this.#formatDate(this.#endDate);
+  }
+
+  get duration() {
+    const start = `${ProjectDetails.shortenDate(this.#startDate)}`;
+    const end = `${ProjectDetails.shortenDate(this.#endDate)}`;
+    return [start, end];
+  }
+
+  static shortenDate(date: Date) {
+    const userLocale = navigator.languages[0];
+    const formatter = new Intl.DateTimeFormat(userLocale, {
+      month: 'short',
+      year: 'numeric',
+    });
+
+    const [month, year] = formatter.format(date).split(' ');
+    return `${month}. ${year}`;
   }
 
   clone(): ProjectDetails {
