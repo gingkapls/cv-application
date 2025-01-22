@@ -36,39 +36,40 @@ function ContactForm({ contactDetails, setContactDetails }: ContactFormProps) {
     const newDetails = { ...contactDetails, [field]: value };
     setContactDetails(newDetails);
   }
-
+  
+  const { fullName, phoneNumber, github, linkedIn, gmail } = contactDetails;
   return (
-    <form className='contact-details' action=''>
+    <form className='contact-details'>
       <h3>Personal Details</h3>
       <Input
         label='Full Name: '
         name='fullName'
-        value={contactDetails.fullName}
+        value={fullName}
         onChange={handleFieldChange}
       />
       <Input
         label='Phone Number'
         name='phoneNumber'
-        value={contactDetails.phoneNumber || ''}
+        value={phoneNumber}
         onChange={handleFieldChange}
       />
       <Input
         label='Github Profile'
         name='github'
-        value={contactDetails.github || ''}
+        value={github}
         onChange={handleFieldChange}
       />
       <Input
         label='LinkedIn Profile'
         name='linkedIn'
-        value={contactDetails.linkedIn || ''}
+        value={linkedIn}
         onChange={handleFieldChange}
       />
       <Input
         label='E-mail address'
         type='email'
         name='gmail'
-        value={contactDetails.gmail || ''}
+        value={gmail}
         onChange={handleFieldChange}
       />
     </form>
