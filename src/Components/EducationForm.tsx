@@ -10,7 +10,7 @@ class EducationDetails {
   gpa: string;
   #startDate: Date = new Date();
   #endDate: Date = new Date();
-  [key: string]: string | string []| (() => EducationDetails);
+  [key: string]: string | string[] | (() => EducationDetails);
 
   constructor({
     id = generateUniqueId(),
@@ -44,9 +44,20 @@ class EducationDetails {
     return this.#formatDate(this.#endDate);
   }
 
-  get duration() { 
-    const start = `${EducationDetails.shortenDate(this.#startDate)}`
-    const end = `${EducationDetails.shortenDate(this.#endDate)}`
+  get duration() {
+    const start = `${EducationDetails.shortenDate(this.#startDate)}`;
+    const endMonth = this.#endDate.getMonth();
+    const endYear = this.#endDate.getFullYear();
+
+    const presentDate = new Date();
+    const thisMonth = presentDate.getMonth();
+    const thisYear = presentDate.getFullYear();
+
+    const end =
+      endMonth === thisMonth && endYear === thisYear
+        ? 'Present'
+        : `${EducationDetails.shortenDate(this.#endDate)}`;
+
     return [start, end];
   }
 
