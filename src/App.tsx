@@ -13,6 +13,8 @@ import {
   initialProjectDetails,
 } from './lib/initialState';
 import ProjectForm, { ProjectDetails } from './Components/ProjectForm';
+import Project from './Components/Project';
+import Sidebar from './Components/Sidebar';
 
 function App() {
   const [contactDetails, setContactDetails] = useState<ContactDetails>(
@@ -32,7 +34,7 @@ function App() {
   );
 
   return (
-    <>
+    <Sidebar>
       <ContactForm
         contactDetails={contactDetails}
         setContactDetails={setContactDetails}
@@ -41,7 +43,15 @@ function App() {
         educationDetails={educationDetails}
         setEducationDetails={setEducationDetails}
       />
-    </>
+      <Experience
+        experienceDetails={experienceDetails}
+        setExperienceDetails={setExperienceDetails}
+      />
+      <Project
+        projectDetails={projectDetails}
+        setProjectDetails={setProjectDetails}
+      />
+    </Sidebar>
   );
 }
 
