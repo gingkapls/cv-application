@@ -17,7 +17,7 @@ function Project({
     activeId && projectDetails.find((detail) => detail.id === activeId);
 
   return (
-    <div className='experience'>
+    <div className='project'>
       <h3>Projects</h3>
       <button
         onClick={() => {
