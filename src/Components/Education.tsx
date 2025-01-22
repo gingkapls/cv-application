@@ -14,6 +14,7 @@ function Education({ educationDetails, setEducationDetails }: EducationProps) {
   const activeDetail = educationDetails.find(
     (detail) => detail.id === activeId
   );
+
   return (
     <div className='education'>
       <button
@@ -26,7 +27,7 @@ function Education({ educationDetails, setEducationDetails }: EducationProps) {
         Add new education
       </button>
 
-      {activeId === null &&
+      {activeDetail === undefined ? (
         educationDetails.map((detail) => (
           <DetailItem
             key={detail.id}
@@ -34,9 +35,8 @@ function Education({ educationDetails, setEducationDetails }: EducationProps) {
             title={detail.collegeName}
             setActiveId={setActiveId}
           />
-        ))}
-
-      {activeDetail && (
+        ))
+      ) : (
         <EducationForm
           key={activeDetail.id}
           id={activeDetail.id}
