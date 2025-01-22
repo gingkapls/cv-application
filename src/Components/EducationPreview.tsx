@@ -12,7 +12,7 @@ function EducationPreviewItem({
     <section className='education-preview-item'>
       <h3 className='college-name'>{collegeName}</h3>
       <span className='duration'>{startDate} - {endDate}</span>
-      <span className='degree'>{degree}</span>
+      <h4 className='degree'>{degree}</h4>
       <span className='gpa'>{gpa}</span>
     </section>
   );
@@ -27,7 +27,7 @@ function EducationPreview({
     <div className='education-preview'>
       <h2>Education</h2>
       {educationDetails.map((details) => (
-        <EducationPreviewItem educationDetails={details} />
+        <EducationPreviewItem key={details.id} educationDetails={details} />
       ))}
     </div>
   );
