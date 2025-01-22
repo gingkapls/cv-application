@@ -1,19 +1,20 @@
 import { ContactDetails } from './ContactForm';
 
-export function ContactPreview({
+function ContactPreview({
   contactDetails,
 }: {
   contactDetails: ContactDetails;
 }) {
+  const { fullName, phoneNumber, github, linkedIn, gmail } = contactDetails;
   return (
     <div className='contact-preview'>
-      {Object.entries(contactDetails).map(([k, v]) => {
-        return (
-          <li key={k}>
-            {k} - {v}
-          </li>
-        );
-      })}
+      <h2 className='full-name'>{fullName}</h2>
+      <span className='phone-number'>{phoneNumber}</span>
+      <span className='github'>{github}</span>
+      <span className='linkedIn'>{linkedIn}</span>
+      <span className='gmail'>{gmail}</span>
     </div>
   );
 }
+
+export default ContactPreview;
