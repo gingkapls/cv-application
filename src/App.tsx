@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import './App.css';
 import ContactForm, { ContactDetails } from './Components/ContactForm';
-import { ContactPreview } from './Components/ContactPreview';
 import { EducationDetails } from './Components/EducationForm';
 import Education from './Components/Education';
 import { ExperienceDetails } from './Components/ExperienceForm';
@@ -12,9 +11,11 @@ import {
   initialExperienceDetails,
   initialProjectDetails,
 } from './lib/initialState';
-import ProjectForm, { ProjectDetails } from './Components/ProjectForm';
+import { ProjectDetails } from './Components/ProjectForm';
 import Project from './Components/Project';
 import Sidebar from './Components/Sidebar';
+import Preview from './Components/Preview';
+import ContactPreview from './Components/ContactPreview';
 
 function App() {
   const [contactDetails, setContactDetails] = useState<ContactDetails>(
@@ -34,24 +35,29 @@ function App() {
   );
 
   return (
-    <Sidebar>
-      <ContactForm
-        contactDetails={contactDetails}
-        setContactDetails={setContactDetails}
-      />
-      <Education
-        educationDetails={educationDetails}
-        setEducationDetails={setEducationDetails}
-      />
-      <Experience
-        experienceDetails={experienceDetails}
-        setExperienceDetails={setExperienceDetails}
-      />
-      <Project
-        projectDetails={projectDetails}
-        setProjectDetails={setProjectDetails}
-      />
-    </Sidebar>
+    <>
+      <Sidebar>
+        <ContactForm
+          contactDetails={contactDetails}
+          setContactDetails={setContactDetails}
+        />
+        <Education
+          educationDetails={educationDetails}
+          setEducationDetails={setEducationDetails}
+        />
+        <Experience
+          experienceDetails={experienceDetails}
+          setExperienceDetails={setExperienceDetails}
+        />
+        <Project
+          projectDetails={projectDetails}
+          setProjectDetails={setProjectDetails}
+        />
+      </Sidebar>
+      <Preview>
+        <ContactPreview contactDetails={contactDetails} />
+      </Preview>
+    </>
   );
 }
 
