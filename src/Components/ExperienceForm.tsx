@@ -12,7 +12,7 @@ class ExperienceDetails {
   description: string;
   #startDate: Date = new Date();
   #endDate: Date = new Date();
-  [key: string]: string | (() => ExperienceDetails);
+  [key: string]: string | string[] | (() => ExperienceDetails);
 
   constructor({
     id = generateUniqueId(),
@@ -46,6 +46,23 @@ class ExperienceDetails {
 
   get endDate(): DateString {
     return this.#formatDate(this.#endDate);
+  }
+
+  get duration() {
+    const start = `${ExperienceDetails.shortenDate(this.#startDate)}`;
+    const end = `${ExperienceDetails.shortenDate(this.#endDate)}`;
+    return [start, end];
+  }
+
+  static shortenDate(date: Date) {
+    const userLocale = navigator.languages[0];
+    const formatter = new Intl.DateTimeFormat(userLocale, {
+      month: 'short',
+      year: 'numeric',
+    });
+
+    const [month, year] = formatter.format(date).split(' ');
+    return `${month}. ${year}`;
   }
 
   clone(): ExperienceDetails {
