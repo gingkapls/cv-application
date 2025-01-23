@@ -164,7 +164,10 @@ form {
   flex-direction: column;
   place-items: start center;
 
-  & h2 {
+  & h2,
+  caption {
+    font-size: 1.4rem;
+    text-align: left;
     width: 100%;
     border-bottom: 2px double black;
     font-weight: 400;
@@ -212,13 +215,43 @@ form {
   & h2 {
     grid-column: 1 / span 2;
   }
-  
-  .degree {
+
+  .degree,
+  .gpa {
     font-style: italic;
     font-weight: 400;
   }
-  
-  .duration, .gpa {
+
+  .duration,
+  .gpa {
     text-align: right;
+  }
+}
+
+.experience-preview .preview-item {
+  display: grid;
+  grid-template: 1fr 1fr auto / 1fr 1fr;
+  
+  li {
+    list-style: disc;
+    list-style-position: inside;
+    margin-left: 2em;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  & .duration,
+  .location {
+    text-align: right;
+  }
+
+  & .org-name,
+  .location {
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  & .job-description {
+    grid-column: 1 / span 2;
   }
 }
