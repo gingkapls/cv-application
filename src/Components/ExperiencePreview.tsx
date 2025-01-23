@@ -1,20 +1,26 @@
-import { ExperienceDetails } from "./ExperienceForm";
+import { ExperienceDetails } from './ExperienceForm';
 
 function EducationPreviewItem({
- experienceDetails,
+  experienceDetails,
 }: {
   experienceDetails: ExperienceDetails;
 }) {
-  const { orgName, jobTitle, description, location} = experienceDetails;
+  const { orgName, jobTitle, description, location } = experienceDetails;
   const [startDate, endDate] = experienceDetails.duration;
 
   return (
     <section className='preview-item'>
       <h3 className='job-title'>{jobTitle}</h3>
-      <span className='duration'>{startDate} - {endDate}</span>
+      <span className='duration'>
+        {startDate} - {endDate}
+      </span>
       <h4 className='org-name'>{orgName}</h4>
       <span className='location'>{location}</span>
-      <span className='job-description'>{description}</span>
+      <ul className='job-description'>
+        {description.split('\n').map((line) => (
+          <li key={line}>{line}</li>
+        ))}
+      </ul>
     </section>
   );
 }
