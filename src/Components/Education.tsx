@@ -33,7 +33,11 @@ function Education({ educationDetails, setEducationDetails }: EducationProps) {
               setActiveId={setActiveId}
             />
           ))
-          .concat(<button key='btnAdd' className='btn-add' onClick={handleClick}>+ Education</button>)
+          .concat(
+            <button key='btnAdd' className='btn-add' onClick={handleClick}>
+              + Education
+            </button>
+          )
       ) : (
         <EducationForm
           key={activeDetail.id}
