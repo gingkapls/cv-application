@@ -180,6 +180,16 @@ form {
 
 .detail-preview {
   width: 100%;
+    
+  li {
+    list-style: disc;
+    list-style-position: inside;
+    margin-left: 2em;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+
 }
 
 .contact-preview {
@@ -231,14 +241,6 @@ form {
 .experience-preview .preview-item {
   display: grid;
   grid-template: 1fr 1fr auto / 1fr 1fr;
-  
-  li {
-    list-style: disc;
-    list-style-position: inside;
-    margin-left: 2em;
-    text-overflow: ellipsis;
-    overflow: hidden;
-  }
 
   & .duration,
   .location {
@@ -253,5 +255,20 @@ form {
 
   & .job-description {
     grid-column: 1 / span 2;
+  }
+}
+
+.project-preview .preview-item {
+  display: grid;
+  grid: 1fr auto / 1fr auto;
+
+  .name {
+    display: inline;
+    width: auto;
+  }
+  
+  .tech-used {
+    font-style: italic;
+    margin-left: 4px;
   }
 }
