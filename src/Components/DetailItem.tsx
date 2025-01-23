@@ -8,9 +8,9 @@ interface DetailItemProps {
 
 function DetailItem({ id, title, setActiveId }: DetailItemProps) {
   return (
-    <li>
-      <button className='detail-item-title' onClick={() => setActiveId(id)}>{title}</button>
-      <button className='detail-item-hide'>Hide me</button>
+    <li className='detail-item'>
+      <button className='item-title' onClick={() => setActiveId(id)}>{title}</button>
+      <button className='item-hide'>X</button>
     </li>
   );
 }
