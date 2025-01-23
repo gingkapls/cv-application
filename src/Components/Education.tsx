@@ -14,28 +14,26 @@ function Education({ educationDetails, setEducationDetails }: EducationProps) {
   const activeDetail =
     activeId && educationDetails.find((detail) => detail.id === activeId);
 
+  function handleClick() {
+    const newDetails = new EducationDetails();
+    setEducationDetails(educationDetails.concat(newDetails));
+    setActiveId(newDetails.id);
+  }
+
   return (
     <div className='education details'>
-    <h3>Education</h3>
-      <button
-        onClick={() => {
-          const newDetails = new EducationDetails();
-          setEducationDetails(educationDetails.concat(newDetails));
-          setActiveId(newDetails.id);
-        }}
-      >
-        Add new education
-      </button>
-
+      <h3>Education</h3>
       {activeDetail === null || activeDetail === undefined ? (
-        educationDetails.map((detail) => (
-          <DetailItem
-            key={detail.id}
-            id={detail.id}
-            title={detail.collegeName}
-            setActiveId={setActiveId}
-          />
-        ))
+        educationDetails
+          .map((detail) => (
+            <DetailItem
+              key={detail.id}
+              id={detail.id}
+              title={detail.collegeName}
+              setActiveId={setActiveId}
+            />
+          ))
+          .concat(<button key='btnAdd' className='btn-add' onClick={handleClick}>Add new education</button>)
       ) : (
         <EducationForm
           key={activeDetail.id}
