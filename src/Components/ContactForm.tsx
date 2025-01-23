@@ -38,7 +38,7 @@ function ContactForm({ contactDetails, setContactDetails }: ContactFormProps) {
 
   const { fullName, phoneNumber, github, linkedIn, gmail } = contactDetails;
   return (
-    <form className='contact-details'>
+    <form className='contact-details details'>
       <h3>Personal Details</h3>
       <Input
         label='Full Name: '

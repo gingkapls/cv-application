@@ -17,7 +17,7 @@ function Experience({
     activeId && experienceDetails.find((detail) => detail.id === activeId);
 
   return (
-    <div className='experience'>
+    <div className='experience details'>
       <h3>Experience</h3>
       <button
         onClick={() => {

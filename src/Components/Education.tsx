@@ -15,7 +15,7 @@ function Education({ educationDetails, setEducationDetails }: EducationProps) {
     activeId && educationDetails.find((detail) => detail.id === activeId);
 
   return (
-    <div className='education'>
+    <div className='education details'>
     <h3>Education</h3>
       <button
         onClick={() => {
