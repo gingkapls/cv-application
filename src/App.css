@@ -180,7 +180,7 @@ form {
 
 .detail-preview {
   width: 100%;
-    
+
   li {
     list-style: disc;
     list-style-position: inside;
@@ -188,8 +188,6 @@ form {
     text-overflow: ellipsis;
     overflow: hidden;
   }
-
-
 }
 
 .contact-preview {
@@ -266,9 +264,18 @@ form {
     display: inline;
     width: auto;
   }
-  
+
   .tech-used {
     font-style: italic;
     margin-left: 4px;
+  }
+}
+
+.skills-preview {
+  font-size: 1rem;
+
+  & th {
+    text-align: left;
+    padding: 0 var(--card-side-padding);
   }
 }
