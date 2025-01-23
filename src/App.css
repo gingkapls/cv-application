@@ -5,7 +5,8 @@
   --text-color: #393a34;
   --sidebar-bg-color: #fbfbfb;
   --active-bg-color: #dfdfdf;
-  --accent-color: #2f8a89;
+  --accent-color: #2f8a89; 
+  --save-color: #b58451;
   --card-side-padding: 12px;
   --card-vert-padding: 0px;
 
@@ -14,8 +15,7 @@
   --card-border-radius: 12px;
   --control-border-radius: 4px;
   --button-border-radius: 4px;
-  
-  
+
   line-height: 1.5;
   color: var(--text-color);
 }
@@ -99,6 +99,8 @@ body {
 
 .item-title {
   display: flex;
+  flex: 1;
+  min-height: 1.5lh;
   justify-content: space-between;
   padding: 12px 0;
   font-size: 1.4rem;
@@ -129,17 +131,20 @@ form {
   }
 }
 
-.btn-add {
+.btn-add, .btn-save {
   background-color: var(--accent-color);
   color: var(--body-bg-color);
   font-weight: 700;
-  padding: var(--button-padding); 
+  padding: var(--button-padding);
   font-size: 1.2rem;
   align-self: center;
   margin: 16px 0;
 }
 
-.education {
+
+.education,
+.experience,
+.project {
   & h3 {
     color: var(--accent-color);
     padding: var(--card-side-padding);

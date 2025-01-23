@@ -16,28 +16,30 @@ function Experience({
   const activeDetail =
     activeId && experienceDetails.find((detail) => detail.id === activeId);
 
+  function handleClick() {
+    const newDetails = new ExperienceDetails();
+    setExperienceDetails(experienceDetails.concat(newDetails));
+    setActiveId(newDetails.id);
+  }
+
   return (
     <div className='experience details'>
       <h3>Experience</h3>
-      <button
-        onClick={() => {
-          const newDetails = new ExperienceDetails();
-          setExperienceDetails(experienceDetails.concat(newDetails));
-          setActiveId(newDetails.id);
-        }}
-      >
-        Add new experience
-      </button>
-
       {activeDetail === null || activeDetail === undefined ? (
-        experienceDetails.map((detail) => (
-          <DetailItem
-            key={detail.id}
-            id={detail.id}
-            title={detail.orgName}
-            setActiveId={setActiveId}
-          />
-        ))
+        experienceDetails
+          .map((detail) => (
+            <DetailItem
+              key={detail.id}
+              id={detail.id}
+              title={detail.orgName}
+              setActiveId={setActiveId}
+            />
+          ))
+          .concat(
+            <button key='btnAdd' className='btn-add' onClick={handleClick}>
+              + Experience
+            </button>
+          )
       ) : (
         <ExperienceForm
           key={activeDetail.id}
