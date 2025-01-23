@@ -34,7 +34,7 @@ function ExperiencePreview({
     <div className='experience-preview detail-preview'>
       <h2>Experience</h2>
       {experienceDetails.map((details) => (
-        <EducationPreviewItem key={details.id} experienceDetails={details} />
+        details.hidden || <EducationPreviewItem key={details.id} experienceDetails={details} />
       ))}
     </div>
   );

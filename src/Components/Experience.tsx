@@ -22,6 +22,19 @@ function Experience({
     setActiveId(newDetails.id);
   }
 
+  function toggleHide(id: UUIDString) {
+    const oldDetails = experienceDetails.find((detail) => detail.id === id)!;
+    const newDetails = oldDetails.clone();
+    newDetails.hidden = !newDetails.hidden;
+
+    setExperienceDetails(
+      experienceDetails.map((detail) => {
+        if (detail.id === oldDetails.id) return newDetails;
+        return detail;
+      })
+    );
+  }
+
   return (
     <div className='experience details'>
       <h3>Experience</h3>
@@ -33,6 +46,7 @@ function Experience({
               id={detail.id}
               title={detail.orgName}
               setActiveId={setActiveId}
+              toggleHide={toggleHide}
             />
           ))
           .concat(
