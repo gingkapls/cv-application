@@ -9,9 +9,10 @@ class ProjectDetails {
   name: string;
   techUsed: string;
   description: string;
+  hidden: boolean;
   #startDate: Date = new Date();
   #endDate: Date = new Date();
-  [key: string]: string | string[] | (() => ProjectDetails);
+  [key: string]: string | boolean | string[] | (() => ProjectDetails);
 
   constructor({
     id = generateUniqueId(),
@@ -20,6 +21,7 @@ class ProjectDetails {
     description = '',
     startDate = new Date(),
     endDate = new Date(),
+    hidden = false,
   } = {}) {
     this.id = id;
     this.name = name;
@@ -27,6 +29,7 @@ class ProjectDetails {
     this.description = description;
     this.startDate = startDate;
     this.endDate = endDate;
+    this.hidden = hidden;
   }
 
   set startDate(date: Date | DateString) {
@@ -79,6 +82,7 @@ class ProjectDetails {
       name: this.name,
       techUsed: this.techUsed,
       description: this.description,
+      hidden: this.hidden,
       startDate: this.#startDate,
       endDate: this.#endDate,
     });

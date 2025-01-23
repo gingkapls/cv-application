@@ -19,6 +19,19 @@ function Project({ projectDetails, setProjectDetails }: ProjectProps) {
     setActiveId(newDetails.id);
   }
 
+  function toggleHide(id: UUIDString) {
+    const oldDetails = projectDetails.find((detail) => detail.id === id)!;
+    const newDetails = oldDetails.clone();
+    newDetails.hidden = !newDetails.hidden;
+
+    setProjectDetails(
+      projectDetails.map((detail) => {
+        if (detail.id === oldDetails.id) return newDetails;
+        return detail;
+      })
+    );
+  }
+
   return (
     <div className='project details'>
       <h3>Projects</h3>
@@ -31,6 +44,7 @@ function Project({ projectDetails, setProjectDetails }: ProjectProps) {
               id={detail.id}
               title={detail.name}
               setActiveId={setActiveId}
+              toggleHide={toggleHide}
             />
           ))
           .concat(
