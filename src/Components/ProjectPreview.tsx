@@ -33,7 +33,7 @@ function ProjectPreview({
 }) {
   return (
     <div className='project-preview detail-preview'>
-      <h2>Project</h2>
+      <h2>Projects</h2>
       {projectDetails.map((details) => (
         <ProjectPreviewItem key={details.id} projectDetails={details} />
       ))}
