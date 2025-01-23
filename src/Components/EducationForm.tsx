@@ -95,7 +95,7 @@ class EducationDetails {
   }
 
   #parseDate(dateString: DateString): Date {
-    return new Date(dateString);
+    return dateString.length === 0 ? new Date() : new Date(dateString);
   }
 }
 
