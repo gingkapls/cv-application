@@ -7,7 +7,7 @@
   --active-bg-color: #dfdfdf;
   --accent-color: #2f8a89;
   --save-color: #b58451;
-  --card-side-padding: 12px;
+  --card-side-padding: 18px;
   --card-vert-padding: 0px;
 
   --button-padding: 8px 12px;
@@ -60,6 +60,7 @@ body {
 #root {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   width: 100%;
   min-height: 100%;
   padding: 20px;
@@ -68,6 +69,8 @@ body {
 
 .sidebar {
   display: flex;
+  flex: 1;
+  max-width: 320px;
   flex-direction: column;
   gap: 48px;
 
@@ -158,11 +161,12 @@ form {
 
 /* CV Preview Styles */
 
-.preview {
-  flex: 1;
+.preview-container {
+  flex: 3;
+  min-height: 100%;
+  min-width: 300px;
   display: flex;
-  flex-direction: column;
-  place-items: start center;
+  justify-content: center;
 
   & h2,
   caption {
@@ -176,6 +180,10 @@ form {
   & h3 {
     width: 100%;
   }
+}
+
+.preview {
+  width: min(720px, 100%);
 }
 
 .detail-preview {

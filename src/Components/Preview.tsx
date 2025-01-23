@@ -12,7 +12,11 @@ interface PreviewProps {
 }
 
 function Preview({ children }: PreviewProps) {
-  return <section className='preview'>{children}</section>;
+  return (
+    <div className='preview-container'>
+      <section className='preview'>{children}</section>
+    </div>
+  );
 }
 
 export default Preview;
