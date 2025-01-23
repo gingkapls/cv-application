@@ -175,7 +175,7 @@ function ExperienceForm({
         value={endDate}
         onChange={handleFieldChange}
       />
-      <button type='submit'>Save</button>
+      <button className='btn-save' type='submit'>Save</button>
     </form>
   );
 }
