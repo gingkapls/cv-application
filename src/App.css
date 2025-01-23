@@ -7,17 +7,19 @@
   --active-bg-color: #dfdfdf;
   --accent-color: #2f8a89;
   --save-color: #b58451;
-  --card-side-padding: 18px;
-  --card-vert-padding: 0px;
   --separator-color: #ffffff;
   --visited-link-color: #333333;
+  --control-bg-color: #ffffff;
 
   --button-padding: 8px 12px;
 
-  --card-border-radius: 12px;
+  --card-side-padding: 18px;
+  --card-vert-padding: 0px;
+  --card-border-radius: 8px;
   --control-padding: 8px;
   --control-border-radius: 4px;
   --button-border-radius: 4px;
+  --subtle-box-shadow: 2px 2px 8px 4px rgba(0 0 0 /.05);
 
   font-weight: 400;
   line-height: 1.5;
@@ -91,6 +93,7 @@ body {
   float: right;
   margin-top: 42px;
   padding: 8px var(--card-side-padding);
+  box-shadow: var(--subtle-box-shadow);
 }
 
 .details {
@@ -98,6 +101,7 @@ body {
   border-radius: var(--card-border-radius);
   display: flex;
   flex-direction: column;
+  box-shadow: var(--subtle-box-shadow);
 }
 
 .detail-item {
@@ -143,6 +147,7 @@ form {
   textarea {
     margin-top: 5px;
     width: 100%;
+    box-shadow: var(--subtle-box-shadow);
   }
 
   & textarea {
@@ -161,6 +166,7 @@ form {
   font-size: 1.2rem;
   align-self: center;
   margin: 16px 0;
+  box-shadow: var(--subtle-box-shadow);
 }
 
 .education,
@@ -197,6 +203,11 @@ form {
 
 .preview {
   width: min(720px, 100%);
+  height: min-content;
+  border: 1px solid var(--active-bg-color);
+  box-shadow: var(--subtle-box-shadow);
+  border-radius: var(--card-border-radius);
+  padding: 24px;
 }
 
 .detail-preview {
