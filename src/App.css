@@ -281,6 +281,11 @@ form {
 
 .skills-preview {
   font-size: 1rem;
+  
+  & caption {
+    margin-bottom: var(--card-side-padding);
+
+  }
 
   & th {
     text-align: left;
