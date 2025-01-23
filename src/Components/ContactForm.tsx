@@ -25,7 +25,6 @@ class ContactDetails {
 
 interface ContactFormProps {
   contactDetails: ContactDetails;
-  id?: string;
   setContactDetails: Dispatch<SetStateAction<ContactDetails>>;
 }
 
