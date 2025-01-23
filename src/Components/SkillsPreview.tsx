@@ -4,7 +4,7 @@ function SkillsPreview({ skillsDetails }: { skillsDetails: SkillsDetails }) {
   const { languages, frameworks, devTools, libraries } = skillsDetails;
 
   return (
-    <div className='skills-preview'>
+    <div className='skills-preview detail-preview'>
       <table>
         <caption>Technical Skills</caption>
         <tbody>

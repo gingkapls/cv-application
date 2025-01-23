@@ -9,7 +9,7 @@ function ProjectPreviewItem({
   const [startDate, endDate] = projectDetails.duration;
 
   return (
-    <section className='project-preview-item'>
+    <section className='preview-item'>
       <div className='title'>
         <h3 className='name'>{name}</h3> | 
         <span className='techUsed'>{techUsed}</span>
@@ -32,7 +32,7 @@ function ProjectPreview({
   projectDetails: ProjectDetails[];
 }) {
   return (
-    <div className='project-preview'>
+    <div className='project-preview detail-preview'>
       <h2>Project</h2>
       {projectDetails.map((details) => (
         <ProjectPreviewItem key={details.id} projectDetails={details} />
