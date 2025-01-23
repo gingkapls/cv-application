@@ -12,7 +12,7 @@ function ProjectPreviewItem({
     <section className='preview-item'>
       <div className='title'>
         <h3 className='name'>{name}</h3> | 
-        <span className='techUsed'>{techUsed}</span>
+        <span className='tech-used'>{techUsed}</span>
       </div>
       <span className='duration'>
         {startDate} - {endDate}
