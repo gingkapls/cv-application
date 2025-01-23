@@ -22,6 +22,7 @@ import ExperiencePreview from './Components/ExperiencePreview';
 import ProjectPreview from './Components/ProjectPreview';
 import SkillsForm, { SkillsDetails } from './Components/SkillsForm';
 import SkillsPreview from './Components/SkillsPreview';
+import CopyTexButton from './Components/CopyTexButton';
 
 function App() {
   const [contactDetails, setContactDetails] = useState<ContactDetails>(
@@ -74,6 +75,13 @@ function App() {
         <ExperiencePreview experienceDetails={experienceDetails} />
         <ProjectPreview projectDetails={projectDetails} />
         <SkillsPreview skillsDetails={skillsDetails} />
+        <CopyTexButton
+          contactDetails={contactDetails}
+          educationDetails={educationDetails}
+          experienceDetails={experienceDetails}
+          projectDetails={projectDetails}
+          skillsDetails={skillsDetails}
+        />
       </Preview>
     </>
   );
