@@ -21,6 +21,7 @@ import EducationPreview from './Components/EducationPreview';
 import ExperiencePreview from './Components/ExperiencePreview';
 import ProjectPreview from './Components/ProjectPreview';
 import SkillsForm, { SkillsDetails } from './Components/SkillsForm';
+import SkillsPreview from './Components/SkillsPreview';
 
 function App() {
   const [contactDetails, setContactDetails] = useState<ContactDetails>(
@@ -72,6 +73,7 @@ function App() {
         <EducationPreview educationDetails={educationDetails} />
         <ExperiencePreview experienceDetails={experienceDetails} />
         <ProjectPreview projectDetails={projectDetails} />
+        <SkillsPreview skillsDetails={skillsDetails} />
       </Preview>
     </>
   );
