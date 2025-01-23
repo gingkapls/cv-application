@@ -8,9 +8,10 @@ class EducationDetails {
   collegeName: string;
   degree: string;
   gpa: string;
+  hidden: boolean;
   #startDate: Date = new Date();
   #endDate: Date = new Date();
-  [key: string]: string | string[] | (() => EducationDetails);
+  [key: string]: string | boolean | string[] | (() => EducationDetails);
 
   constructor({
     id = generateUniqueId(),
@@ -19,6 +20,7 @@ class EducationDetails {
     gpa = '',
     startDate = new Date(),
     endDate = new Date(),
+    hidden = false,
   } = {}) {
     this.id = id;
     this.collegeName = collegeName;
@@ -26,6 +28,7 @@ class EducationDetails {
     this.gpa = gpa;
     this.startDate = startDate;
     this.endDate = endDate;
+    this.hidden = hidden;
   }
 
   set startDate(date: Date | DateString) {
@@ -80,6 +83,7 @@ class EducationDetails {
       gpa: this.gpa,
       startDate: this.#startDate,
       endDate: this.#endDate,
+      hidden: this.hidden,
     });
   }
 
@@ -174,7 +178,9 @@ function EducationForm({
         value={endDate}
         onChange={handleFieldChange}
       />
-      <button className='btn-save' type='submit'>Save</button>
+      <button className='btn-save' type='submit'>
+        Save
+      </button>
     </form>
   );
 }

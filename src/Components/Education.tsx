@@ -20,6 +20,19 @@ function Education({ educationDetails, setEducationDetails }: EducationProps) {
     setActiveId(newDetails.id);
   }
 
+  function toggleHide(id: UUIDString) {
+    const oldDetails = educationDetails.find((detail) => detail.id === id)!;
+    const newDetails = oldDetails.clone();
+    newDetails.hidden = !newDetails.hidden;
+
+    setEducationDetails(
+      educationDetails.map((detail) => {
+        if (detail.id === oldDetails.id) return newDetails;
+        return detail;
+      })
+    );
+  }
+
   return (
     <div className='education details'>
       <h3>Education</h3>
@@ -31,6 +44,7 @@ function Education({ educationDetails, setEducationDetails }: EducationProps) {
               id={detail.id}
               title={detail.collegeName}
               setActiveId={setActiveId}
+              toggleHide={() => toggleHide(detail.id)}
             />
           ))
           .concat(
