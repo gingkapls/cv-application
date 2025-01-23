@@ -10,12 +10,17 @@ import {
   initialEducationDetails,
   initialExperienceDetails,
   initialProjectDetails,
+  initialSkillsDetails,
 } from './lib/initialState';
 import { ProjectDetails } from './Components/ProjectForm';
 import Project from './Components/Project';
 import Sidebar from './Components/Sidebar';
 import Preview from './Components/Preview';
 import ContactPreview from './Components/ContactPreview';
+import EducationPreview from './Components/EducationPreview';
+import ExperiencePreview from './Components/ExperiencePreview';
+import ProjectPreview from './Components/ProjectPreview';
+import SkillsForm, { SkillsDetails } from './Components/SkillsForm';
 
 function App() {
   const [contactDetails, setContactDetails] = useState<ContactDetails>(
@@ -33,6 +38,9 @@ function App() {
   const [projectDetails, setProjectDetails] = useState<ProjectDetails[]>(
     initialProjectDetails
   );
+
+  const [skillsDetails, setSkillsDetails] =
+    useState<SkillsDetails>(initialSkillsDetails);
 
   return (
     <>
@@ -53,9 +61,17 @@ function App() {
           projectDetails={projectDetails}
           setProjectDetails={setProjectDetails}
         />
+
+        <SkillsForm
+          skillsDetails={skillsDetails}
+          setSkillsDetails={setSkillsDetails}
+        />
       </Sidebar>
       <Preview>
         <ContactPreview contactDetails={contactDetails} />
+        <EducationPreview educationDetails={educationDetails} />
+        <ExperiencePreview experienceDetails={experienceDetails} />
+        <ProjectPreview projectDetails={projectDetails} />
       </Preview>
     </>
   );

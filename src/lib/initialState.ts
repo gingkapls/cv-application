@@ -2,6 +2,7 @@ import { ContactDetails } from '../Components/ContactForm';
 import { EducationDetails } from '../Components/EducationForm';
 import { ExperienceDetails } from '../Components/ExperienceForm';
 import { ProjectDetails } from '../Components/ProjectForm';
+import { SkillsDetails } from '../Components/SkillsForm';
 
 const initialContactDetails = new ContactDetails({
   fullName: 'John Doe',
@@ -9,7 +10,7 @@ const initialContactDetails = new ContactDetails({
   github: 'johnDoe',
   linkedIn: 'johnDoe',
   gmail: 'johnDoe@gmail.com',
-}); 
+});
 
 const initialEducationDetails = [
   new EducationDetails({
@@ -36,9 +37,17 @@ const initialProjectDetails = [
   }),
 ];
 
+const initialSkillsDetails = new SkillsDetails({
+  languages: 'Javascript',
+  frameworks: 'ReactJS',
+  devTools: 'Git, VS Code',
+  libraries: 'Jest',
+});
+
 export {
   initialContactDetails,
   initialEducationDetails,
   initialExperienceDetails,
   initialProjectDetails,
+  initialSkillsDetails,
 };
