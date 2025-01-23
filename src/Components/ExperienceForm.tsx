@@ -50,7 +50,18 @@ class ExperienceDetails {
 
   get duration() {
     const start = `${ExperienceDetails.shortenDate(this.#startDate)}`;
-    const end = `${ExperienceDetails.shortenDate(this.#endDate)}`;
+    const endMonth = this.#endDate.getMonth();
+    const endYear = this.#endDate.getFullYear();
+
+    const presentDate = new Date();
+    const thisMonth = presentDate.getMonth();
+    const thisYear = presentDate.getFullYear();
+
+    const end =
+      endMonth === thisMonth && endYear === thisYear
+        ? 'Present'
+        : `${ExperienceDetails.shortenDate(this.#endDate)}`;
+
     return [start, end];
   }
 
@@ -175,7 +186,9 @@ function ExperienceForm({
         value={endDate}
         onChange={handleFieldChange}
       />
-      <button className='btn-save' type='submit'>Save</button>
+      <button className='btn-save' type='submit'>
+        Save
+      </button>
     </form>
   );
 }

@@ -47,7 +47,18 @@ class ProjectDetails {
 
   get duration() {
     const start = `${ProjectDetails.shortenDate(this.#startDate)}`;
-    const end = `${ProjectDetails.shortenDate(this.#endDate)}`;
+    const endMonth = this.#endDate.getMonth();
+    const endYear = this.#endDate.getFullYear();
+
+    const presentDate = new Date();
+    const thisMonth = presentDate.getMonth();
+    const thisYear = presentDate.getFullYear();
+
+    const end =
+      endMonth === thisMonth && endYear === thisYear
+        ? 'Present'
+        : `${ProjectDetails.shortenDate(this.#endDate)}`;
+
     return [start, end];
   }
 
@@ -164,7 +175,9 @@ function ProjectForm({
         value={endDate}
         onChange={handleFieldChange}
       />
-      <button className='btn-save' type='submit'>Save</button>
+      <button className='btn-save' type='submit'>
+        Save
+      </button>
     </form>
   );
 }
