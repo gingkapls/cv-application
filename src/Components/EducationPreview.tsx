@@ -35,7 +35,7 @@ function EducationPreviewItem({
         {startDate} - {endDate}
       </span>
       <h4 className='degree'>{degree}</h4>
-      <span className='gpa'>{gpa}</span>
+      <span className='gpa'>GPA: {gpa}</span>
     </section>
   );
 }
