@@ -2,13 +2,15 @@ import { ChangeEvent, Dispatch, FormEvent, SetStateAction } from 'react';
 import Input from './Input';
 import { DateString, UUIDString } from '../lib/types';
 import generateUniqueId from '../lib/uniqueId';
+import TextArea from './TextArea';
 
 class EducationDetails {
   id: UUIDString;
   collegeName: string;
   degree: string;
   gpa: string;
-  hidden: boolean;
+  coursework: string;
+  isVisible: boolean;
   #startDate: Date = new Date();
   #endDate: Date = new Date();
   [key: string]: string | boolean | string[] | (() => EducationDetails);
@@ -18,17 +20,19 @@ class EducationDetails {
     collegeName = '',
     degree = '',
     gpa = '',
+    coursework = '',
     startDate = new Date(),
     endDate = new Date(),
-    hidden = false,
+    isVisible = true,
   } = {}) {
     this.id = id;
     this.collegeName = collegeName;
     this.degree = degree;
     this.gpa = gpa;
+    this.coursework = coursework;
     this.startDate = startDate;
     this.endDate = endDate;
-    this.hidden = hidden;
+    this.isVisible = isVisible;
   }
 
   set startDate(date: Date | DateString) {
@@ -81,9 +85,10 @@ class EducationDetails {
       collegeName: this.collegeName,
       degree: this.degree,
       gpa: this.gpa,
+      coursework: this.coursework,
       startDate: this.#startDate,
       endDate: this.#endDate,
-      hidden: this.hidden,
+      isVisible: this.isVisible,
     });
   }
 
@@ -139,7 +144,7 @@ function EducationForm({
     (detail: EducationDetails) => detail.id === id
   );
 
-  const { collegeName, degree, gpa, startDate, endDate } =
+  const { collegeName, degree, gpa, coursework, startDate, endDate } =
     educationDetails.at(detailIndex)!;
 
   return (
@@ -164,6 +169,14 @@ function EducationForm({
         value={gpa}
         onChange={handleFieldChange}
       />
+
+      <TextArea
+        label='Coursework'
+        name='coursework'
+        value={coursework}
+        onChange={handleFieldChange}
+      />
+
       <Input
         label='Start Date: '
         type='Date'
@@ -178,6 +191,7 @@ function EducationForm({
         value={endDate}
         onChange={handleFieldChange}
       />
+
       <button className='btn-save' type='submit'>
         Save
       </button>

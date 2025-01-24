@@ -1,5 +1,25 @@
 import { EducationDetails } from './EducationForm';
 
+function Coursework({
+  educationDetails,
+}: {
+  educationDetails: EducationDetails[];
+}) {
+  const combinedCoursework = educationDetails
+    .map((details) => details.coursework)
+    .filter((coursework) => coursework.length)
+    .join(', ');
+
+  if (combinedCoursework.length === 0) return null;
+
+  return (
+      <section className='coursework'>
+        <h3>Coursework</h3>
+        <p>{combinedCoursework}</p>
+      </section>
+  );
+}
+
 function EducationPreviewItem({
   educationDetails,
 }: {
@@ -25,15 +45,18 @@ function EducationPreview({
 }: {
   educationDetails: EducationDetails[];
 }) {
+  const visibleDetails = educationDetails.filter(
+    (details) => details.isVisible
+  );
+  const itemList = visibleDetails.map((details) => (
+    <EducationPreviewItem key={details.id} educationDetails={details} />
+  ));
+
   return (
     <div className='education-preview detail-preview'>
       <h2>Education</h2>
-      {educationDetails.map(
-        (details) =>
-          details.hidden || (
-            <EducationPreviewItem key={details.id} educationDetails={details} />
-          )
-      )}
+      {itemList}
+      <Coursework educationDetails={visibleDetails} />
     </div>
   );
 }

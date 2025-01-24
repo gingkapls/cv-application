@@ -23,7 +23,7 @@ function Education({ educationDetails, setEducationDetails }: EducationProps) {
   function toggleHide(id: UUIDString) {
     const oldDetails = educationDetails.find((detail) => detail.id === id)!;
     const newDetails = oldDetails.clone();
-    newDetails.hidden = !newDetails.hidden;
+    newDetails.isVisible = !newDetails.isVisible;
 
     setEducationDetails(
       educationDetails.map((detail) => {
