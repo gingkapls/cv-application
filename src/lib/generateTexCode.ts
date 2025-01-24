@@ -113,6 +113,14 @@ const preamble = `
 
 `;
 
+type emptyString = '';
+function conditionallyRender(
+  str: string | string[],
+  src: string
+): string | emptyString {
+  return str.length === 0 ? '' : src;
+}
+
 function generateContactSrc({
   fullName,
   phoneNumber,
@@ -127,26 +135,31 @@ function generateContactSrc({
 
 \\begin{center}
     \\textbf{\\Huge \\scshape ${fullName}} \\\\ \\vspace{8pt}
-    \\faIcon{phone}
-    \\small \\href{tel:+${phoneNumber}}{\\underline{+${phoneNumber}}} $ $
-    ${github ? '\\faIcon{github}' : ''}
-    ${
-      github
-        ? `\\href{https://github.com/${github}}{\\underline{github.com/${github}}} $  $`
-        : ''
-    }
+
+    ${conditionallyRender(
+      phoneNumber,
+      `\\faIcon{phone}
+      \\small \\href{tel:+${phoneNumber}}{\\underline{+${phoneNumber}}} $ $`
+    )}
+    ${conditionallyRender(
+      github,
+      `\\faIcon{github}
+      \\href{https://github.com/${github}}{\\underline{github.com/${github}}} $  $`
+    )}
     % \\faIcon{code}
     % \\href{https://www.mattydoe.com}
     % {\\underline{mattydoe.com}} $  $
-    ${linkedIn ? '\\faIcon{linkedin}' : ''}
-    ${
-      linkedIn
-        ? `\\href{https://linkedin.com/in/${linkedIn}}{\\underline{linkedin.com/in/${linkedIn}}} $  $`
-        : ''
-    }
-    \\faIcon{envelope}
-    ${gmail ? `\\href{mailto:${gmail}}` : ''}
-    ${gmail ? `{\\underline{${gmail}}}` : ''}
+    ${conditionallyRender(
+      linkedIn,
+      `\\faIcon{linkedin}
+      \\href{https://linkedin.com/in/${linkedIn}}{\\underline{linkedin.com/in/${linkedIn}}} $  $`
+    )}
+    ${conditionallyRender(
+      gmail,
+      `\\faIcon{envelope}
+      \\href{mailto:${gmail}}{\\underline{${gmail}}}`
+    )}
+
 \\end{center}
     `;
 }
@@ -196,13 +209,15 @@ function generateEducationSrc(educationDetails: EducationDetails[]) {
   \\resumeSubHeadingListEnd   
   `;
 
-  if (items.length === 0) return '';
-
-  return `
+  // Generate nothing if no visible details
+  return conditionallyRender(
+    items,
+    `
     ${start}
     ${items.join('\n\n')}
-    ${coursework.length === 0 ? '' : courseworkSrc}
-    ${end}`;
+    ${conditionallyRender(coursework, courseworkSrc)}
+    ${end}`
+  );
 }
 
 function generateExperienceDetailItem({
@@ -242,13 +257,15 @@ function generateExperienceSrc(experienceDetails: ExperienceDetails[]) {
   \\resumeSubHeadingListEnd
   `;
 
-  if (items.length === 0) return '';
-
-  return `
+  // Generate nothing if no visible details
+  return conditionallyRender(
+    items,
+    `
   ${start}
   ${items.join('\n\n')}
   ${end}
-  `;
+  `
+  );
 }
 
 function generateProjectDetailsItem({
@@ -266,6 +283,7 @@ function generateProjectDetailsItem({
     .split('\n')
     .map((bullet) => `\\resumeItem{${bullet}}`);
 
+  // don't return an empty description
   if (description.split('\n').length === 0) return start;
 
   return `
@@ -289,10 +307,14 @@ function generateProjectSrc(projectDetails: ProjectDetails[]) {
   const end = `
 \\resumeSubHeadingListEnd`;
 
-  return `
+  return conditionallyRender(
+    items,
+    `
     ${start}
     ${items}
-    ${end}`;
+    ${end}
+    `
+  );
 }
 
 const volunteerWork = `
