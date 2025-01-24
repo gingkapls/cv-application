@@ -51,13 +51,13 @@ function App() {
           contactDetails={contactDetails}
           setContactDetails={setContactDetails}
         />
-        <Education
-          educationDetails={educationDetails}
-          setEducationDetails={setEducationDetails}
-        />
         <Experience
           experienceDetails={experienceDetails}
           setExperienceDetails={setExperienceDetails}
+        />
+        <Education
+          educationDetails={educationDetails}
+          setEducationDetails={setEducationDetails}
         />
         <Project
           projectDetails={projectDetails}
