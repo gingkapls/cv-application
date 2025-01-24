@@ -1,4 +1,3 @@
-type DateString = `${string}-${string}-${string}`;
-type UUIDString = `${string}-${string}-${string}-${string}-${string}`;
+type Maybe<T> = T | null;
 
-export type { DateString, UUIDString };
+export type { Maybe };
