@@ -45,10 +45,7 @@ function EducationPreview({
 }: {
   educationDetails: EducationDetails[];
 }) {
-  const visibleDetails = educationDetails.filter(
-    (details) => details.isVisible
-  );
-  const itemList = visibleDetails.map((details) => (
+  const itemList = educationDetails.map((details) => (
     <EducationPreviewItem key={details.id} educationDetails={details} />
   ));
 
@@ -56,7 +53,7 @@ function EducationPreview({
     <div className='education-preview detail-preview'>
       <h2>Education</h2>
       {itemList}
-      <Coursework educationDetails={visibleDetails} />
+      <Coursework educationDetails={educationDetails} />
     </div>
   );
 }
