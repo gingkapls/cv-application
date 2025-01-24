@@ -18,7 +18,6 @@ interface PreviewProps {
   experienceDetails: ExperienceDetails[];
   projectDetails: ProjectDetails[];
   skillsDetails: SkillsDetails;
-  visibleOnly: boolean;
 }
 
 function filterVisibleDetails<T extends FilterableDetails>(details: T[]): T[] {
