@@ -3,6 +3,7 @@ import { EducationDetails } from '../Components/EducationForm';
 import { ExperienceDetails } from '../Components/ExperienceForm';
 import { ProjectDetails } from '../Components/ProjectForm';
 import { SkillsDetails } from '../Components/SkillsForm';
+import generateUniqueId from './uniqueId';
 
 const initialContactDetails = new ContactDetails({
   fullName: 'John Doe',
@@ -13,12 +14,17 @@ const initialContactDetails = new ContactDetails({
 });
 
 const initialEducationDetails = [
-  new EducationDetails({
+  {
+    id: generateUniqueId(),
     collegeName: 'College McCollegePants',
     degree: 'McMasters',
     gpa: '4.20',
-  }),
-];
+    coursework: 'Stuff',
+    isVisible: true,
+    startDate: new Date(),
+    endDate: new Date(),
+  },
+] satisfies EducationDetails[];
 
 const initialExperienceDetails = [
   new ExperienceDetails({
