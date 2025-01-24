@@ -164,7 +164,6 @@ function generateEducationDetailItem({
 `;
 }
 
-
 function generateEducationSrc(educationDetails: EducationDetails[]) {
   const start = `
 % -------------------- EDUCATION --------------------
@@ -186,21 +185,23 @@ function generateEducationSrc(educationDetails: EducationDetails[]) {
     .filter((coursework) => coursework.length)
     .join(', ');
 
-  const end = `
+  const courseworkSrc = `
     \\vspace{-10pt}
 
     \\subsection{Coursework}
-    ${coursework.length === 0 ? '%' : ''} \\textbf{Courses:} ${coursework} \\\\
-    \\textbf{Awards:} 
-
-  \\resumeSubHeadingListEnd   
+    \\textbf{Courses:} ${coursework} \\\\
     `;
+
+  const end = `
+  \\resumeSubHeadingListEnd   
+  `;
 
   if (items.length === 0) return '';
 
   return `
     ${start}
     ${items.join('\n\n')}
+    ${coursework.length === 0 ? '' : courseworkSrc}
     ${end}`;
 }
 
