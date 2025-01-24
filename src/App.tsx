@@ -69,20 +69,13 @@ function App() {
           setSkillsDetails={setSkillsDetails}
         />
       </Sidebar>
-      <Preview>
-        <ContactPreview contactDetails={contactDetails} />
-        <EducationPreview educationDetails={educationDetails} />
-        <ExperiencePreview experienceDetails={experienceDetails} />
-        <ProjectPreview projectDetails={projectDetails} />
-        <SkillsPreview skillsDetails={skillsDetails} />
-        <CopyTexButton
-          contactDetails={contactDetails}
-          educationDetails={educationDetails}
-          experienceDetails={experienceDetails}
-          projectDetails={projectDetails}
-          skillsDetails={skillsDetails}
-        />
-      </Preview>
+      <Preview
+        contactDetails={contactDetails}
+        educationDetails={educationDetails}
+        experienceDetails={experienceDetails}
+        projectDetails={projectDetails}
+        skillsDetails={skillsDetails}
+      />
     </>
   );
 }

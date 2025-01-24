@@ -164,6 +164,7 @@ function generateEducationDetailItem({
 `;
 }
 
+
 function generateEducationSrc(educationDetails: EducationDetails[]) {
   const start = `
 % -------------------- EDUCATION --------------------
@@ -172,16 +173,25 @@ function generateEducationSrc(educationDetails: EducationDetails[]) {
 
 `;
 
-  const items = educationDetails
-    .filter((details) => details.hidden === false)
-    .map((details) => generateEducationDetailItem(details));
+  const visibleDetails = educationDetails.filter(
+    (details) => details.isVisible
+  );
+
+  const items = visibleDetails.map((details) =>
+    generateEducationDetailItem(details)
+  );
+
+  const coursework = visibleDetails
+    .map((details) => details.coursework)
+    .filter((coursework) => coursework.length)
+    .join(', ');
 
   const end = `
-    % \\vspace{-10pt}
+    \\vspace{-10pt}
 
-    % \\subsection{Coursework}
-    % \\textbf{Courses:} Object-Oriented Programming, Data Structures \\& Algorithms, Discrete Math, Probability \\& Statistics \\\\
-    % \\textbf{Awards:} 
+    \\subsection{Coursework}
+    ${coursework.length === 0 ? '%' : ''} \\textbf{Courses:} ${coursework} \\\\
+    \\textbf{Awards:} 
 
   \\resumeSubHeadingListEnd   
     `;
@@ -271,9 +281,9 @@ function generateProjectSrc(projectDetails: ProjectDetails[]) {
     \\resumeSubHeadingListStart
     `;
 
-  const items = projectDetails.map((details) =>
-    generateProjectDetailsItem(details)
-  );
+  const items = projectDetails
+    .filter((details) => !details.hidden)
+    .map((details) => generateProjectDetailsItem(details));
 
   const end = `
 \\resumeSubHeadingListEnd`;
