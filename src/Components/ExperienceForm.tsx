@@ -10,7 +10,7 @@ class ExperienceDetails {
   jobTitle: string;
   location: string;
   description: string;
-  hidden: boolean;
+  isVisible: boolean;
   #startDate: Date = new Date();
   #endDate: Date = new Date();
   [key: string]: string | boolean | string[] | (() => ExperienceDetails);
@@ -23,7 +23,7 @@ class ExperienceDetails {
     description = '',
     startDate = new Date(),
     endDate = new Date(),
-    hidden = false,
+    isVisible = true,
   } = {}) {
     this.id = id;
     this.orgName = orgName;
@@ -32,7 +32,7 @@ class ExperienceDetails {
     this.description = description;
     this.startDate = startDate;
     this.endDate = endDate;
-    this.hidden = hidden;
+    this.isVisible = isVisible;
   }
 
   set startDate(date: Date | DateString) {
@@ -86,7 +86,7 @@ class ExperienceDetails {
       jobTitle: this.jobTitle,
       location: this.location,
       description: this.description,
-      hidden: this.hidden,
+      isVisible: this.isVisible,
       startDate: this.#startDate,
       endDate: this.#endDate,
     });
