@@ -19,7 +19,7 @@
   --control-padding: 8px;
   --control-border-radius: 4px;
   --button-border-radius: 4px;
-  --subtle-box-shadow: 2px 2px 8px 4px rgba(0 0 0 /.05);
+  --subtle-box-shadow: 2px 2px 8px 4px rgba(0 0 0 /0.05);
 
   font-weight: 400;
   line-height: 1.5;
@@ -204,6 +204,7 @@ form {
 .preview {
   width: min(720px, 100%);
   height: min-content;
+  aspect-ratio: 21 / 29;
   border: 1px solid var(--active-bg-color);
   box-shadow: var(--subtle-box-shadow);
   border-radius: var(--card-border-radius);
@@ -244,7 +245,7 @@ form {
   & span:not(:first-of-type)::before {
     content: '|  ';
   }
-  
+
   & a {
     color: var(--visited-link-color);
   }
@@ -272,6 +273,10 @@ form {
   .gpa {
     text-align: right;
   }
+}
+
+.coursework p {
+  margin: 0 var(--card-side-padding);
 }
 
 .experience-preview .preview-item {
