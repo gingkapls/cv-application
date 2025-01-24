@@ -1,5 +1,22 @@
 import { ProjectDetails } from './ProjectForm';
 
+function ProjectPreviewItemDescription({
+  projectDetails,
+}: {
+  projectDetails: ProjectDetails;
+}) {
+  return (
+    <span className='description'>
+      {projectDetails.description
+        .trim()
+        .split('\n')
+        .map((item, idx) => (
+          <li key={item + idx}>{item}</li>
+        ))}
+    </span>
+  );
+}
+
 function ProjectPreviewItem({
   projectDetails,
 }: {
@@ -11,17 +28,16 @@ function ProjectPreviewItem({
   return (
     <section className='preview-item'>
       <div className='title'>
-        <h3 className='name'>{name}</h3> | 
+        <h3 className='name'>{name}</h3>
+        {techUsed.length !== 0 && ' |'}
         <span className='tech-used'>{techUsed}</span>
       </div>
       <span className='duration'>
         {startDate} - {endDate}
       </span>
-      <span className='description'>
-        {description.split('\n').map((item) => (
-          <li key={item}>{item}</li>
-        ))}
-      </span>
+      {description.length !== 0 && (
+        <ProjectPreviewItemDescription projectDetails={projectDetails} />
+      )}
     </section>
   );
 }
@@ -31,12 +47,14 @@ function ProjectPreview({
 }: {
   projectDetails: ProjectDetails[];
 }) {
+  const items = projectDetails.map((details) => (
+    <ProjectPreviewItem key={details.id} projectDetails={details} />
+  ));
+
   return (
     <div className='project-preview detail-preview'>
       <h2>Projects</h2>
-      {projectDetails.map((details) => (
-        details.hidden || <ProjectPreviewItem key={details.id} projectDetails={details} />
-      ))}
+      {items}
     </div>
   );
 }

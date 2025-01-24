@@ -22,7 +22,7 @@ function Project({ projectDetails, setProjectDetails }: ProjectProps) {
   function toggleHide(id: UUIDString) {
     const oldDetails = projectDetails.find((detail) => detail.id === id)!;
     const newDetails = oldDetails.clone();
-    newDetails.hidden = !newDetails.hidden;
+    newDetails.isVisible = !newDetails.isVisible;
 
     setProjectDetails(
       projectDetails.map((detail) => {
@@ -43,6 +43,7 @@ function Project({ projectDetails, setProjectDetails }: ProjectProps) {
               key={detail.id}
               id={detail.id}
               title={detail.name}
+              isVisible={detail.isVisible}
               setActiveId={setActiveId}
               toggleHide={toggleHide}
             />

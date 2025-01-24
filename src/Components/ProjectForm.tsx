@@ -9,7 +9,7 @@ class ProjectDetails {
   name: string;
   techUsed: string;
   description: string;
-  hidden: boolean;
+  isVisible: boolean;
   #startDate: Date = new Date();
   #endDate: Date = new Date();
   [key: string]: string | boolean | string[] | (() => ProjectDetails);
@@ -21,7 +21,7 @@ class ProjectDetails {
     description = '',
     startDate = new Date(),
     endDate = new Date(),
-    hidden = false,
+    isVisible = true,
   } = {}) {
     this.id = id;
     this.name = name;
@@ -29,7 +29,7 @@ class ProjectDetails {
     this.description = description;
     this.startDate = startDate;
     this.endDate = endDate;
-    this.hidden = hidden;
+    this.isVisible = isVisible;
   }
 
   set startDate(date: Date | DateString) {
@@ -82,7 +82,7 @@ class ProjectDetails {
       name: this.name,
       techUsed: this.techUsed,
       description: this.description,
-      hidden: this.hidden,
+      isVisible: this.isVisible,
       startDate: this.#startDate,
       endDate: this.#endDate,
     });
