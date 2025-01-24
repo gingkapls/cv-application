@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 import EducationForm, { EducationDetails } from './EducationForm';
 import DetailItem from './DetailItem';
-import { UUIDString } from '../lib/types';
+import generateUniqueId, { UUIDString } from '../lib/uniqueId';
 
 interface EducationProps {
   educationDetails: EducationDetails[];
@@ -15,15 +15,24 @@ function Education({ educationDetails, setEducationDetails }: EducationProps) {
     activeId && educationDetails.find((detail) => detail.id === activeId);
 
   function handleClick() {
-    const newDetails = new EducationDetails();
+    const newDetails = {
+      id: generateUniqueId(),
+      collegeName: '',
+      degree: '',
+      gpa: '',
+      coursework: '',
+      isVisible: true,
+      startDate: new Date(),
+      endDate: new Date(),
+    } satisfies EducationDetails;
+
     setEducationDetails(educationDetails.concat(newDetails));
     setActiveId(newDetails.id);
   }
 
   function toggleHide(id: UUIDString) {
     const oldDetails = educationDetails.find((detail) => detail.id === id)!;
-    const newDetails = oldDetails.clone();
-    newDetails.isVisible = !newDetails.isVisible;
+    const newDetails = { ...oldDetails, isVisible: !oldDetails.isVisible };
 
     setEducationDetails(
       educationDetails.map((detail) => {
