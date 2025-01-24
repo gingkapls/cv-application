@@ -22,7 +22,7 @@ interface PreviewProps {
 }
 
 function filterVisibleDetails<T extends FilterableDetails>(details: T[]): T[] {
-  return details.filter(detail => detail.isVisible)
+  return details.filter((detail) => detail.isVisible);
 }
 
 function Preview({
@@ -35,14 +35,25 @@ function Preview({
   const visibleEducationDetails = filterVisibleDetails(educationDetails);
   const visibleExperienceDetails = filterVisibleDetails(experienceDetails);
   const visibleProjectDetails = filterVisibleDetails(projectDetails);
-  
+
+  const visibleEducation = visibleEducationDetails.length !== 0 && (
+    <EducationPreview educationDetails={visibleEducationDetails} />
+  );
+
+  const visibleExperience = visibleExperienceDetails.length !== 0 && (
+    <ExperiencePreview experienceDetails={visibleExperienceDetails} />
+  );
+  const visibleProjects = visibleProjectDetails.length !== 0 && (
+    <ProjectPreview projectDetails={visibleProjectDetails} />
+  );
+
   return (
     <div className='preview-container'>
       <section className='preview'>
         <ContactPreview contactDetails={contactDetails} />
-        <ExperiencePreview experienceDetails={visibleExperienceDetails} />
-        <EducationPreview educationDetails={visibleEducationDetails} />
-        <ProjectPreview projectDetails={visibleProjectDetails} />
+        {visibleExperience}
+        {visibleEducation}
+        {visibleProjects}
         <SkillsPreview skillsDetails={skillsDetails} />
         <CopyTexButton
           contactDetails={contactDetails}

@@ -25,7 +25,7 @@ function Experience({
   function toggleHide(id: UUIDString) {
     const oldDetails = experienceDetails.find((detail) => detail.id === id)!;
     const newDetails = oldDetails.clone();
-    newDetails.hidden = !newDetails.hidden;
+    newDetails.isVisible = !newDetails.isVisible;
 
     setExperienceDetails(
       experienceDetails.map((detail) => {
@@ -44,6 +44,7 @@ function Experience({
             <DetailItem
               key={detail.id}
               id={detail.id}
+              isVisible={detail.isVisible}
               title={detail.orgName}
               setActiveId={setActiveId}
               toggleHide={toggleHide}

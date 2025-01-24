@@ -43,6 +43,7 @@ function Education({ educationDetails, setEducationDetails }: EducationProps) {
               key={detail.id}
               id={detail.id}
               title={detail.collegeName}
+              isVisible={detail.isVisible}
               setActiveId={setActiveId}
               toggleHide={() => toggleHide(detail.id)}
             />
