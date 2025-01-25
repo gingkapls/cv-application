@@ -1,18 +1,22 @@
 type DateString = `${string}-${string}-${string}`;
 
-function formatDate(date: Date): DateString {
+function parseDate(dateString: string): Date {
+  // Handle cleared dates
+  return dateString.length === 0 ? new Date() : new Date(dateString);
+}
+
+function formatDate(dateString: string): DateString {
+  const date = parseDate(dateString);
+
   const year = date.getFullYear();
   const month = (date.getMonth() + 1).toString().padStart(2, '0'); // 0 indexed month
   const day = date.getDate().toString().padStart(2, '0');
   return `${year}-${month}-${day}`;
 }
 
-function parseDate(dateString: DateString): Date {
-  // Handle cleared dates
-  return dateString.length === 0 ? new Date() : new Date(dateString);
-}
+function shortenDate(dateString: string) {
+  const date = new Date(dateString);
 
-function shortenDate(date: Date) {
   const userLocale = navigator.languages[0];
   const formatter = new Intl.DateTimeFormat(userLocale, {
     month: 'short',
@@ -23,8 +27,9 @@ function shortenDate(date: Date) {
   return `${month}. ${year}`;
 }
 
-function getDuration(startDate: Date, endDate: Date) {
-  const start = `${shortenDate(startDate)}`;
+function getDuration(startDateString: string, endDateString: string) {
+  const endDate = parseDate(endDateString);
+  const start = `${shortenDate(startDateString)}`;
   const endMonth = endDate.getMonth();
   const endYear = endDate.getFullYear();
 
