@@ -12,7 +12,7 @@ function Coursework({
     .filter((coursework) => coursework.length)
     .join(', ');
 
-  if (combinedCoursework.length === 0) return null;
+  if (combinedCoursework.trim().length === 0) return null;
 
   return (
     <section className='coursework'>

@@ -36,7 +36,7 @@ function ProjectPreviewItem({
       <span className='duration'>
         {startDate} - {endDate}
       </span>
-      {description.length !== 0 && (
+      {description.trim().length !== 0 && (
         <ProjectPreviewItemDescription projectDetails={projectDetails} />
       )}
     </section>

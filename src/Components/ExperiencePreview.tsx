@@ -27,7 +27,7 @@ function EducationPreviewItem({
       <h4 className='org-name'>{orgName}</h4>
       <span className='location'>{location}</span>
       <ul className='job-description'>
-        {description.length !== 0 && description.split('\n').map((line) => (
+        {description.trim().length !== 0 && description.split('\n').map((line) => (
           <li key={line}>{line}</li>
         ))}
       </ul>
