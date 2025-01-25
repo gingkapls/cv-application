@@ -17,7 +17,7 @@ interface ContactFormProps {
 function ContactForm({ contactDetails, setContactDetails }: ContactFormProps) {
   function handleFieldChange(e: ChangeEvent<HTMLInputElement>) {
     const field = e.target.name;
-    const value = e.target.value.trim();
+    const value = e.target.value.trimStart();
     const newDetails = { ...contactDetails, [field]: value };
     setContactDetails(newDetails);
   }

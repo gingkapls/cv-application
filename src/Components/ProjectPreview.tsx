@@ -9,7 +9,6 @@ function ProjectPreviewItemDescription({
   return (
     <span className='description'>
       {projectDetails.description
-        .trim()
         .split('\n')
         .map((item, idx) => (
           <li key={item + idx}>{item}</li>
@@ -36,7 +35,7 @@ function ProjectPreviewItem({
       <span className='duration'>
         {startDate} - {endDate}
       </span>
-      {description.trim().length !== 0 && (
+      {description.length !== 0 && (
         <ProjectPreviewItemDescription projectDetails={projectDetails} />
       )}
     </section>

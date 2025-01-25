@@ -39,7 +39,7 @@ function ProjectForm({
     const field = e.target.name;
     const value = field.includes('Date')
       ? parseDate(e.target.value)
-      : e.target.value.trim();
+      : e.target.value.trimStart();
     const originalDetails = projectDetails.at(detailIndex)!;
     const newDetails = { ...originalDetails, [field]: value };
 
