@@ -52,10 +52,10 @@ const initialProjectDetails = [
 ] satisfies ProjectDetails[];
 
 const initialSkillsDetails = {
-  languages: 'Javascript',
-  frameworks: 'ReactJS',
-  devTools: 'Git, VS Code',
-  libraries: 'Jest',
+  languages: '',
+  frameworks: '',
+  devTools: '',
+  libraries: '',
 } satisfies SkillsDetails;
 
 export {
