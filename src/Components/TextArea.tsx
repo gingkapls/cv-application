@@ -17,7 +17,7 @@ function TextArea({
   value,
   placeholder,
   hint,
-  rows = 2,
+  rows = 3,
   cols = 20,
   onChange,
 }: TextAreaProps) {
