@@ -19,6 +19,7 @@ import {
 } from './lib/initialState';
 import AnonymizeButton from './Components/AnonymizeButton';
 import useLocalStorage from './hooks/useLocalStorage';
+import ResetCVButton from './Components/ResetCVButton';
 
 function App() {
   const [isAnonymized, setIsAnonymized] = useState(false);
@@ -49,10 +50,20 @@ function App() {
   return (
     <>
       <Sidebar>
-        <AnonymizeButton
-          isAnonymized={isAnonymized}
-          setIsAnonymized={setIsAnonymized}
-        />
+        <div className='btn-container'>
+          <ResetCVButton
+            setContactDetails={setContactDetails}
+            setExperienceDetails={setExperienceDetails}
+            setEducationDetails={setEducationDetails}
+            setProjectDetails={setProjectDetails}
+            setSkillsDetails={setSkillsDetails}
+          />
+
+          <AnonymizeButton
+            isAnonymized={isAnonymized}
+            setIsAnonymized={setIsAnonymized}
+          />
+        </div>
 
         <ContactForm
           contactDetails={contactDetails}

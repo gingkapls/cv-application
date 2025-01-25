@@ -6,7 +6,7 @@
   --sidebar-bg-color: #fbfbfb;
   --active-bg-color: #dfdfdf;
   --accent-color: #2f8a89;
-  --save-color: #b58451;
+  --delete-color: #a14f55;
   --separator-color: #ffffff;
   --visited-link-color: #333333;
   --control-bg-color: #ffffff;
@@ -24,6 +24,7 @@
   font-weight: 400;
   line-height: 1.5;
   color: var(--text-color);
+  font-size: clamp(11px, 2.3vmin, 16px);
 }
 
 /* Resetting Styles */
@@ -83,26 +84,34 @@ body {
     font-size: 2rem;
     color: var(--accent-color);
   }
-
-  .btn-anon {
+  
+  .btn-container {
     display: flex;
-    font-weight: 700;
     justify-content: space-between;
-    padding: var(--card-side-padding);
-    margin: 0;
-    
+    margin-top: 12px;
+  }
+
+  .btn-reset {
+    background-color: var(--delete-color);
   }
 }
 
-.btn-copy-tex, .btn-anon {
+.btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
   background-color: var(--accent-color);
   color: var(--body-bg-color);
   font-weight: 500;
   font-size: 1.2rem;
-  float: right;
-  margin-top: 42px;
-  padding: 8px var(--card-side-padding);
+  padding: 12px var(--card-side-padding);
   box-shadow: var(--subtle-box-shadow);
+}
+
+.btn-copy-tex {
+  align-self: end;
+  margin-top: 42px;
 }
 
 .details {
@@ -195,6 +204,7 @@ form {
   min-width: 300px;
   display: flex;
   justify-content: center;
+  position: relative;
 
   & h2,
   caption {
@@ -211,6 +221,9 @@ form {
 }
 
 .preview {
+  position: sticky;
+  display: flex;
+  flex-direction: column;
   width: min(720px, 100%);
   height: min-content;
   aspect-ratio: 21 / 29;
@@ -218,6 +231,7 @@ form {
   box-shadow: var(--subtle-box-shadow);
   border-radius: var(--card-border-radius);
   padding: 24px;
+  top: 0;
 }
 
 .detail-preview {
@@ -257,6 +271,10 @@ form {
 
   & a {
     color: var(--visited-link-color);
+  }
+
+  & svg {
+    margin-right: 8px;
   }
 }
 
@@ -334,8 +352,4 @@ form {
     text-align: left;
     padding: 0 var(--card-side-padding);
   }
-}
-
-svg {
-  margin-right: 8px;
 }

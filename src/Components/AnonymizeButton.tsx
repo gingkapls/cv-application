@@ -11,9 +11,14 @@ function AnonymizeButton({
   isAnonymized,
   setIsAnonymized,
 }: AnonymizeButtonProps) {
+  const text = isAnonymized ? 'De-anonymize CV' : 'Anonymize CV';
   return (
-    <button className='btn-anon' onClick={() => setIsAnonymized(!isAnonymized)}>
-      {isAnonymized ? 'De-anonymize CV' : 'Anonymize CV'}
+    <button
+      className='btn-anon btn'
+      onClick={() => setIsAnonymized(!isAnonymized)}
+      aria-label={text}
+      title={text}
+    >
       <FontAwesomeIcon icon={isAnonymized ? faUser : faUserSecret} />
     </button>
   );

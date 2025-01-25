@@ -34,7 +34,7 @@ function CopyTexButton({
     console.log(text);
   }
   return (
-    <button className='btn-copy-tex' onClick={handleClick}>
+    <button className='btn-copy-tex btn' onClick={handleClick}>
       Copy as LaTeX
     </button>
   );
