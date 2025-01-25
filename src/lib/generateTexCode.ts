@@ -254,7 +254,7 @@ function generateExperienceDetailItem({
 
 function generateExperienceSrc(
   experienceDetails: ExperienceDetails[],
-  isAnonymized
+  isAnonymized: boolean,
 ) {
   const start = `\\section{Experience}
   \\resumeSubHeadingListStart
@@ -388,7 +388,7 @@ function generateTexCode({
   projectDetails,
   skillsDetails,
   isAnonymized,
-}: IgenerateTexCode) {
+}: IgenerateTexCode,  ) {
   return (
     preamble +
     generateContactSrc(anonymizeDetails(contactDetails, isAnonymized)) +

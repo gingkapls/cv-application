@@ -68,6 +68,7 @@ function Preview({
           experienceDetails={experienceDetails}
           projectDetails={projectDetails}
           skillsDetails={skillsDetails}
+          isAnonymized={isAnonymized}
         />
       </section>
     </div>

@@ -29,7 +29,8 @@ function CopyTexButton({
       experienceDetails,
       projectDetails,
       skillsDetails,
-    }, isAnonymized);
+      isAnonymized
+    });
 
     navigator.clipboard.writeText(text);
     console.log('copied');
