@@ -265,12 +265,10 @@ form {
     border-bottom: 2px double black;
     font-weight: 400;
   }
-  
-  
+
   .subheading {
     font-family: var(--heading-font);
     font-weight: 700;
-
   }
 
   .subsection-heading {
@@ -363,8 +361,11 @@ form {
   }
 }
 
-.coursework p {
-  margin: 0 var(--card-side-padding);
+.coursework {
+  & p {
+    margin: 0 var(--card-side-padding);
+  }
+  margin-bottom: 12px;
 }
 
 .experience-preview .preview-item {

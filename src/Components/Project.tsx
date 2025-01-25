@@ -47,11 +47,11 @@ function Project({ projectDetails, setProjectDetails }: ProjectProps) {
 
       {activeDetail === null || activeDetail === undefined ? (
         projectDetails
-          .map((detail) => (
+          .map((detail, index) => (
             <DetailItem
               key={detail.id}
               id={detail.id}
-              title={detail.name}
+              title={detail.name || `Project ${index + 1}`}
               isVisible={detail.isVisible}
               setActiveId={setActiveId}
               toggleHide={toggleHide}

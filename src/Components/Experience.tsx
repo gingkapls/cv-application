@@ -51,12 +51,12 @@ function Experience({
       <h2 className='section-heading'>Experience</h2>
       {activeDetail === null || activeDetail === undefined ? (
         experienceDetails
-          .map((detail) => (
+          .map((detail, index) => (
             <DetailItem
               key={detail.id}
               id={detail.id}
               isVisible={detail.isVisible}
-              title={detail.orgName}
+              title={detail.orgName || `Organization ${index + 1}`}
               setActiveId={setActiveId}
               toggleHide={toggleHide}
             />

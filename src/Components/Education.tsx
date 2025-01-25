@@ -49,11 +49,11 @@ function Education({ educationDetails, setEducationDetails }: EducationProps) {
       <h2 className='section-heading'>Education</h2>
       {activeDetail === null || activeDetail === undefined ? (
         educationDetails
-          .map((detail, idx) => (
+          .map((detail, index) => (
             <DetailItem
               key={detail.id}
               id={detail.id}
-              title={detail.collegeName || `College ${idx + 1}`}
+              title={detail.collegeName || `College ${index + 1}`}
               isVisible={detail.isVisible}
               setActiveId={setActiveId}
               toggleHide={() => toggleHide(detail.id)}
