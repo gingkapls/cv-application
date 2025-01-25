@@ -18,28 +18,33 @@ import {
   initialSkillsDetails,
 } from './lib/initialState';
 import AnonymizeButton from './Components/AnonymizeButton';
+import useLocalStorage from './hooks/useLocalStorage';
 
 function App() {
   const [isAnonymized, setIsAnonymized] = useState(false);
 
-  const [contactDetails, setContactDetails] = useState<ContactDetails>(
+  const [contactDetails, setContactDetails] = useLocalStorage<ContactDetails>(
+    'contactDetails',
     initialContactDetails
   );
 
-  const [educationDetails, setEducationDetails] = useState<EducationDetails[]>(
-    initialEducationDetails
-  );
+  const [educationDetails, setEducationDetails] = useLocalStorage<
+    EducationDetails[]
+  >('educationDetails', initialEducationDetails);
 
-  const [experienceDetails, setExperienceDetails] = useState<
+  const [experienceDetails, setExperienceDetails] = useLocalStorage<
     ExperienceDetails[]
-  >(initialExperienceDetails);
+  >('experienceDetails', initialExperienceDetails);
 
-  const [projectDetails, setProjectDetails] = useState<ProjectDetails[]>(
+  const [projectDetails, setProjectDetails] = useLocalStorage<ProjectDetails[]>(
+    'projectDetails',
     initialProjectDetails
   );
 
-  const [skillsDetails, setSkillsDetails] =
-    useState<SkillsDetails>(initialSkillsDetails);
+  const [skillsDetails, setSkillsDetails] = useLocalStorage<SkillsDetails>(
+    'skillsDetails',
+    initialSkillsDetails
+  );
 
   return (
     <>
