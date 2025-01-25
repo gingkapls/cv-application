@@ -1,6 +1,7 @@
 import { anonymizeDetails } from '../lib/anonymizeDetails';
 import { getDuration } from '../lib/dateUtils';
 import { ExperienceDetails } from './ExperienceForm';
+import PreviewItemDescription from './PreviewItemDescription';
 
 function EducationPreviewItem({
   experienceDetails,
@@ -26,11 +27,9 @@ function EducationPreviewItem({
       </span>
       <h4 className='org-name'>{orgName}</h4>
       <span className='location'>{location}</span>
-      <ul className='job-description'>
-        {description.length !== 0 && description.split('\n').map((line) => (
-          <li key={line}>{line}</li>
-        ))}
-      </ul>
+        {description.length !== 0 && (
+          <PreviewItemDescription details={experienceDetails} />
+        )}
     </section>
   );
 }
@@ -43,7 +42,11 @@ function ExperiencePreview({
   isAnonymized: boolean;
 }) {
   const itemList = experienceDetails.map((details) => (
-    <EducationPreviewItem key={details.id} experienceDetails={details} isAnonymized={isAnonymized} />
+    <EducationPreviewItem
+      key={details.id}
+      experienceDetails={details}
+      isAnonymized={isAnonymized}
+    />
   ));
 
   return (

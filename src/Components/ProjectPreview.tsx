@@ -1,21 +1,6 @@
 import { getDuration } from '../lib/dateUtils';
+import PreviewItemDescription from './PreviewItemDescription';
 import { ProjectDetails } from './ProjectForm';
-
-function ProjectPreviewItemDescription({
-  projectDetails,
-}: {
-  projectDetails: ProjectDetails;
-}) {
-  return (
-    <span className='description'>
-      {projectDetails.description
-        .split('\n')
-        .map((item, idx) => (
-          <li key={item + idx}>{item}</li>
-        ))}
-    </span>
-  );
-}
 
 function ProjectPreviewItem({
   projectDetails,
@@ -23,7 +8,10 @@ function ProjectPreviewItem({
   projectDetails: ProjectDetails;
 }) {
   const { name, techUsed, description } = projectDetails;
-  const [startDate, endDate] = getDuration(projectDetails.startDate, projectDetails.endDate);
+  const [startDate, endDate] = getDuration(
+    projectDetails.startDate,
+    projectDetails.endDate
+  );
 
   return (
     <section className='preview-item'>
@@ -36,7 +24,7 @@ function ProjectPreviewItem({
         {startDate} - {endDate}
       </span>
       {description.length !== 0 && (
-        <ProjectPreviewItemDescription projectDetails={projectDetails} />
+        <PreviewItemDescription details={projectDetails} />
       )}
     </section>
   );
