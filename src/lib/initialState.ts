@@ -51,12 +51,12 @@ const initialProjectDetails = [
   },
 ] satisfies ProjectDetails[];
 
-const initialSkillsDetails = new SkillsDetails({
+const initialSkillsDetails = {
   languages: 'Javascript',
   frameworks: 'ReactJS',
   devTools: 'Git, VS Code',
   libraries: 'Jest',
-});
+} satisfies SkillsDetails;
 
 export {
   initialContactDetails,
