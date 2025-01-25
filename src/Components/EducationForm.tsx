@@ -46,11 +46,7 @@ function EducationForm({
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    if (!(e.target instanceof HTMLFormElement)) return;
-
     setActiveId(null);
-    const formData = new FormData(e.target);
-    console.log(formData);
   }
 
   function handleDelete() {
