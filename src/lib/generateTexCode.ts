@@ -3,6 +3,7 @@ import { EducationDetails } from '../Components/EducationForm';
 import { ExperienceDetails } from '../Components/ExperienceForm';
 import { ProjectDetails } from '../Components/ProjectForm';
 import { SkillsDetails } from '../Components/SkillsForm';
+import { getDuration } from './dateUtils';
 
 const preamble = `
 %-------------------------
@@ -134,11 +135,11 @@ function generateContactSrc({
 \\vspace{-5pt}
 
 \\begin{center}
-    \\textbf{\\Huge \\scshape ${fullName}} \\\\ \\vspace{8pt}
-
     ${conditionallyRender(
       phoneNumber,
-      `\\faIcon{phone}
+      `
+      \\textbf{\\Huge \\scshape ${fullName}} \\\\ \\vspace{8pt}
+      \\faIcon{phone}
       \\small \\href{tel:+${phoneNumber}}{\\underline{+${phoneNumber}}} $ $`
     )}
     ${conditionallyRender(
@@ -159,7 +160,6 @@ function generateContactSrc({
       `\\faIcon{envelope}
       \\href{mailto:${gmail}}{\\underline{${gmail}}}`
     )}
-
 \\end{center}
     `;
 }
@@ -168,11 +168,13 @@ function generateEducationDetailItem({
   collegeName,
   degree,
   gpa,
-  duration,
+  startDate,
+  endDate,
 }: EducationDetails) {
+  const duration = getDuration(startDate, endDate).join(' - ');
   return `
     \\resumeSubheading
-      {${collegeName}}{${duration.join(' - ')}}
+      {${collegeName}}{${duration}}
       {${degree}}{GPA: ${gpa}}
 `;
 }
@@ -223,17 +225,19 @@ function generateEducationSrc(educationDetails: EducationDetails[]) {
 function generateExperienceDetailItem({
   orgName,
   jobTitle,
-  duration,
   location,
   description,
+  startDate,
+  endDate,
 }: ExperienceDetails) {
+  const duration = getDuration(startDate, endDate).join(' - ');
   const bullets = description
     .split('\n')
     .map((item) => `\\resumeItem{${item}}`);
 
   return `
     \\resumeSubheading
-      {${jobTitle}}{${duration.join(' - ')}}
+      {${jobTitle}}{${duration}}
       {${orgName}}{${location}}
 
       \\resumeItemListStart
@@ -271,12 +275,14 @@ function generateExperienceSrc(experienceDetails: ExperienceDetails[]) {
 function generateProjectDetailsItem({
   name,
   techUsed,
-  duration,
   description,
+  startDate,
+  endDate,
 }: ProjectDetails) {
+  const duration = getDuration(startDate, endDate).join(' - ');
   const start = `
     \\resumeProjectHeading
-          {\\textbf{${name}} $|$ \\emph{${techUsed}}}{${duration.join(' - ')}}
+          {\\textbf{${name}} $|$ \\emph{${techUsed}}}{${duration}}
     `;
 
   const items = description
