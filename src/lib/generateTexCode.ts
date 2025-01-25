@@ -307,7 +307,7 @@ function generateProjectSrc(projectDetails: ProjectDetails[]) {
     `;
 
   const items = projectDetails
-    .filter((details) => details.visible)
+    .filter((details) => details.isVisible)
     .map((details) => generateProjectDetailsItem(details));
 
   const end = `
