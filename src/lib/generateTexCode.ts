@@ -339,23 +339,6 @@ function generateProjectSrc(projectDetails: ProjectDetails[]) {
   );
 }
 
-const volunteerWork = `
-% -------------------- CONTRIBUTIONS --------------------
-
-\\section{Volunteer Work}
-    \\resumeSubHeadingListStart
-        \\resumeProjectHeading
-          {\\textbf{Pookie Corp}} {May 2024 - Present}
-          \\resumeItemListStart
-            \\resumeItem{done good stuff}
-
-
-          \\resumeItemListEnd
-          
-    \\resumeSubHeadingListEnd
-
-`;
-
 function generateSkillsSrc({
   languages,
   frameworks,

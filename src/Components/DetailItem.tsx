@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from 'react';
-import { UUIDString } from '../lib/types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { UUIDString } from '../lib/uniqueId';
 
 interface DetailItemProps {
   id: UUIDString;
