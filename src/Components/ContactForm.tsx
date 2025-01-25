@@ -1,26 +1,12 @@
 import { ChangeEvent, Dispatch, SetStateAction } from 'react';
 import Input from './Input';
 
-class ContactDetails {
+interface ContactDetails {
   fullName: string;
   phoneNumber: string;
   github: string;
   linkedIn: string;
   gmail: string;
-
-  constructor({
-    fullName = '',
-    phoneNumber = '',
-    github = '',
-    linkedIn = '',
-    gmail = '',
-  }) {
-    this.fullName = fullName;
-    this.phoneNumber = phoneNumber;
-    this.github = github;
-    this.linkedIn = linkedIn;
-    this.gmail = gmail;
-  }
 }
 
 interface ContactFormProps {
@@ -75,6 +61,5 @@ function ContactForm({ contactDetails, setContactDetails }: ContactFormProps) {
   );
 }
 
-export type { ContactFormProps };
-export { ContactDetails };
+export type { ContactDetails, ContactFormProps };
 export default ContactForm;

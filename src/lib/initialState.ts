@@ -5,13 +5,13 @@ import { ProjectDetails } from '../Components/ProjectForm';
 import { SkillsDetails } from '../Components/SkillsForm';
 import generateUniqueId from './uniqueId';
 
-const initialContactDetails = new ContactDetails({
+const initialContactDetails = {
   fullName: 'John Doe',
   phoneNumber: '123-456-7890',
   github: 'johnDoe',
   linkedIn: 'johnDoe',
   gmail: 'johnDoe@gmail.com',
-});
+} satisfies ContactDetails;
 
 const initialEducationDetails = [
   {
