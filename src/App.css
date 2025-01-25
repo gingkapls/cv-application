@@ -440,3 +440,20 @@ form {
     }
   }
 }
+
+@media (prefers-reduced-motion: no-preference) {
+  .preview-item,
+  .detail-preview {
+    animation: scaleIn 250ms ease alternate 1 both;
+    transform-origin: top center;
+  }
+
+  @keyframes scaleIn {
+    from {
+      transform: scaleY(0);
+    }
+    to {
+      transform: scaleY(100%);
+    }
+  }
+}
