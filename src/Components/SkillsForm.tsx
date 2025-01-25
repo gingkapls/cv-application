@@ -16,7 +16,7 @@ interface SkillsFormProps {
 function SkillsForm({ skillsDetails, setSkillsDetails }: SkillsFormProps) {
   function handleFieldChange(e: ChangeEvent<HTMLInputElement>) {
     const field = e.target.name;
-    const value = e.target.value;
+    const value = e.target.value.trim();
     const newDetails = { ...skillsDetails, [field]: value };
     setSkillsDetails(newDetails);
   }

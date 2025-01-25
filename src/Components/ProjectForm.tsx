@@ -37,7 +37,9 @@ function ProjectForm({
 
   function handleFieldChange(e: ChangeEvent<HTMLInputElement>) {
     const field = e.target.name;
-    const value = field.includes('Date') ? parseDate(e.target.value) : e.target.value;
+    const value = field.includes('Date')
+      ? parseDate(e.target.value)
+      : e.target.value.trim();
     const originalDetails = projectDetails.at(detailIndex)!;
     const newDetails = { ...originalDetails, [field]: value };
 
@@ -59,9 +61,7 @@ function ProjectForm({
   }
 
   function handleDelete() {
-    setProjectDetails(
-      projectDetails.filter((details) => details.id !== id)
-    );
+    setProjectDetails(projectDetails.filter((details) => details.id !== id));
   }
 
   return (
