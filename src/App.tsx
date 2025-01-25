@@ -58,6 +58,7 @@ function App() {
             setProjectDetails={setProjectDetails}
             setSkillsDetails={setSkillsDetails}
           />
+          <h1>CV Builder</h1>
 
           <AnonymizeButton
             isAnonymized={isAnonymized}
