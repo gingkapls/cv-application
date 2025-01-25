@@ -205,7 +205,7 @@ function generateEducationSrc(
     .join(', ');
 
   const courseworkSrc = `
-    \\vspace{-10pt}
+    \\vspace{-5pt}
 
     \\subsection{Coursework}
     \\textbf{Courses:} ${coursework} \\\\
