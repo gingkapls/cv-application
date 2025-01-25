@@ -1,23 +1,11 @@
 import { ChangeEvent, Dispatch, SetStateAction } from 'react';
 import Input from './Input';
 
-class SkillsDetails {
+interface SkillsDetails {
   languages: string;
   frameworks: string;
   devTools: string;
   libraries: string;
-
-  constructor({
-    languages = '',
-    frameworks = '',
-    devTools = '',
-    libraries = '',
-  } = {}) {
-    this.languages = languages;
-    this.frameworks = frameworks;
-    this.devTools = devTools;
-    this.libraries = libraries;
-  }
 }
 
 interface SkillsFormProps {
@@ -45,7 +33,7 @@ function SkillsForm({ skillsDetails, setSkillsDetails }: SkillsFormProps) {
       />
       <Input
         label='Frameworks'
-        name='Frameworks'
+        name='frameworks'
         value={frameworks}
         onChange={handleFieldChange}
       />
@@ -65,6 +53,5 @@ function SkillsForm({ skillsDetails, setSkillsDetails }: SkillsFormProps) {
   );
 }
 
-export type { SkillsFormProps };
-export { SkillsDetails };
+export type { SkillsDetails, SkillsFormProps };
 export default SkillsForm;

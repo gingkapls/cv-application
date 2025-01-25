@@ -1,107 +1,18 @@
 import { ChangeEvent, Dispatch, FormEvent, SetStateAction } from 'react';
 import Input from './Input';
-import { DateString, UUIDString } from '../lib/types';
-import generateUniqueId from '../lib/uniqueId';
+import { UUIDString } from '../lib/uniqueId';
 import TextArea from './TextArea';
+import { DateString, formatDate, parseDate } from '../lib/dateUtils';
 
-class EducationDetails {
+interface EducationDetails {
   id: UUIDString;
   collegeName: string;
   degree: string;
   gpa: string;
   coursework: string;
   isVisible: boolean;
-  #startDate: Date = new Date();
-  #endDate: Date = new Date();
-  [key: string]: string | boolean | string[] | (() => EducationDetails);
-
-  constructor({
-    id = generateUniqueId(),
-    collegeName = '',
-    degree = '',
-    gpa = '',
-    coursework = '',
-    startDate = new Date(),
-    endDate = new Date(),
-    isVisible = true,
-  } = {}) {
-    this.id = id;
-    this.collegeName = collegeName;
-    this.degree = degree;
-    this.gpa = gpa;
-    this.coursework = coursework;
-    this.startDate = startDate;
-    this.endDate = endDate;
-    this.isVisible = isVisible;
-  }
-
-  set startDate(date: Date | DateString) {
-    this.#startDate = date instanceof Date ? date : this.#parseDate(date);
-  }
-
-  get startDate(): DateString {
-    return this.#formatDate(this.#startDate);
-  }
-
-  set endDate(date: Date | DateString) {
-    this.#endDate = date instanceof Date ? date : this.#parseDate(date);
-  }
-
-  get endDate(): DateString {
-    return this.#formatDate(this.#endDate);
-  }
-
-  get duration() {
-    const start = `${EducationDetails.shortenDate(this.#startDate)}`;
-    const endMonth = this.#endDate.getMonth();
-    const endYear = this.#endDate.getFullYear();
-
-    const presentDate = new Date();
-    const thisMonth = presentDate.getMonth();
-    const thisYear = presentDate.getFullYear();
-
-    const end =
-      endMonth === thisMonth && endYear === thisYear
-        ? 'Present'
-        : `${EducationDetails.shortenDate(this.#endDate)}`;
-
-    return [start, end];
-  }
-
-  static shortenDate(date: Date) {
-    const userLocale = navigator.languages[0];
-    const formatter = new Intl.DateTimeFormat(userLocale, {
-      month: 'short',
-      year: 'numeric',
-    });
-
-    const [month, year] = formatter.format(date).split(' ');
-    return `${month}. ${year}`;
-  }
-
-  clone(): EducationDetails {
-    return new EducationDetails({
-      id: this.id,
-      collegeName: this.collegeName,
-      degree: this.degree,
-      gpa: this.gpa,
-      coursework: this.coursework,
-      startDate: this.#startDate,
-      endDate: this.#endDate,
-      isVisible: this.isVisible,
-    });
-  }
-
-  #formatDate(date: Date): DateString {
-    const year = date.getFullYear();
-    const month = (date.getMonth() + 1).toString().padStart(2, '0'); // 0 indexed month
-    const day = date.getDate().toString().padStart(2, '0');
-    return `${year}-${month}-${day}`;
-  }
-
-  #parseDate(dateString: DateString): Date {
-    return dateString.length === 0 ? new Date() : new Date(dateString);
-  }
+  startDate: Date;
+  endDate: Date;
 }
 
 interface EducationFormProps {
@@ -119,10 +30,9 @@ function EducationForm({
 }: EducationFormProps) {
   function handleFieldChange(e: ChangeEvent<HTMLInputElement>) {
     const field = e.target.name;
-    const value = e.target.value;
+    const value = field.includes('Date') ? parseDate(e.target.value as DateString) : e.target.value;
     const originalDetails = educationDetails.at(detailIndex)!;
-    const newDetails = originalDetails.clone();
-    newDetails[field] = value;
+    const newDetails = { ...originalDetails, [field]: value };
 
     const newEducationDetails = educationDetails.map((details) => {
       if (details.id === id) return newDetails;
@@ -140,9 +50,7 @@ function EducationForm({
     console.log(formData);
   }
 
-  const detailIndex = educationDetails.findIndex(
-    (detail: EducationDetails) => detail.id === id
-  );
+  const detailIndex = educationDetails.findIndex((detail) => detail.id === id);
 
   const { collegeName, degree, gpa, coursework, startDate, endDate } =
     educationDetails.at(detailIndex)!;
@@ -181,14 +89,14 @@ function EducationForm({
         label='Start Date: '
         type='Date'
         name='startDate'
-        value={startDate}
+        value={formatDate(startDate)}
         onChange={handleFieldChange}
       />
       <Input
         label='End Date: '
         type='Date'
         name='endDate'
-        value={endDate}
+        value={formatDate(endDate)}
         onChange={handleFieldChange}
       />
 
@@ -199,5 +107,5 @@ function EducationForm({
   );
 }
 
-export { EducationDetails };
+export type { EducationDetails };
 export default EducationForm;

@@ -1,3 +1,4 @@
+import { getDuration } from '../lib/dateUtils';
 import { EducationDetails } from './EducationForm';
 
 function Coursework({
@@ -26,7 +27,7 @@ function EducationPreviewItem({
   educationDetails: EducationDetails;
 }) {
   const { collegeName, degree, gpa } = educationDetails;
-  const [startDate, endDate] = educationDetails.duration;
+  const [startDate, endDate] = getDuration(educationDetails.startDate, educationDetails.endDate);
 
   return (
     <section className='preview-item'>

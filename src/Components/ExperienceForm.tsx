@@ -1,107 +1,18 @@
 import { ChangeEvent, Dispatch, FormEvent, SetStateAction } from 'react';
 import Input from './Input';
 import TextArea from './TextArea';
-import { DateString, UUIDString } from '../lib/types';
-import generateUniqueId from '../lib/uniqueId';
+import { UUIDString } from '../lib/uniqueId';
+import { formatDate } from '../lib/dateUtils';
 
-class ExperienceDetails {
+interface ExperienceDetails {
   id: UUIDString;
   orgName: string;
   jobTitle: string;
   location: string;
   description: string;
+  startDate: Date;
+  endDate: Date;
   isVisible: boolean;
-  #startDate: Date = new Date();
-  #endDate: Date = new Date();
-  [key: string]: string | boolean | string[] | (() => ExperienceDetails);
-
-  constructor({
-    id = generateUniqueId(),
-    orgName = '',
-    jobTitle = '',
-    location = '',
-    description = '',
-    startDate = new Date(),
-    endDate = new Date(),
-    isVisible = true,
-  } = {}) {
-    this.id = id;
-    this.orgName = orgName;
-    this.jobTitle = jobTitle;
-    this.location = location;
-    this.description = description;
-    this.startDate = startDate;
-    this.endDate = endDate;
-    this.isVisible = isVisible;
-  }
-
-  set startDate(date: Date | DateString) {
-    this.#startDate = date instanceof Date ? date : this.#parseDate(date);
-  }
-
-  get startDate(): DateString {
-    return this.#formatDate(this.#startDate);
-  }
-
-  set endDate(date: Date | DateString) {
-    this.#endDate = date instanceof Date ? date : this.#parseDate(date);
-  }
-
-  get endDate(): DateString {
-    return this.#formatDate(this.#endDate);
-  }
-
-  get duration() {
-    const start = `${ExperienceDetails.shortenDate(this.#startDate)}`;
-    const endMonth = this.#endDate.getMonth();
-    const endYear = this.#endDate.getFullYear();
-
-    const presentDate = new Date();
-    const thisMonth = presentDate.getMonth();
-    const thisYear = presentDate.getFullYear();
-
-    const end =
-      endMonth === thisMonth && endYear === thisYear
-        ? 'Present'
-        : `${ExperienceDetails.shortenDate(this.#endDate)}`;
-
-    return [start, end];
-  }
-
-  static shortenDate(date: Date) {
-    const userLocale = navigator.languages[0];
-    const formatter = new Intl.DateTimeFormat(userLocale, {
-      month: 'short',
-      year: 'numeric',
-    });
-
-    const [month, year] = formatter.format(date).split(' ');
-    return `${month}. ${year}`;
-  }
-
-  clone(): ExperienceDetails {
-    return new ExperienceDetails({
-      id: this.id,
-      orgName: this.orgName,
-      jobTitle: this.jobTitle,
-      location: this.location,
-      description: this.description,
-      isVisible: this.isVisible,
-      startDate: this.#startDate,
-      endDate: this.#endDate,
-    });
-  }
-
-  #formatDate(date: Date): DateString {
-    const year = date.getFullYear();
-    const month = (date.getMonth() + 1).toString().padStart(2, '0'); // 0 indexed month
-    const day = date.getDate().toString().padStart(2, '0');
-    return `${year}-${month}-${day}`;
-  }
-
-  #parseDate(dateString: DateString): Date {
-    return dateString.length === 0 ? new Date() : new Date(dateString);
-  }
 }
 
 interface ExperienceFormProps {
@@ -117,9 +28,7 @@ function ExperienceForm({
   setExperienceDetails,
   setActiveId,
 }: ExperienceFormProps) {
-  const detailIndex = experienceDetails.findIndex(
-    (detail: ExperienceDetails) => detail.id === id
-  );
+  const detailIndex = experienceDetails.findIndex((detail) => detail.id === id);
 
   const { orgName, jobTitle, location, description, startDate, endDate } =
     experienceDetails.at(detailIndex)!;
@@ -128,13 +37,13 @@ function ExperienceForm({
     const field = e.target.name;
     const value = e.target.value;
     const originalDetails = experienceDetails.at(detailIndex)!;
-    const newDetails = originalDetails.clone();
-    newDetails[field] = value;
+    const newDetails = { ...originalDetails, [field]: value };
 
     const newEducationDetails = experienceDetails.map((details) => {
       if (details.id === id) return newDetails;
       return details;
     });
+
     setExperienceDetails(newEducationDetails);
   }
 
@@ -180,14 +89,14 @@ function ExperienceForm({
         label='Start Date: '
         type='Date'
         name='startDate'
-        value={startDate}
+        value={formatDate(startDate)}
         onChange={handleFieldChange}
       />
       <Input
         label='End Date: '
         type='Date'
         name='endDate'
-        value={endDate}
+        value={formatDate(endDate)}
         onChange={handleFieldChange}
       />
       <button className='btn-save' type='submit'>
@@ -197,5 +106,5 @@ function ExperienceForm({
   );
 }
 
-export { ExperienceDetails };
+export type { ExperienceDetails };
 export default ExperienceForm;
