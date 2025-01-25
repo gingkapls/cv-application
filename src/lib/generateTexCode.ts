@@ -250,7 +250,7 @@ function generateExperienceSrc(experienceDetails: ExperienceDetails[]) {
   `;
 
   const items = experienceDetails
-    .filter((detail) => !detail.hidden)
+    .filter((detail) => detail.isVisible)
     .map((detail) => generateExperienceDetailItem(detail));
 
   const end = `
@@ -301,7 +301,7 @@ function generateProjectSrc(projectDetails: ProjectDetails[]) {
     `;
 
   const items = projectDetails
-    .filter((details) => !details.hidden)
+    .filter((details) => details.visible)
     .map((details) => generateProjectDetailsItem(details));
 
   const end = `
