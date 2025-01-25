@@ -11,6 +11,7 @@ interface CopyTexButtonProps {
   experienceDetails: ExperienceDetails[];
   projectDetails: ProjectDetails[];
   skillsDetails: SkillsDetails;
+  isAnonymized: boolean;
 }
 
 function CopyTexButton({
@@ -19,6 +20,7 @@ function CopyTexButton({
   experienceDetails,
   projectDetails,
   skillsDetails,
+  isAnonymized,
 }: CopyTexButtonProps) {
   function handleClick() {
     const text = generateTexCode({
@@ -27,7 +29,7 @@ function CopyTexButton({
       experienceDetails,
       projectDetails,
       skillsDetails,
-    });
+    }, isAnonymized);
 
     navigator.clipboard.writeText(text);
     console.log('copied');

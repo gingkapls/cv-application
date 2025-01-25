@@ -3,6 +3,7 @@ import { EducationDetails } from '../Components/EducationForm';
 import { ExperienceDetails } from '../Components/ExperienceForm';
 import { ProjectDetails } from '../Components/ProjectForm';
 import { SkillsDetails } from '../Components/SkillsForm';
+import { anonymizeDetails } from './anonymizeDetails';
 import { getDuration } from './dateUtils';
 
 const preamble = `
@@ -179,7 +180,10 @@ function generateEducationDetailItem({
 `;
 }
 
-function generateEducationSrc(educationDetails: EducationDetails[]) {
+function generateEducationSrc(
+  educationDetails: EducationDetails[],
+  isAnonymized: boolean
+) {
   const start = `
 % -------------------- EDUCATION --------------------
 \\section{Education}
@@ -192,7 +196,7 @@ function generateEducationSrc(educationDetails: EducationDetails[]) {
   );
 
   const items = visibleDetails.map((details) =>
-    generateEducationDetailItem(details)
+    generateEducationDetailItem(anonymizeDetails(details, isAnonymized))
   );
 
   const coursework = visibleDetails
@@ -248,14 +252,19 @@ function generateExperienceDetailItem({
 `;
 }
 
-function generateExperienceSrc(experienceDetails: ExperienceDetails[]) {
+function generateExperienceSrc(
+  experienceDetails: ExperienceDetails[],
+  isAnonymized
+) {
   const start = `\\section{Experience}
   \\resumeSubHeadingListStart
   `;
 
   const items = experienceDetails
     .filter((detail) => detail.isVisible)
-    .map((detail) => generateExperienceDetailItem(detail));
+    .map((detail) =>
+      generateExperienceDetailItem(anonymizeDetails(detail, isAnonymized))
+    );
 
   const end = `
   \\resumeSubHeadingListEnd
@@ -369,6 +378,7 @@ interface IgenerateTexCode {
   experienceDetails: ExperienceDetails[];
   projectDetails: ProjectDetails[];
   skillsDetails: SkillsDetails;
+  isAnonymized: boolean;
 }
 
 function generateTexCode({
@@ -377,12 +387,13 @@ function generateTexCode({
   experienceDetails,
   projectDetails,
   skillsDetails,
+  isAnonymized,
 }: IgenerateTexCode) {
   return (
     preamble +
-    generateContactSrc(contactDetails) +
-    generateEducationSrc(educationDetails) +
-    generateExperienceSrc(experienceDetails) +
+    generateContactSrc(anonymizeDetails(contactDetails, isAnonymized)) +
+    generateEducationSrc(educationDetails, isAnonymized) +
+    generateExperienceSrc(experienceDetails, isAnonymized) +
     generateProjectSrc(projectDetails) +
     generateSkillsSrc(skillsDetails) +
     docEnd
@@ -390,5 +401,3 @@ function generateTexCode({
 }
 
 export default generateTexCode;
-
-// export default source;
