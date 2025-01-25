@@ -11,8 +11,8 @@ interface EducationDetails {
   gpa: string;
   coursework: string;
   isVisible: boolean;
-  startDate: Date;
-  endDate: Date;
+  startDate: string;
+  endDate: string;
 }
 
 interface EducationFormProps {
@@ -30,7 +30,7 @@ function EducationForm({
 }: EducationFormProps) {
   function handleFieldChange(e: ChangeEvent<HTMLInputElement>) {
     const field = e.target.name;
-    const value = field.includes('Date') ? parseDate(e.target.value as DateString) : e.target.value;
+    const value = field.includes('Date') ? parseDate(e.target.value) : e.target.value;
     const originalDetails = educationDetails.at(detailIndex)!;
     const newDetails = { ...originalDetails, [field]: value };
 
@@ -54,7 +54,7 @@ function EducationForm({
 
   const { collegeName, degree, gpa, coursework, startDate, endDate } =
     educationDetails.at(detailIndex)!;
-
+  
   return (
     <form className='education-form' onSubmit={handleSubmit}>
       <Input

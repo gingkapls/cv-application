@@ -2,7 +2,7 @@ import { ChangeEvent, Dispatch, FormEvent, SetStateAction } from 'react';
 import { UUIDString } from '../lib/uniqueId';
 import Input from './Input';
 import TextArea from './TextArea';
-import { formatDate } from '../lib/dateUtils';
+import { formatDate, parseDate } from '../lib/dateUtils';
 
 interface ProjectDetails {
   id: UUIDString;
@@ -10,8 +10,8 @@ interface ProjectDetails {
   techUsed: string;
   description: string;
   isVisible: boolean;
-  startDate: Date;
-  endDate: Date;
+  startDate: string;
+  endDate: string;
 }
 
 interface ProjectFormProps {
@@ -36,7 +36,7 @@ function ProjectForm({
 
   function handleFieldChange(e: ChangeEvent<HTMLInputElement>) {
     const field = e.target.name;
-    const value = e.target.value;
+    const value = field.includes('Date') ? parseDate(e.target.value) : e.target.value;
     const originalDetails = projectDetails.at(detailIndex)!;
     const newDetails = { ...originalDetails, [field]: value };
 

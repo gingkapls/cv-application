@@ -2,7 +2,7 @@ import { ChangeEvent, Dispatch, FormEvent, SetStateAction } from 'react';
 import Input from './Input';
 import TextArea from './TextArea';
 import { UUIDString } from '../lib/uniqueId';
-import { formatDate } from '../lib/dateUtils';
+import { formatDate, parseDate } from '../lib/dateUtils';
 
 interface ExperienceDetails {
   id: UUIDString;
@@ -10,8 +10,8 @@ interface ExperienceDetails {
   jobTitle: string;
   location: string;
   description: string;
-  startDate: Date;
-  endDate: Date;
+  startDate: string;
+  endDate: string;
   isVisible: boolean;
 }
 
@@ -35,7 +35,7 @@ function ExperienceForm({
 
   function handleFieldChange(e: ChangeEvent<HTMLInputElement>) {
     const field = e.target.name;
-    const value = e.target.value;
+    const value = field.includes('Date') ? parseDate(e.target.value) : e.target.value;
     const originalDetails = experienceDetails.at(detailIndex)!;
     const newDetails = { ...originalDetails, [field]: value };
 

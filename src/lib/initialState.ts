@@ -21,8 +21,8 @@ const initialEducationDetails = [
     gpa: '4.20',
     coursework: 'Stuff',
     isVisible: true,
-    startDate: new Date(),
-    endDate: new Date(),
+    startDate: new Date().toJSON(),
+    endDate: new Date().toJSON(),
   },
 ] satisfies EducationDetails[];
 
@@ -33,8 +33,8 @@ const initialExperienceDetails = [
     jobTitle: 'Cop',
     description: 'Cop for rubies',
     location: 'New York',
-    startDate: new Date(),
-    endDate: new Date(),
+    startDate: new Date().toJSON(),
+    endDate: new Date().toJSON(),
     isVisible: true,
   },
 ] satisfies ExperienceDetails[];
@@ -45,8 +45,8 @@ const initialProjectDetails = [
     name: 'First Project',
     techUsed: 'Javascript',
     description: 'Very cool!',
-    startDate: new Date(),
-    endDate: new Date(),
+    startDate: new Date().toJSON(),
+    endDate: new Date().toJSON(),
     isVisible: true,
   },
 ] satisfies ProjectDetails[];

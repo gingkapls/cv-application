@@ -40,7 +40,7 @@ function getDuration(startDateString: string, endDateString: string) {
   const end =
     endMonth === thisMonth && endYear === thisYear
       ? 'Present'
-      : `${shortenDate(endDate)}`;
+      : `${shortenDate(endDateString)}`;
 
   return [start, end];
 }

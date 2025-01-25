@@ -22,8 +22,8 @@ function Education({ educationDetails, setEducationDetails }: EducationProps) {
       gpa: '',
       coursework: '',
       isVisible: true,
-      startDate: new Date(),
-      endDate: new Date(),
+      startDate: new Date().toJSON(),
+      endDate: new Date().toJSON(),
     } satisfies EducationDetails;
 
     setEducationDetails(educationDetails.concat(newDetails));
