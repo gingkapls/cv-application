@@ -2,7 +2,6 @@ import { Dispatch, SetStateAction, useState } from 'react';
 import ExperienceForm, { ExperienceDetails } from './ExperienceForm';
 import DetailItem from './DetailItem';
 import generateUniqueId, { UUIDString } from '../lib/uniqueId';
-import { initialExperienceDetails } from '../lib/initialState';
 
 interface ExperienceProps {
   experienceDetails: ExperienceDetails[];

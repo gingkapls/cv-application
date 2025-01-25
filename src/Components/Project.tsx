@@ -1,7 +1,6 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 import ProjectForm, { ProjectDetails } from './ProjectForm';
 import DetailItem from './DetailItem';
-import { initialProjectDetails } from '../lib/initialState';
 import generateUniqueId, { UUIDString } from '../lib/uniqueId';
 
 interface ProjectProps {
@@ -15,7 +14,15 @@ function Project({ projectDetails, setProjectDetails }: ProjectProps) {
     activeId && projectDetails.find((detail) => detail.id === activeId);
 
   function handleClick() {
-    const newDetails = { ...initialProjectDetails[0], id: generateUniqueId() };
+    const newDetails = { 
+      id: generateUniqueId(),
+      name: '',
+      techUsed: '',
+      description: '',
+      startDate: new Date().toJSON(),
+      endDate: new Date().toJSON(),
+      isVisible: true,
+    } satisfies ProjectDetails;
     setProjectDetails(projectDetails.concat(newDetails));
     setActiveId(newDetails.id);
   }
