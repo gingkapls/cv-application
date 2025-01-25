@@ -40,12 +40,16 @@ const initialExperienceDetails = [
 ] satisfies ExperienceDetails[];
 
 const initialProjectDetails = [
-  new ProjectDetails({
+  {
+    id: generateUniqueId(),
     name: 'First Project',
     techUsed: 'Javascript',
     description: 'Very cool!',
-  }),
-];
+    startDate: new Date(),
+    endDate: new Date(),
+    isVisible: true,
+  },
+] satisfies ProjectDetails[];
 
 const initialSkillsDetails = new SkillsDetails({
   languages: 'Javascript',

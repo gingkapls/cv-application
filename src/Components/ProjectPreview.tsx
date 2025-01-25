@@ -1,3 +1,4 @@
+import { getDuration } from '../lib/dateUtils';
 import { ProjectDetails } from './ProjectForm';
 
 function ProjectPreviewItemDescription({
@@ -23,7 +24,7 @@ function ProjectPreviewItem({
   projectDetails: ProjectDetails;
 }) {
   const { name, techUsed, description } = projectDetails;
-  const [startDate, endDate] = projectDetails.duration;
+  const [startDate, endDate] = getDuration(projectDetails.startDate, projectDetails.endDate);
 
   return (
     <section className='preview-item'>

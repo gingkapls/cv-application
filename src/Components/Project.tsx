@@ -1,7 +1,8 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 import ProjectForm, { ProjectDetails } from './ProjectForm';
-import { UUIDString } from '../lib/types';
 import DetailItem from './DetailItem';
+import { initialProjectDetails } from '../lib/initialState';
+import generateUniqueId, { UUIDString } from '../lib/uniqueId';
 
 interface ProjectProps {
   projectDetails: ProjectDetails[];
@@ -14,15 +15,14 @@ function Project({ projectDetails, setProjectDetails }: ProjectProps) {
     activeId && projectDetails.find((detail) => detail.id === activeId);
 
   function handleClick() {
-    const newDetails = new ProjectDetails();
+    const newDetails = { ...initialProjectDetails[0], id: generateUniqueId() };
     setProjectDetails(projectDetails.concat(newDetails));
     setActiveId(newDetails.id);
   }
 
   function toggleHide(id: UUIDString) {
     const oldDetails = projectDetails.find((detail) => detail.id === id)!;
-    const newDetails = oldDetails.clone();
-    newDetails.isVisible = !newDetails.isVisible;
+    const newDetails = { ...oldDetails, isVisible: !oldDetails.isVisible };
 
     setProjectDetails(
       projectDetails.map((detail) => {
