@@ -28,7 +28,7 @@ function SkillsForm({ skillsDetails, setSkillsDetails }: SkillsFormProps) {
       <Input
         label='Languages'
         name='languages'
-        placeholder='e.g. HTML5, CSS, Javascript'
+        placeholder='e.g. CSS, Javascript'
         value={languages}
         onChange={handleFieldChange}
       />
@@ -36,7 +36,7 @@ function SkillsForm({ skillsDetails, setSkillsDetails }: SkillsFormProps) {
       <Input
         label='Frameworks'
         name='frameworks'
-        placeholder='e.g. Angular, Svelte, Node.js'
+        placeholder='e.g. Angular, Node.js'
         value={frameworks}
         onChange={handleFieldChange}
       />
@@ -44,7 +44,7 @@ function SkillsForm({ skillsDetails, setSkillsDetails }: SkillsFormProps) {
       <Input
         label='Developer Tools'
         name='devTools'
-        placeholder='e.g. VS Code, Webpack, Git, Linux'
+        placeholder='e.g. VS Code, Webpack, Git'
         value={devTools}
         onChange={handleFieldChange}
       />
