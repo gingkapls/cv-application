@@ -172,7 +172,7 @@ function generateEducationDetailItem({
   startDate,
   endDate,
 }: EducationDetails) {
-  const duration = getDuration(startDate, endDate).join(' - ');
+  const duration = getDuration(startDate, endDate).join(' -- ');
   return `
     \\resumeSubheading
       {${collegeName}}{${duration}}
@@ -226,6 +226,22 @@ function generateEducationSrc(
   );
 }
 
+function generateResumeListItem(description: string) {
+  const bullets = description
+    .split('\n')
+    .map((item) => (item.trim().length !== 0 ? `\\resumeItem{${item}}` : ''))
+    .join('\n\n');
+
+  return conditionallyRender(
+    bullets.trim(),
+    `
+      \\resumeItemListStart
+        ${bullets}
+      \\resumeItemListEnd
+`
+  );
+}
+
 function generateExperienceDetailItem({
   orgName,
   jobTitle,
@@ -234,27 +250,24 @@ function generateExperienceDetailItem({
   startDate,
   endDate,
 }: ExperienceDetails) {
-  const duration = getDuration(startDate, endDate).join(' - ');
-  const bullets = description
-    .split('\n')
-    .map((item) => `\\resumeItem{${item}}`);
-
-  return `
+  const duration = getDuration(startDate, endDate).join(' -- ');
+  const start = `
     \\resumeSubheading
       {${jobTitle}}{${duration}}
       {${orgName}}{${location}}
+  `;
 
-      \\resumeItemListStart
+  const items = generateResumeListItem(description);
 
-        ${bullets.join('\n\n')}
-
-      \\resumeItemListEnd
-`;
+  return `
+    ${start}
+    ${items}
+    `;
 }
 
 function generateExperienceSrc(
   experienceDetails: ExperienceDetails[],
-  isAnonymized: boolean,
+  isAnonymized: boolean
 ) {
   const start = `\\section{Experience}
   \\resumeSubHeadingListStart
@@ -288,24 +301,17 @@ function generateProjectDetailsItem({
   startDate,
   endDate,
 }: ProjectDetails) {
-  const duration = getDuration(startDate, endDate).join(' - ');
+  const duration = getDuration(startDate, endDate).join(' -- ');
   const start = `
     \\resumeProjectHeading
           {\\textbf{${name}} $|$ \\emph{${techUsed}}}{${duration}}
     `;
 
-  const items = description
-    .split('\n')
-    .map((bullet) => `\\resumeItem{${bullet}}`);
-
-  // don't return an empty description
-  if (description.split('\n').length === 0) return start;
-
+  const items = generateResumeListItem(description);
   return `
   ${start}
-  \\resumeItemListStart
-  ${items.join('\n')}
-  \\resumeItemListEnd`;
+  ${items}
+  `;
 }
 
 function generateProjectSrc(projectDetails: ProjectDetails[]) {
@@ -317,7 +323,8 @@ function generateProjectSrc(projectDetails: ProjectDetails[]) {
 
   const items = projectDetails
     .filter((details) => details.isVisible)
-    .map((details) => generateProjectDetailsItem(details));
+    .map((details) => generateProjectDetailsItem(details))
+    .join('\n');
 
   const end = `
 \\resumeSubHeadingListEnd`;
@@ -388,12 +395,12 @@ function generateTexCode({
   projectDetails,
   skillsDetails,
   isAnonymized,
-}: IgenerateTexCode,  ) {
+}: IgenerateTexCode) {
   return (
     preamble +
     generateContactSrc(anonymizeDetails(contactDetails, isAnonymized)) +
-    generateEducationSrc(educationDetails, isAnonymized) +
     generateExperienceSrc(experienceDetails, isAnonymized) +
+    generateEducationSrc(educationDetails, isAnonymized) +
     generateProjectSrc(projectDetails) +
     generateSkillsSrc(skillsDetails) +
     docEnd
