@@ -21,7 +21,7 @@ function ProjectPreviewItem({
         <span className='tech-used'>{techUsed}</span>
       </div>
       <span className='duration'>
-        {startDate} - {endDate}
+        {startDate} – {endDate}
       </span>
       {description.length !== 0 && (
         <PreviewItemDescription details={projectDetails} />

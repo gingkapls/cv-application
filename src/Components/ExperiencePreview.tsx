@@ -23,7 +23,7 @@ function EducationPreviewItem({
     <section className='preview-item'>
       <h3 className='job-title'>{jobTitle}</h3>
       <span className='duration'>
-        {startDate} - {endDate}
+        {startDate} – {endDate}
       </span>
       <h4 className='org-name'>{orgName}</h4>
       <span className='location'>{location}</span>
