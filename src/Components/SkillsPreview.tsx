@@ -8,22 +8,31 @@ function SkillsPreview({ skillsDetails }: { skillsDetails: SkillsDetails }) {
       <table>
         <caption className='section-heading'>Technical Skills</caption>
         <tbody>
-          <tr>
-            <th>Languages</th>
-            <td>{languages}</td>
-          </tr>
-          <tr>
-            <th>Frameworks</th>
-            <td>{frameworks}</td>
-          </tr>
-          <tr>
-            <th>Developer Tools</th>
-            <td>{devTools}</td>
-          </tr>
-          <tr>
-            <th>Libraries</th>
-            <td>{libraries}</td>
-          </tr>
+          {languages && (
+            <tr>
+              <th>Languages</th>
+              <td>{languages}</td>
+            </tr>
+          )}
+
+          {frameworks && (
+            <tr>
+              <th>Frameworks</th>
+              <td>{frameworks}</td>
+            </tr>
+          )}
+          {devTools && (
+            <tr>
+              <th>Developer Tools</th>
+              <td>{devTools}</td>
+            </tr>
+          )}
+          {libraries && (
+            <tr>
+              <th>Libraries</th>
+              <td>{libraries}</td>
+            </tr>
+          )}
         </tbody>
       </table>
     </div>

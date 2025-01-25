@@ -109,9 +109,22 @@ body {
   }
 }
 
+.app-title {
+  font-weight: 700;
+  font-family: var(--heading-font);
+}
+
+.sidebar > .btn-container.main-actions-container {
+  & .btn {
+    aspect-ratio: 1;
+    padding: 8px;
+  }
+}
+
 .btn-container {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-top: 12px;
   gap: 12px;
   text-align: center;

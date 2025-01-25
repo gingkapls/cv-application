@@ -50,7 +50,7 @@ function App() {
   return (
     <>
       <Sidebar>
-        <div className='btn-container'>
+        <div className='btn-container main-actions-container'>
           <ResetCVButton
             setContactDetails={setContactDetails}
             setExperienceDetails={setExperienceDetails}
@@ -58,7 +58,7 @@ function App() {
             setProjectDetails={setProjectDetails}
             setSkillsDetails={setSkillsDetails}
           />
-          <h1>CV Builder</h1>
+          <h1 className='app-title'>CV Builder</h1>
 
           <AnonymizeButton
             isAnonymized={isAnonymized}

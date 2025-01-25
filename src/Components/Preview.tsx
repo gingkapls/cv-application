@@ -54,14 +54,21 @@ function Preview({
     <ProjectPreview projectDetails={visibleProjectDetails} />
   );
 
+  const visibleSkill = Object.values(skillsDetails).filter(
+    (skill) => skill.length
+  ).length;
+
   return (
     <div className='preview-container'>
       <section className='preview'>
-        <ContactPreview contactDetails={contactDetails} isAnonymized={isAnonymized} />
+        <ContactPreview
+          contactDetails={contactDetails}
+          isAnonymized={isAnonymized}
+        />
         {visibleExperience}
         {visibleEducation}
         {visibleProjects}
-        <SkillsPreview skillsDetails={skillsDetails} />
+        {visibleSkill !== 0 && <SkillsPreview skillsDetails={skillsDetails} />}
         <CopyTexButton
           contactDetails={contactDetails}
           educationDetails={educationDetails}
