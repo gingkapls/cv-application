@@ -27,13 +27,17 @@ const initialEducationDetails = [
 ] satisfies EducationDetails[];
 
 const initialExperienceDetails = [
-  new ExperienceDetails({
+  {
+    id: generateUniqueId(),
     orgName: 'Rubocop',
     jobTitle: 'Cop',
     description: 'Cop for rubies',
     location: 'New York',
-  }),
-];
+    startDate: new Date(),
+    endDate: new Date(),
+    isVisible: true,
+  },
+] satisfies ExperienceDetails[];
 
 const initialProjectDetails = [
   new ProjectDetails({

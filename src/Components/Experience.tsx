@@ -1,7 +1,8 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 import ExperienceForm, { ExperienceDetails } from './ExperienceForm';
-import { UUIDString } from '../lib/types';
 import DetailItem from './DetailItem';
+import generateUniqueId, { UUIDString } from '../lib/uniqueId';
+import { initialExperienceDetails } from '../lib/initialState';
 
 interface ExperienceProps {
   experienceDetails: ExperienceDetails[];
@@ -17,15 +18,18 @@ function Experience({
     activeId && experienceDetails.find((detail) => detail.id === activeId);
 
   function handleClick() {
-    const newDetails = new ExperienceDetails();
+    const newDetails = {
+      ...initialExperienceDetails[0],
+      id: generateUniqueId(),
+    } satisfies ExperienceDetails;
+
     setExperienceDetails(experienceDetails.concat(newDetails));
     setActiveId(newDetails.id);
   }
 
   function toggleHide(id: UUIDString) {
     const oldDetails = experienceDetails.find((detail) => detail.id === id)!;
-    const newDetails = oldDetails.clone();
-    newDetails.isVisible = !newDetails.isVisible;
+    const newDetails = { ...oldDetails, isVisible: !oldDetails.isVisible };
 
     setExperienceDetails(
       experienceDetails.map((detail) => {

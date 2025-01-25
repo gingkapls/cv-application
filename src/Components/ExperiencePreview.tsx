@@ -1,3 +1,4 @@
+import { getDuration } from '../lib/dateUtils';
 import { ExperienceDetails } from './ExperienceForm';
 
 function EducationPreviewItem({
@@ -6,7 +7,10 @@ function EducationPreviewItem({
   experienceDetails: ExperienceDetails;
 }) {
   const { orgName, jobTitle, description, location } = experienceDetails;
-  const [startDate, endDate] = experienceDetails.duration;
+  const [startDate, endDate] = getDuration(
+    experienceDetails.startDate,
+    experienceDetails.endDate
+  );
 
   return (
     <section className='preview-item'>
