@@ -68,6 +68,7 @@ function EducationForm({
         label='College Name'
         name='collegeName'
         value={collegeName}
+        required={true}
         placeholder='e.g. MIT'
         onChange={handleFieldChange}
       />

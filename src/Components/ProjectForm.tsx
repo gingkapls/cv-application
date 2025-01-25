@@ -69,6 +69,7 @@ function ProjectForm({
       <Input
         label='Project Name'
         name='name'
+        required={true}
         value={name}
         placeholder='e.g. CV-Application'
         onChange={handleFieldChange}
@@ -85,6 +86,7 @@ function ProjectForm({
       <TextArea
         label='Description'
         name='description'
+        hint='Split by new lines'
         value={description}
         placeholder='e.g. Developed a responsive frontend web application'
         onChange={handleFieldChange}

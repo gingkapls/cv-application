@@ -72,6 +72,7 @@ function ExperienceForm({
         label='Organization Name'
         name='orgName'
         value={orgName}
+        required={true}
         placeholder='e.g. Linux Foundation'
         onChange={handleFieldChange}
       />
@@ -80,6 +81,7 @@ function ExperienceForm({
         label='Job Title'
         name='jobTitle'
         value={jobTitle}
+        required={true}
         placeholder='e.g. Chief Technology Officer'
         onChange={handleFieldChange}
       />
@@ -88,6 +90,7 @@ function ExperienceForm({
         label='Job Description'
         name='description'
         placeholder='e.g. Developed a full stack web application'
+        hint='Split by newlines'
         value={description}
         onChange={handleFieldChange}
       />
@@ -99,6 +102,7 @@ function ExperienceForm({
         placeholder='e.g. Cambridge, MA'
         onChange={handleFieldChange}
       />
+
       <Input
         label='Start Date'
         type='Date'

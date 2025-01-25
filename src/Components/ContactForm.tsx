@@ -31,6 +31,7 @@ function ContactForm({ contactDetails, setContactDetails }: ContactFormProps) {
         name='fullName'
         value={fullName}
         placeholder='e.g. John Doe'
+        hint='recommended'
         onChange={handleFieldChange}
       />
       <Input

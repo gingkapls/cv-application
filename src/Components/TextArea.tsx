@@ -5,6 +5,7 @@ interface TextAreaProps {
   label: string;
   value: string;
   placeholder: string;
+  hint?: string;
   rows?: number;
   cols?: number;
   onChange: ChangeEventHandler;
@@ -15,6 +16,7 @@ function TextArea({
   label,
   value,
   placeholder,
+  hint,
   rows = 2,
   cols = 20,
   onChange,
@@ -23,6 +25,7 @@ function TextArea({
     <>
       <label>
         {label}
+        {hint && <span className='hint'>{hint}</span>}
         <textarea
           name={name}
           rows={rows}
