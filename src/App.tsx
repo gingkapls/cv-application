@@ -5,6 +5,11 @@ import { EducationDetails } from './Components/EducationForm';
 import Education from './Components/Education';
 import { ExperienceDetails } from './Components/ExperienceForm';
 import Experience from './Components/Experience';
+import { ProjectDetails } from './Components/ProjectForm';
+import Project from './Components/Project';
+import Sidebar from './Components/Sidebar';
+import Preview from './Components/Preview';
+import SkillsForm, { SkillsDetails } from './Components/SkillsForm';
 import {
   initialContactDetails,
   initialEducationDetails,
@@ -12,17 +17,6 @@ import {
   initialProjectDetails,
   initialSkillsDetails,
 } from './lib/initialState';
-import { ProjectDetails } from './Components/ProjectForm';
-import Project from './Components/Project';
-import Sidebar from './Components/Sidebar';
-import Preview from './Components/Preview';
-import ContactPreview from './Components/ContactPreview';
-import EducationPreview from './Components/EducationPreview';
-import ExperiencePreview from './Components/ExperiencePreview';
-import ProjectPreview from './Components/ProjectPreview';
-import SkillsForm, { SkillsDetails } from './Components/SkillsForm';
-import SkillsPreview from './Components/SkillsPreview';
-import CopyTexButton from './Components/CopyTexButton';
 
 function App() {
   const [contactDetails, setContactDetails] = useState<ContactDetails>(
