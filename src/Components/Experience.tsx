@@ -48,7 +48,7 @@ function Experience({
 
   return (
     <div className='experience details'>
-      <h3>Experience</h3>
+      <h2 className='section-heading'>Experience</h2>
       {activeDetail === null || activeDetail === undefined ? (
         experienceDetails
           .map((detail) => (

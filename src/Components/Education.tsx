@@ -46,7 +46,7 @@ function Education({ educationDetails, setEducationDetails }: EducationProps) {
 
   return (
     <div className='education details'>
-      <h3>Education</h3>
+      <h2 className='section-heading'>Education</h2>
       {activeDetail === null || activeDetail === undefined ? (
         educationDetails
           .map((detail, idx) => (

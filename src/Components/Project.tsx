@@ -43,7 +43,7 @@ function Project({ projectDetails, setProjectDetails }: ProjectProps) {
 
   return (
     <div className='project details'>
-      <h3>Projects</h3>
+      <h2 className='section-heading'>Projects</h2>
 
       {activeDetail === null || activeDetail === undefined ? (
         projectDetails

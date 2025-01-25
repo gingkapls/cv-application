@@ -41,7 +41,7 @@ function ProjectPreview({
 
   return (
     <div className='project-preview detail-preview'>
-      <h2>Projects</h2>
+      <h2 className='section-heading'>Projects</h2>
       {items}
     </div>
   );

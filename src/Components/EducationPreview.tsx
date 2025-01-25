@@ -16,7 +16,7 @@ function Coursework({
 
   return (
     <section className='coursework'>
-      <h3>Coursework</h3>
+      <h3 className='subsection-heading'>Coursework</h3>
       <p>{combinedCoursework}</p>
     </section>
   );
@@ -41,7 +41,7 @@ function EducationPreviewItem({
 
   return (
     <section className='preview-item'>
-      <h3 className='college-name'>{collegeName}</h3>
+      <h3 className='college subheading'>{collegeName}</h3>
       <span className='duration'>
         {startDate} – {endDate}
       </span>
@@ -68,7 +68,7 @@ function EducationPreview({
 
   return (
     <div className='education-preview detail-preview'>
-      <h2>Education</h2>
+      <h2 className='section-heading'>Education</h2>
       {itemList}
       <Coursework educationDetails={educationDetails} />
     </div>

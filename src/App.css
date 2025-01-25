@@ -1,3 +1,16 @@
+@font-face {
+  font-family: 'CMU Serif';
+  src: url('./assets/cmunbx.woff') format('woff');
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Lato';
+  src: url('./assets/Lato.woff2') format('woff2'),
+    url('./assets/Lato.woff') format('woff');
+  font-style: normal;
+}
+
 :root {
   height: 100%;
   width: 100%;
@@ -27,6 +40,9 @@
   line-height: 1.5;
   color: var(--text-color);
   font-size: clamp(11px, 2.3vmin, 16px);
+  --body-font: 'Lato';
+  --heading-font: 'CMU Serif';
+  font-family: var(--body-font);
 }
 
 /* Resetting Styles */
@@ -75,6 +91,12 @@ body {
   gap: 40px;
 }
 
+.section-heading {
+  font-size: 2rem;
+  font-family: var(--heading-font);
+  font-weight: 400;
+}
+
 .sidebar {
   display: flex;
   flex: 1;
@@ -82,8 +104,7 @@ body {
   flex-direction: column;
   gap: 48px;
 
-  & h3 {
-    font-size: 2rem;
+  & .section-heading {
     color: var(--accent-color);
   }
 }
@@ -220,8 +241,7 @@ form {
 .education,
 .experience,
 .project {
-  & h3 {
-    color: var(--accent-color);
+  & .section-heading {
     padding: var(--card-side-padding);
   }
 }
@@ -236,17 +256,27 @@ form {
   justify-content: center;
   position: relative;
 
-  & h2,
-  caption {
+  & .section-heading {
+    display: block;
+    width: 100%;
     font-size: 1.4rem;
     text-align: left;
     width: 100%;
     border-bottom: 2px double black;
     font-weight: 400;
   }
+  
+  
+  .subheading {
+    font-family: var(--heading-font);
+    font-weight: 700;
 
-  & h3 {
-    width: 100%;
+  }
+
+  .subsection-heading {
+    font-weight: 400;
+    font-size: 1.4rem;
+    font-family: var(--heading-font);
   }
 }
 
@@ -283,12 +313,13 @@ form {
   flex-wrap: wrap;
   justify-content: center;
 
-  & h2 {
-    font-family: serif;
+  & .full-name {
     font-size: 2rem;
+    font-weight: 500;
     width: 100%;
     text-align: center;
     border: none;
+    margin-bottom: 8px;
   }
 
   & span {
@@ -374,12 +405,24 @@ form {
 .skills-preview {
   font-size: 1rem;
 
-  & caption {
+  & .section-heading {
     margin-bottom: var(--card-side-padding);
+  }
+
+  & table {
+    width: 100%;
+  }
+
+  & tr {
+    display: block;
   }
 
   & th {
     text-align: left;
-    padding: 0 var(--card-side-padding);
+    padding: 0 4px;
+
+    &::after {
+      content: ':';
+    }
   }
 }

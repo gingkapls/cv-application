@@ -6,7 +6,7 @@ function SkillsPreview({ skillsDetails }: { skillsDetails: SkillsDetails }) {
   return (
     <div className='skills-preview detail-preview'>
       <table>
-        <caption>Technical Skills</caption>
+        <caption className='section-heading'>Technical Skills</caption>
         <tbody>
           <tr>
             <th>Languages</th>

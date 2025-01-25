@@ -24,7 +24,7 @@ function SkillsForm({ skillsDetails, setSkillsDetails }: SkillsFormProps) {
   const { languages, frameworks, devTools, libraries } = skillsDetails;
   return (
     <form className='skills-details details'>
-      <h3>Technical Skills</h3>
+      <h2 className='section-heading'>Technical Skills</h2>
       <Input
         label='Languages'
         name='languages'

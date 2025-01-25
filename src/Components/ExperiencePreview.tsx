@@ -21,7 +21,7 @@ function EducationPreviewItem({
 
   return (
     <section className='preview-item'>
-      <h3 className='job-title'>{jobTitle}</h3>
+      <h3 className='job-title subheading'>{jobTitle}</h3>
       <span className='duration'>
         {startDate} – {endDate}
       </span>
@@ -51,7 +51,7 @@ function ExperiencePreview({
 
   return (
     <div className='experience-preview detail-preview'>
-      <h2>Experience</h2>
+      <h2 className='section-heading'>Experience</h2>
       {itemList}
     </div>
   );
