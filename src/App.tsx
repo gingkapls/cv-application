@@ -17,8 +17,11 @@ import {
   initialProjectDetails,
   initialSkillsDetails,
 } from './lib/initialState';
+import AnonymizeButton from './Components/AnonymizeButton';
 
 function App() {
+  const [isAnonymized, setIsAnonymized] = useState(false);
+
   const [contactDetails, setContactDetails] = useState<ContactDetails>(
     initialContactDetails
   );
@@ -41,6 +44,11 @@ function App() {
   return (
     <>
       <Sidebar>
+        <AnonymizeButton
+          isAnonymized={isAnonymized}
+          setIsAnonymized={setIsAnonymized}
+        />
+
         <ContactForm
           contactDetails={contactDetails}
           setContactDetails={setContactDetails}
@@ -64,6 +72,7 @@ function App() {
         />
       </Sidebar>
       <Preview
+        isAnonymized={isAnonymized}
         contactDetails={contactDetails}
         educationDetails={educationDetails}
         experienceDetails={experienceDetails}

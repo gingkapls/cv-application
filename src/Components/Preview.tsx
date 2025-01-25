@@ -18,6 +18,7 @@ interface PreviewProps {
   experienceDetails: ExperienceDetails[];
   projectDetails: ProjectDetails[];
   skillsDetails: SkillsDetails;
+  isAnonymized: boolean;
 }
 
 function filterVisibleDetails<T extends FilterableDetails>(details: T[]): T[] {
@@ -30,17 +31,24 @@ function Preview({
   experienceDetails,
   projectDetails,
   skillsDetails,
+  isAnonymized,
 }: PreviewProps) {
   const visibleEducationDetails = filterVisibleDetails(educationDetails);
   const visibleExperienceDetails = filterVisibleDetails(experienceDetails);
   const visibleProjectDetails = filterVisibleDetails(projectDetails);
 
   const visibleEducation = visibleEducationDetails.length !== 0 && (
-    <EducationPreview educationDetails={visibleEducationDetails} />
+    <EducationPreview
+      educationDetails={visibleEducationDetails}
+      isAnonymized={isAnonymized}
+    />
   );
 
   const visibleExperience = visibleExperienceDetails.length !== 0 && (
-    <ExperiencePreview experienceDetails={visibleExperienceDetails} />
+    <ExperiencePreview
+      experienceDetails={visibleExperienceDetails}
+      isAnonymized={isAnonymized}
+    />
   );
   const visibleProjects = visibleProjectDetails.length !== 0 && (
     <ProjectPreview projectDetails={visibleProjectDetails} />
@@ -49,7 +57,7 @@ function Preview({
   return (
     <div className='preview-container'>
       <section className='preview'>
-        <ContactPreview contactDetails={contactDetails} />
+        <ContactPreview contactDetails={contactDetails} isAnonymized={isAnonymized} />
         {visibleExperience}
         {visibleEducation}
         {visibleProjects}

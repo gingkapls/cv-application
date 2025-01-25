@@ -83,9 +83,18 @@ body {
     font-size: 2rem;
     color: var(--accent-color);
   }
+
+  .btn-anon {
+    display: flex;
+    font-weight: 700;
+    justify-content: space-between;
+    padding: var(--card-side-padding);
+    margin: 0;
+    
+  }
 }
 
-.btn-copy-tex {
+.btn-copy-tex, .btn-anon {
   background-color: var(--accent-color);
   color: var(--body-bg-color);
   font-weight: 500;

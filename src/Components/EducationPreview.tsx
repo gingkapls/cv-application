@@ -1,3 +1,4 @@
+import { anonymizeDetails } from '../lib/anonymizeDetails';
 import { getDuration } from '../lib/dateUtils';
 import { EducationDetails } from './EducationForm';
 
@@ -14,20 +15,29 @@ function Coursework({
   if (combinedCoursework.length === 0) return null;
 
   return (
-      <section className='coursework'>
-        <h3>Coursework</h3>
-        <p>{combinedCoursework}</p>
-      </section>
+    <section className='coursework'>
+      <h3>Coursework</h3>
+      <p>{combinedCoursework}</p>
+    </section>
   );
 }
 
 function EducationPreviewItem({
   educationDetails,
+  isAnonymized,
 }: {
   educationDetails: EducationDetails;
+  isAnonymized: boolean;
 }) {
-  const { collegeName, degree, gpa } = educationDetails;
-  const [startDate, endDate] = getDuration(educationDetails.startDate, educationDetails.endDate);
+  const { collegeName, degree, gpa } = anonymizeDetails(
+    educationDetails,
+    isAnonymized
+  );
+
+  const [startDate, endDate] = getDuration(
+    educationDetails.startDate,
+    educationDetails.endDate
+  );
 
   return (
     <section className='preview-item'>
@@ -43,11 +53,17 @@ function EducationPreviewItem({
 
 function EducationPreview({
   educationDetails,
+  isAnonymized = true,
 }: {
   educationDetails: EducationDetails[];
+  isAnonymized: boolean;
 }) {
   const itemList = educationDetails.map((details) => (
-    <EducationPreviewItem key={details.id} educationDetails={details} />
+    <EducationPreviewItem
+      key={details.id}
+      educationDetails={details}
+      isAnonymized={isAnonymized}
+    />
   ));
 
   return (

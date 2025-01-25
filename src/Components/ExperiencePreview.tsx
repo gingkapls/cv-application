@@ -1,12 +1,18 @@
+import { anonymizeDetails } from '../lib/anonymizeDetails';
 import { getDuration } from '../lib/dateUtils';
 import { ExperienceDetails } from './ExperienceForm';
 
 function EducationPreviewItem({
   experienceDetails,
+  isAnonymized,
 }: {
   experienceDetails: ExperienceDetails;
+  isAnonymized: boolean;
 }) {
-  const { orgName, jobTitle, description, location } = experienceDetails;
+  const { orgName, jobTitle, description, location } = anonymizeDetails(
+    experienceDetails,
+    isAnonymized
+  );
   const [startDate, endDate] = getDuration(
     experienceDetails.startDate,
     experienceDetails.endDate
@@ -31,11 +37,13 @@ function EducationPreviewItem({
 
 function ExperiencePreview({
   experienceDetails,
+  isAnonymized,
 }: {
   experienceDetails: ExperienceDetails[];
+  isAnonymized: boolean;
 }) {
   const itemList = experienceDetails.map((details) => (
-    <EducationPreviewItem key={details.id} experienceDetails={details} />
+    <EducationPreviewItem key={details.id} experienceDetails={details} isAnonymized={isAnonymized} />
   ));
 
   return (

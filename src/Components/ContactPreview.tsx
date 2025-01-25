@@ -2,13 +2,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ContactDetails } from './ContactForm';
 import { faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
+import { anonymizeDetails } from '../lib/anonymizeDetails';
 
 function ContactPreview({
   contactDetails,
+  isAnonymized,
 }: {
   contactDetails: ContactDetails;
+  isAnonymized: boolean;
 }) {
-  const { fullName, phoneNumber, github, linkedIn, gmail } = contactDetails;
+  const { fullName, phoneNumber, github, linkedIn, gmail } = anonymizeDetails(
+    contactDetails,
+    isAnonymized
+  );
   return (
     <address className='contact-preview detail-preview'>
       <h2 className='full-name'>{fullName}</h2>
