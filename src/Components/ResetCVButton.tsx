@@ -12,7 +12,7 @@ import {
   initialSkillsDetails,
 } from '../lib/initialState';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faUndo } from '@fortawesome/free-solid-svg-icons';
 
 interface ResetCVButtonProps {
   setContactDetails: Dispatch<SetStateAction<ContactDetails>>;
@@ -44,7 +44,7 @@ function ResetCVButton({
       aria-label='Reset CV'
       title='Reset CV'
     >
-      <FontAwesomeIcon icon={faTrash} />
+      <FontAwesomeIcon icon={faUndo} />
     </button>
   );
 }

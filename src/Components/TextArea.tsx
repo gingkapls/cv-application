@@ -4,6 +4,7 @@ interface TextAreaProps {
   name: string;
   label: string;
   value: string;
+  placeholder: string;
   rows?: number;
   cols?: number;
   onChange: ChangeEventHandler;
@@ -13,6 +14,7 @@ function TextArea({
   name,
   label,
   value,
+  placeholder,
   rows = 2,
   cols = 20,
   onChange,
@@ -25,6 +27,7 @@ function TextArea({
           name={name}
           rows={rows}
           cols={cols}
+          placeholder={placeholder}
           onChange={onChange}
           value={value}
         ></textarea>

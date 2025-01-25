@@ -30,24 +30,29 @@ function ContactForm({ contactDetails, setContactDetails }: ContactFormProps) {
         label='Full Name: '
         name='fullName'
         value={fullName}
+        placeholder='e.g. John Doe'
         onChange={handleFieldChange}
       />
       <Input
         label='Phone Number'
         name='phoneNumber'
+        type='tel'
         value={phoneNumber}
+        placeholder='e.g. 123-456-7890'
         onChange={handleFieldChange}
       />
       <Input
         label='Github Profile'
         name='github'
         value={github}
+        placeholder='e.g. torvalds'
         onChange={handleFieldChange}
       />
       <Input
         label='LinkedIn Profile'
         name='linkedIn'
         value={linkedIn}
+        placeholder='e.g. linustorvalds'
         onChange={handleFieldChange}
       />
       <Input
@@ -55,6 +60,7 @@ function ContactForm({ contactDetails, setContactDetails }: ContactFormProps) {
         type='email'
         name='gmail'
         value={gmail}
+        placeholder='e.g. linus@linuxfoundation.org'
         onChange={handleFieldChange}
       />
     </form>

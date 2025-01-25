@@ -61,6 +61,7 @@ function EducationForm({
         label='College Name'
         name='collegeName'
         value={collegeName}
+        placeholder='e.g. MIT'
         onChange={handleFieldChange}
       />
 
@@ -68,13 +69,15 @@ function EducationForm({
         label='Degree'
         name='degree'
         value={degree}
+        placeholder='e.g. M.Sc'
         onChange={handleFieldChange}
       />
 
       <Input
-        label='GPA: '
+        label='GPA'
         name='gpa'
         value={gpa}
+        placeholder='e.g. 4.20'
         onChange={handleFieldChange}
       />
 
@@ -82,20 +85,24 @@ function EducationForm({
         label='Coursework'
         name='coursework'
         value={coursework}
+        placeholder='e.g. Data Structures, Object Oriented Programming'
         onChange={handleFieldChange}
       />
 
       <Input
-        label='Start Date: '
+        label='Start Date'
         type='Date'
         name='startDate'
+        placeholder='e.g. yyyy-mm-dd'
         value={formatDate(startDate)}
         onChange={handleFieldChange}
       />
+
       <Input
-        label='End Date: '
+        label='End Date'
         type='Date'
         name='endDate'
+        placeholder='e.g. yyyy-mm-dd'
         value={formatDate(endDate)}
         onChange={handleFieldChange}
       />

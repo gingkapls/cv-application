@@ -4,16 +4,30 @@ interface InputProps {
   name: string;
   label: string;
   value: string;
-  onChange: ChangeEventHandler;
+  placeholder?: string;
   type?: string;
+  onChange: ChangeEventHandler;
 }
 
-function Input({ name, label, value, type = 'text', onChange }: InputProps) {
+function Input({
+  name,
+  label,
+  value,
+  type = 'text',
+  placeholder,
+  onChange,
+}: InputProps) {
   return (
     <>
       <label>
         {label}
-        <input name={name} type={type} value={value} onChange={onChange} />
+        <input
+          name={name}
+          type={type}
+          value={value}
+          onChange={onChange}
+          placeholder={placeholder}
+        />
       </label>
     </>
   );

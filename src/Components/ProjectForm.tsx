@@ -62,6 +62,7 @@ function ProjectForm({
         label='Project Name'
         name='name'
         value={name}
+        placeholder='e.g. CV-Application'
         onChange={handleFieldChange}
       />
 
@@ -69,6 +70,7 @@ function ProjectForm({
         label='Technologies Used'
         name='techUsed'
         value={techUsed}
+        placeholder='e.g. ReactJS, CSS'
         onChange={handleFieldChange}
       />
 
@@ -76,6 +78,7 @@ function ProjectForm({
         label='Description'
         name='description'
         value={description}
+        placeholder='e.g. Developed a responsive frontend web application'
         onChange={handleFieldChange}
       />
 

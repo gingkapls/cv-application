@@ -19,8 +19,14 @@ function Experience({
 
   function handleClick() {
     const newDetails = {
-      ...initialExperienceDetails[0],
       id: generateUniqueId(),
+      orgName: '',
+      jobTitle: '',
+      location: '',
+      description: '',
+      startDate: new Date().toJSON(),
+      endDate: new Date().toJSON(),
+      isVisible: true,
     } satisfies ExperienceDetails;
 
     setExperienceDetails(experienceDetails.concat(newDetails));
