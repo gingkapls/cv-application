@@ -3,6 +3,7 @@ import Input from './Input';
 import TextArea from './TextArea';
 import { UUIDString } from '../lib/uniqueId';
 import { formatDate, parseDate } from '../lib/dateUtils';
+import FormActions from './FormActions';
 
 interface ExperienceDetails {
   id: UUIDString;
@@ -58,6 +59,13 @@ function ExperienceForm({
     const formData = new FormData(e.target);
     console.log(formData);
   }
+
+  function handleDelete() {
+    setExperienceDetails(
+      experienceDetails.filter((details) => details.id !== id)
+    );
+  }
+
   return (
     <form className='experience-form' onSubmit={handleSubmit}>
       <Input
@@ -108,10 +116,7 @@ function ExperienceForm({
         value={formatDate(endDate)}
         onChange={handleFieldChange}
       />
-
-      <button className='btn-save' type='submit'>
-        Save
-      </button>
+      <FormActions handleDelete={handleDelete} />
     </form>
   );
 }

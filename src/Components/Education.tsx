@@ -2,6 +2,8 @@ import { Dispatch, SetStateAction, useState } from 'react';
 import EducationForm, { EducationDetails } from './EducationForm';
 import DetailItem from './DetailItem';
 import generateUniqueId, { UUIDString } from '../lib/uniqueId';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCirclePlus } from '@fortawesome/free-solid-svg-icons';
 
 interface EducationProps {
   educationDetails: EducationDetails[];
@@ -58,8 +60,9 @@ function Education({ educationDetails, setEducationDetails }: EducationProps) {
             />
           ))
           .concat(
-            <button key='btnAdd' className='btn-add' onClick={handleClick}>
-              + Education
+            <button key='btnAdd' className='btn-add btn' onClick={handleClick}>
+              <FontAwesomeIcon icon={faCirclePlus} />
+              Education
             </button>
           )
       ) : (

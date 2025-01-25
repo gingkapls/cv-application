@@ -2,6 +2,8 @@ import { Dispatch, SetStateAction, useState } from 'react';
 import ProjectForm, { ProjectDetails } from './ProjectForm';
 import DetailItem from './DetailItem';
 import generateUniqueId, { UUIDString } from '../lib/uniqueId';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCirclePlus } from '@fortawesome/free-solid-svg-icons';
 
 interface ProjectProps {
   projectDetails: ProjectDetails[];
@@ -14,7 +16,7 @@ function Project({ projectDetails, setProjectDetails }: ProjectProps) {
     activeId && projectDetails.find((detail) => detail.id === activeId);
 
   function handleClick() {
-    const newDetails = { 
+    const newDetails = {
       id: generateUniqueId(),
       name: '',
       techUsed: '',
@@ -56,8 +58,9 @@ function Project({ projectDetails, setProjectDetails }: ProjectProps) {
             />
           ))
           .concat(
-            <button key='btnAdd' className='btn-add' onClick={handleClick}>
-              + Project
+            <button key='btnAdd' className='btn-add btn' onClick={handleClick}>
+              <FontAwesomeIcon icon={faCirclePlus} />
+              Project
             </button>
           )
       ) : (

@@ -3,6 +3,7 @@ import Input from './Input';
 import { UUIDString } from '../lib/uniqueId';
 import TextArea from './TextArea';
 import { formatDate, parseDate } from '../lib/dateUtils';
+import FormActions from './FormActions';
 
 interface EducationDetails {
   id: UUIDString;
@@ -30,7 +31,9 @@ function EducationForm({
 }: EducationFormProps) {
   function handleFieldChange(e: ChangeEvent<HTMLInputElement>) {
     const field = e.target.name;
-    const value = field.includes('Date') ? parseDate(e.target.value) : e.target.value;
+    const value = field.includes('Date')
+      ? parseDate(e.target.value)
+      : e.target.value;
     const originalDetails = educationDetails.at(detailIndex)!;
     const newDetails = { ...originalDetails, [field]: value };
 
@@ -50,11 +53,15 @@ function EducationForm({
     console.log(formData);
   }
 
+  function handleDelete() {
+    setEducationDetails(educationDetails.filter((detail) => detail.id !== id));
+  }
+
   const detailIndex = educationDetails.findIndex((detail) => detail.id === id);
 
   const { collegeName, degree, gpa, coursework, startDate, endDate } =
     educationDetails.at(detailIndex)!;
-  
+
   return (
     <form className='education-form' onSubmit={handleSubmit}>
       <Input
@@ -106,10 +113,7 @@ function EducationForm({
         value={formatDate(endDate)}
         onChange={handleFieldChange}
       />
-
-      <button className='btn-save' type='submit'>
-        Save
-      </button>
+      <FormActions handleDelete={handleDelete} />
     </form>
   );
 }

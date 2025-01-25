@@ -2,6 +2,8 @@ import { Dispatch, SetStateAction, useState } from 'react';
 import ExperienceForm, { ExperienceDetails } from './ExperienceForm';
 import DetailItem from './DetailItem';
 import generateUniqueId, { UUIDString } from '../lib/uniqueId';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCirclePlus } from '@fortawesome/free-solid-svg-icons';
 
 interface ExperienceProps {
   experienceDetails: ExperienceDetails[];
@@ -60,8 +62,9 @@ function Experience({
             />
           ))
           .concat(
-            <button key='btnAdd' className='btn-add' onClick={handleClick}>
-              + Experience
+            <button key='btnAdd' className='btn-add btn' onClick={handleClick}>
+              <FontAwesomeIcon icon={faCirclePlus} />
+              Experience
             </button>
           )
       ) : (

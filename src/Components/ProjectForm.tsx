@@ -3,6 +3,7 @@ import { UUIDString } from '../lib/uniqueId';
 import Input from './Input';
 import TextArea from './TextArea';
 import { formatDate, parseDate } from '../lib/dateUtils';
+import FormActions from './FormActions';
 
 interface ProjectDetails {
   id: UUIDString;
@@ -56,6 +57,13 @@ function ProjectForm({
     const formData = new FormData(e.target);
     console.log(formData);
   }
+
+  function handleDelete() {
+    setProjectDetails(
+      projectDetails.filter((details) => details.id !== id)
+    );
+  }
+
   return (
     <form className='project-form' onSubmit={handleSubmit}>
       <Input
@@ -97,9 +105,7 @@ function ProjectForm({
         value={formatDate(endDate)}
         onChange={handleFieldChange}
       />
-      <button className='btn-save' type='submit'>
-        Save
-      </button>
+      <FormActions handleDelete={handleDelete} />
     </form>
   );
 }
