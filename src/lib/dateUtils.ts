@@ -1,11 +1,9 @@
-type DateString = `${string}-${string}-${string}`;
-
 function parseDate(dateString: string): Date {
   // Handle cleared dates
   return dateString.length === 0 ? new Date() : new Date(dateString);
 }
 
-function formatDate(dateString: string): DateString {
+function formatDate(dateString: string): string {
   const date = parseDate(dateString);
 
   const year = date.getFullYear();
@@ -44,7 +42,5 @@ function getDuration(startDateString: string, endDateString: string) {
 
   return [start, end];
 }
-
-export type { DateString };
 
 export { parseDate, formatDate, shortenDate, getDuration };

@@ -2,7 +2,7 @@ import { ChangeEvent, Dispatch, FormEvent, SetStateAction } from 'react';
 import Input from './Input';
 import { UUIDString } from '../lib/uniqueId';
 import TextArea from './TextArea';
-import { DateString, formatDate, parseDate } from '../lib/dateUtils';
+import { formatDate, parseDate } from '../lib/dateUtils';
 
 interface EducationDetails {
   id: UUIDString;
