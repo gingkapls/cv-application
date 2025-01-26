@@ -345,19 +345,6 @@ function generateSkillsSrc({
   libraries,
   devTools,
 }: SkillsDetails) {
-  const src = `
-% -------------------- SKILLS --------------------
-\\section{Skills}
- \\begin{itemize}[leftmargin=0.15in, label={}]
-    \\small{\\item{
-     \\textbf{Languages}{: ${languages}} \\\\
-     \\textbf{Frameworks}{: ${frameworks}} \\\\
-     \\textbf{Developer Tools}{: ${devTools}} \\\\
-     \\textbf{Libraries}{: ${libraries}} \\\\
-    }}
- \\end{itemize}
-`;
-
   const start = `
 % -------------------- SKILLS --------------------
 \\section{Skills}
@@ -374,14 +361,16 @@ function generateSkillsSrc({
     { item: libraries, name: 'Libraries' },
   ] satisfies skillItem[];
 
-  const skills = items.map((skill) =>
-    conditionallyRender(
-      skill.item,
-      `
+  const skills = items
+    .map((skill) =>
+      conditionallyRender(
+        skill.item,
+        `
      \\textbf{${skill.name}}{: ${skill.item}} \\\\
     `
+      )
     )
-  ).join('\n');
+    .join('\n');
 
   const end = `
     }}
