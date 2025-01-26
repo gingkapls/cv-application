@@ -20,8 +20,6 @@ import {
 import AnonymizeButton from './Components/AnonymizeButton';
 import useLocalStorage from './hooks/useLocalStorage';
 import ResetCVButton from './Components/ResetCVButton';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
 function App() {
   const [isAnonymized, setIsAnonymized] = useState(false);
@@ -51,53 +49,55 @@ function App() {
 
   return (
     <>
-      <Sidebar>
-        <div className='btn-container main-actions-container'>
-          <ResetCVButton
+      <main>
+        <Sidebar>
+          <div className='btn-container main-actions-container'>
+            <ResetCVButton
+              setContactDetails={setContactDetails}
+              setExperienceDetails={setExperienceDetails}
+              setEducationDetails={setEducationDetails}
+              setProjectDetails={setProjectDetails}
+              setSkillsDetails={setSkillsDetails}
+            />
+            <h1 className='app-title'>CV Builder</h1>
+
+            <AnonymizeButton
+              isAnonymized={isAnonymized}
+              setIsAnonymized={setIsAnonymized}
+            />
+          </div>
+
+          <ContactForm
+            contactDetails={contactDetails}
             setContactDetails={setContactDetails}
+          />
+          <Experience
+            experienceDetails={experienceDetails}
             setExperienceDetails={setExperienceDetails}
+          />
+          <Education
+            educationDetails={educationDetails}
             setEducationDetails={setEducationDetails}
+          />
+          <Project
+            projectDetails={projectDetails}
             setProjectDetails={setProjectDetails}
+          />
+
+          <SkillsForm
+            skillsDetails={skillsDetails}
             setSkillsDetails={setSkillsDetails}
           />
-          <h1 className='app-title'>CV Builder</h1>
-
-          <AnonymizeButton
-            isAnonymized={isAnonymized}
-            setIsAnonymized={setIsAnonymized}
-          />
-        </div>
-
-        <ContactForm
+        </Sidebar>
+        <Preview
+          isAnonymized={isAnonymized}
           contactDetails={contactDetails}
-          setContactDetails={setContactDetails}
-        />
-        <Experience
-          experienceDetails={experienceDetails}
-          setExperienceDetails={setExperienceDetails}
-        />
-        <Education
           educationDetails={educationDetails}
-          setEducationDetails={setEducationDetails}
-        />
-        <Project
+          experienceDetails={experienceDetails}
           projectDetails={projectDetails}
-          setProjectDetails={setProjectDetails}
-        />
-
-        <SkillsForm
           skillsDetails={skillsDetails}
-          setSkillsDetails={setSkillsDetails}
         />
-      </Sidebar>
-      <Preview
-        isAnonymized={isAnonymized}
-        contactDetails={contactDetails}
-        educationDetails={educationDetails}
-        experienceDetails={experienceDetails}
-        projectDetails={projectDetails}
-        skillsDetails={skillsDetails}
-      />
+      </main>
       <footer>
         Made with ❤️ by{' '}
         <a

@@ -1,6 +1,6 @@
 import { ContactDetails } from './ContactForm';
 import ContactPreview from './ContactPreview';
-import CopyTexButton from './CopyTexButton';
+import TexActions from './TexActions';
 import { EducationDetails } from './EducationForm';
 import EducationPreview from './EducationPreview';
 import { ExperienceDetails } from './ExperienceForm';
@@ -69,7 +69,7 @@ function Preview({
         {visibleEducation}
         {visibleProjects}
         {visibleSkill !== 0 && <SkillsPreview skillsDetails={skillsDetails} />}
-        <CopyTexButton
+        <TexActions
           contactDetails={contactDetails}
           educationDetails={educationDetails}
           experienceDetails={experienceDetails}
