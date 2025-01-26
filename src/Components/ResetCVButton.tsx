@@ -44,6 +44,7 @@ function ResetCVButton({
       aria-label='Reset CV'
       title='Reset CV'
     >
+      Reset
       <FontAwesomeIcon icon={faUndo} />
     </button>
   );

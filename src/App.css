@@ -115,9 +115,25 @@ body {
 }
 
 .sidebar > .btn-container.main-actions-container {
+  flex-direction: column;
+  padding: var(--card-side-padding);
+
   & .btn {
-    aspect-ratio: 1;
     padding: 8px;
+    width: 100%;
+    font-weight: 800;
+  }
+  
+  .btn-reset {
+    align-self: start;
+  }
+  
+  .btn-anon {
+    align-self: end;
+  }
+  
+  & svg {
+    margin-left: 8px;
   }
 }
 
