@@ -345,7 +345,7 @@ function generateSkillsSrc({
   libraries,
   devTools,
 }: SkillsDetails) {
-  const skills = `
+  const src = `
 % -------------------- SKILLS --------------------
 \\section{Skills}
  \\begin{itemize}[leftmargin=0.15in, label={}]
@@ -357,7 +357,42 @@ function generateSkillsSrc({
     }}
  \\end{itemize}
 `;
-  return skills;
+
+  const start = `
+% -------------------- SKILLS --------------------
+\\section{Skills}
+ \\begin{itemize}[leftmargin=0.15in, label={}]
+    \\small{\\item{
+`;
+
+  type skillItem = { item: string; name: string };
+
+  const items = [
+    { item: languages, name: 'Languages' },
+    { item: frameworks, name: 'Frameworks' },
+    { item: devTools, name: 'Developer Tools' },
+    { item: libraries, name: 'Libraries' },
+  ] satisfies skillItem[];
+
+  const skills = items.map((skill) =>
+    conditionallyRender(
+      skill.item,
+      `
+     \\textbf{${skill.name}}{: ${skill.item}} \\\\
+    `
+    )
+  ).join('\n');
+
+  const end = `
+    }}
+ \\end{itemize}
+ `;
+
+  if (skills.trim().length === 0) return ``;
+  return `
+  ${start}
+  ${skills}
+  ${end}`;
 }
 
 const docEnd = `\\end{document}`;
