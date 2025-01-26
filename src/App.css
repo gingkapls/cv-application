@@ -441,6 +441,14 @@ form {
   }
 }
 
+footer {
+  align-self: end;
+  font-weight: 700;
+  & a {
+    color: var(--visited-link-color);
+  }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .preview-item,
   .detail-preview {

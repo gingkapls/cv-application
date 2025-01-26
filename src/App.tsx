@@ -20,6 +20,8 @@ import {
 import AnonymizeButton from './Components/AnonymizeButton';
 import useLocalStorage from './hooks/useLocalStorage';
 import ResetCVButton from './Components/ResetCVButton';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
 function App() {
   const [isAnonymized, setIsAnonymized] = useState(false);
@@ -96,6 +98,16 @@ function App() {
         projectDetails={projectDetails}
         skillsDetails={skillsDetails}
       />
+      <footer>
+        Made with ❤️ by{' '}
+        <a
+          href='https://github.com/gingkapls'
+          target='_blank'
+          rel='noopener noreferrer'
+        >
+          Gingkapls
+        </a>
+      </footer>
     </>
   );
 }
