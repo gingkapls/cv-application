@@ -28,7 +28,7 @@ function Education({ educationDetails, setEducationDetails }: EducationProps) {
       endDate: new Date().toJSON(),
     } satisfies EducationDetails;
 
-    setEducationDetails(educationDetails.concat(newDetails));
+    setEducationDetails([newDetails, ...educationDetails]);
     setActiveId(newDetails.id);
   }
 

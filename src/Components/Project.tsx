@@ -25,7 +25,8 @@ function Project({ projectDetails, setProjectDetails }: ProjectProps) {
       endDate: new Date().toJSON(),
       isVisible: true,
     } satisfies ProjectDetails;
-    setProjectDetails(projectDetails.concat(newDetails));
+
+    setProjectDetails([newDetails, ...projectDetails]);
     setActiveId(newDetails.id);
   }
 

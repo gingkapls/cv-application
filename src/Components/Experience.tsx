@@ -30,7 +30,7 @@ function Experience({
       isVisible: true,
     } satisfies ExperienceDetails;
 
-    setExperienceDetails(experienceDetails.concat(newDetails));
+    setExperienceDetails([newDetails, ...experienceDetails]);
     setActiveId(newDetails.id);
   }
 
