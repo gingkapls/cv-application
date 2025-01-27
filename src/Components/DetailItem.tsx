@@ -3,8 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faArrowDown,
   faArrowUp,
-  faCircleDown,
-  faCircleUp,
   faEye,
   faEyeSlash,
 } from '@fortawesome/free-solid-svg-icons';

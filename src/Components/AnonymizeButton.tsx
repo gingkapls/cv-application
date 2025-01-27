@@ -19,8 +19,11 @@ function AnonymizeButton({
       aria-label={`${text} CV`}
       title={`${text} CV`}
     >
-    {text}
-      <FontAwesomeIcon icon={isAnonymized ? faUser : faUserSecret} />
+      {text}
+      <FontAwesomeIcon
+        icon={isAnonymized ? faUser : faUserSecret}
+        className='fa-xl'
+      />
     </button>
   );
 }

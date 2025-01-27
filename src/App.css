@@ -65,6 +65,8 @@ input {
   border: none;
   border-radius: var(--control-border-radius);
   background-color: var(--control-bg-color);
+  outline: none;
+  border-bottom: 4px solid transparent;
 }
 
 button {
@@ -81,7 +83,8 @@ body {
   height: 100%;
 }
 
-#root, main {
+#root,
+main {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -126,15 +129,15 @@ body {
     width: 100%;
     font-weight: 800;
   }
-  
+
   .btn-reset {
     align-self: start;
   }
-  
+
   .btn-anon {
     align-self: end;
   }
-  
+
   & svg {
     margin-left: 8px;
   }
@@ -147,6 +150,24 @@ body {
   margin-top: 12px;
   gap: 12px;
   text-align: center;
+}
+
+.btn-arrow-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+  & .btn-arrow {
+    padding: 8px;
+    border-radius: var(--button-border-radius);
+  }
+}
+
+.btn-arrow,
+.item-hide {
+  &:hover {
+    background-color: var(--active-bg-color);
+  }
 }
 
 .btn-add,
@@ -182,6 +203,10 @@ body {
   font-size: 1.2rem;
   padding: var(--button-padding);
   box-shadow: var(--subtle-box-shadow);
+
+  &:hover {
+    box-shadow: 4px 4px 12px 2px rgb(0 0 0 / 0.5);
+  }
 }
 
 .btn-reset,
@@ -228,13 +253,15 @@ body {
   flex: 1;
   min-height: 1.5lh;
   justify-content: space-between;
-  padding: 12px 0;
+  border-radius: var(--card-border-radius);
+  padding: 12px 4px;
   font-size: 1.4rem;
   font-weight: 500;
   text-align: left;
 }
 
 .item-hide {
+  border-radius: var(--card-border-radius);
   min-width: 3rem;
   margin-left: 8px;
 }
@@ -267,6 +294,16 @@ form {
     margin-top: 5px;
     width: 100%;
     box-shadow: var(--subtle-box-shadow);
+    border: 4px solid transparent;
+
+    &:focus {
+      border-bottom: 4px solid var(--accent-color);
+      outline: none;
+    }
+
+    &:invalid {
+      border-bottom: 4px solid var(--delete-color);
+    }
   }
 
   & textarea {
@@ -486,6 +523,24 @@ footer {
     }
     to {
       transform: scaleY(100%);
+    }
+  }
+
+  .btn {
+    transition: box-shadow 225ms ease;
+    transition-delay: 100ms;
+
+    &:hover {
+      transition: box-shadow 300ms ease;
+    }
+  }
+
+  input,
+  textarea {
+    transition: border-color 250ms;
+
+    &:focus {
+      transition: border-color 250ms;
     }
   }
 }

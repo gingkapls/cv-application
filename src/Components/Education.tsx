@@ -56,7 +56,7 @@ function Education({ educationDetails, setEducationDetails }: EducationProps) {
         />
       ))}
       <button key='btnAdd' className='btn-add btn' onClick={handleClick}>
-        <FontAwesomeIcon icon={faCirclePlus} />
+        <FontAwesomeIcon icon={faCirclePlus} className='fa-xl' />
         Education
       </button>
     </>

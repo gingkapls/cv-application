@@ -45,7 +45,7 @@ function ResetCVButton({
       title='Reset CV'
     >
       Reset
-      <FontAwesomeIcon icon={faUndo} />
+      <FontAwesomeIcon icon={faUndo} className='fa-xl' />
     </button>
   );
 }

@@ -32,7 +32,7 @@ function TexActions(props: TexActionsProps) {
   return (
     <div className='tex-actions-container btn-container'>
       <button className='btn-open-overleaf btn' onClick={handleOpen}>
-        Open in Overleaf <FontAwesomeIcon icon={faLeaf} />
+        Open in Overleaf <FontAwesomeIcon icon={faLeaf} className='fa-xl' />
       </button>
       <button className='btn-copy-tex btn' onClick={handleCopy}>
         Copy as LaTeX

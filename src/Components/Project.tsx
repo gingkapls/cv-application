@@ -54,7 +54,7 @@ function Project({ projectDetails, setProjectDetails }: ProjectProps) {
         />
       ))}
       <button key='btnAdd' className='btn-add btn' onClick={handleClick}>
-        <FontAwesomeIcon icon={faCirclePlus} />
+        <FontAwesomeIcon icon={faCirclePlus} className='fa-xl' />
         Project
       </button>
     </>
