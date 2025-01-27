@@ -4,6 +4,7 @@ import DetailItem from './DetailItem';
 import generateUniqueId, { UUIDString } from '../lib/uniqueId';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCirclePlus } from '@fortawesome/free-solid-svg-icons';
+import toggleHide from '../lib/toggleHide';
 
 interface EducationProps {
   educationDetails: EducationDetails[];
@@ -32,48 +33,43 @@ function Education({ educationDetails, setEducationDetails }: EducationProps) {
     setActiveId(newDetails.id);
   }
 
-  function toggleHide(id: UUIDString) {
-    const oldDetails = educationDetails.find((detail) => detail.id === id)!;
-    const newDetails = { ...oldDetails, isVisible: !oldDetails.isVisible };
+  const form = activeDetail && (
+    <EducationForm
+      key={activeDetail.id}
+      id={activeDetail.id}
+      educationDetails={educationDetails}
+      setEducationDetails={setEducationDetails}
+      setActiveId={setActiveId}
+    />
+  );
 
-    setEducationDetails(
-      educationDetails.map((detail) => {
-        if (detail.id === oldDetails.id) return newDetails;
-        return detail;
-      })
-    );
-  }
+  const detailList = (
+    <>
+      {educationDetails.map((detail, index) => (
+        <>
+          <DetailItem
+            key={detail.id}
+            id={detail.id}
+            title={detail.collegeName || `College ${index + 1}`}
+            isVisible={detail.isVisible}
+            setActiveId={setActiveId}
+            toggleHide={() =>
+              toggleHide(detail.id, educationDetails, setEducationDetails)
+            }
+          />
+        </>
+      ))}
+      <button key='btnAdd' className='btn-add btn' onClick={handleClick}>
+        <FontAwesomeIcon icon={faCirclePlus} />
+        Education
+      </button>
+    </>
+  );
 
   return (
     <div className='education details'>
       <h2 className='section-heading'>Education</h2>
-      {activeDetail === null || activeDetail === undefined ? (
-        educationDetails
-          .map((detail, index) => (
-            <DetailItem
-              key={detail.id}
-              id={detail.id}
-              title={detail.collegeName || `College ${index + 1}`}
-              isVisible={detail.isVisible}
-              setActiveId={setActiveId}
-              toggleHide={() => toggleHide(detail.id)}
-            />
-          ))
-          .concat(
-            <button key='btnAdd' className='btn-add btn' onClick={handleClick}>
-              <FontAwesomeIcon icon={faCirclePlus} />
-              Education
-            </button>
-          )
-      ) : (
-        <EducationForm
-          key={activeDetail.id}
-          id={activeDetail.id}
-          educationDetails={educationDetails}
-          setEducationDetails={setEducationDetails}
-          setActiveId={setActiveId}
-        />
-      )}
+      {activeDetail ? form : detailList}
     </div>
   );
 }

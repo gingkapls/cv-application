@@ -4,6 +4,7 @@ import DetailItem from './DetailItem';
 import generateUniqueId, { UUIDString } from '../lib/uniqueId';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCirclePlus } from '@fortawesome/free-solid-svg-icons';
+import toggleHide from '../lib/toggleHide';
 
 interface ExperienceProps {
   experienceDetails: ExperienceDetails[];
@@ -34,48 +35,41 @@ function Experience({
     setActiveId(newDetails.id);
   }
 
-  function toggleHide(id: UUIDString) {
-    const oldDetails = experienceDetails.find((detail) => detail.id === id)!;
-    const newDetails = { ...oldDetails, isVisible: !oldDetails.isVisible };
+  const form = activeDetail && (
+    <ExperienceForm
+      key={activeDetail.id}
+      id={activeDetail.id}
+      experienceDetails={experienceDetails}
+      setExperienceDetails={setExperienceDetails}
+      setActiveId={setActiveId}
+    />
+  );
 
-    setExperienceDetails(
-      experienceDetails.map((detail) => {
-        if (detail.id === oldDetails.id) return newDetails;
-        return detail;
-      })
-    );
-  }
+  const detailsList = (
+    <>
+      {experienceDetails.map((detail, index) => (
+        <DetailItem
+          key={detail.id}
+          id={detail.id}
+          isVisible={detail.isVisible}
+          title={detail.orgName || `Organization ${index + 1}`}
+          setActiveId={setActiveId}
+          toggleHide={() =>
+            toggleHide(detail.id, experienceDetails, setExperienceDetails)
+          }
+        />
+      ))}
+      <button key='btnAdd' className='btn-add btn' onClick={handleClick}>
+        <FontAwesomeIcon icon={faCirclePlus} />
+        Experience
+      </button>
+    </>
+  );
 
   return (
     <div className='experience details'>
       <h2 className='section-heading'>Experience</h2>
-      {activeDetail === null || activeDetail === undefined ? (
-        experienceDetails
-          .map((detail, index) => (
-            <DetailItem
-              key={detail.id}
-              id={detail.id}
-              isVisible={detail.isVisible}
-              title={detail.orgName || `Organization ${index + 1}`}
-              setActiveId={setActiveId}
-              toggleHide={toggleHide}
-            />
-          ))
-          .concat(
-            <button key='btnAdd' className='btn-add btn' onClick={handleClick}>
-              <FontAwesomeIcon icon={faCirclePlus} />
-              Experience
-            </button>
-          )
-      ) : (
-        <ExperienceForm
-          key={activeDetail.id}
-          id={activeDetail.id}
-          experienceDetails={experienceDetails}
-          setExperienceDetails={setExperienceDetails}
-          setActiveId={setActiveId}
-        />
-      )}
+      {activeDetail ? form : detailsList}
     </div>
   );
 }
