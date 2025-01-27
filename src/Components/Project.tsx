@@ -31,7 +31,7 @@ function Project({ projectDetails, setProjectDetails }: ProjectProps) {
     setActiveId(newDetails.id);
   }
 
-  const content = activeDetail ? (
+  const form = activeDetail && (
     <ProjectForm
       key={activeDetail.id}
       id={activeDetail.id}
@@ -39,7 +39,9 @@ function Project({ projectDetails, setProjectDetails }: ProjectProps) {
       setProjectDetails={setProjectDetails}
       setActiveId={setActiveId}
     />
-  ) : (
+  );
+
+  const detailList = (
     <>
       {projectDetails.map((detail, index) => (
         <DetailItem
@@ -63,7 +65,7 @@ function Project({ projectDetails, setProjectDetails }: ProjectProps) {
   return (
     <div className='project details'>
       <h2 className='section-heading'>Projects</h2>
-      {content}
+      {activeDetail ? form : detailList}
     </div>
   );
 }
