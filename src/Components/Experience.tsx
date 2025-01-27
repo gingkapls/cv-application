@@ -4,7 +4,6 @@ import DetailItem from './DetailItem';
 import generateUniqueId, { UUIDString } from '../lib/uniqueId';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCirclePlus } from '@fortawesome/free-solid-svg-icons';
-import toggleHide from '../lib/toggleHide';
 
 interface ExperienceProps {
   experienceDetails: ExperienceDetails[];
@@ -54,9 +53,8 @@ function Experience({
           isVisible={detail.isVisible}
           title={detail.orgName || `Organization ${index + 1}`}
           setActiveId={setActiveId}
-          toggleHide={() =>
-            toggleHide(detail.id, experienceDetails, setExperienceDetails)
-          }
+          details={experienceDetails}
+          setDetails={setExperienceDetails}
         />
       ))}
       <button key='btnAdd' className='btn-add btn' onClick={handleClick}>

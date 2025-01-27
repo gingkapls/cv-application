@@ -4,7 +4,6 @@ import DetailItem from './DetailItem';
 import generateUniqueId, { UUIDString } from '../lib/uniqueId';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCirclePlus } from '@fortawesome/free-solid-svg-icons';
-import toggleHide from '../lib/toggleHide';
 
 interface ProjectProps {
   projectDetails: ProjectDetails[];
@@ -50,9 +49,8 @@ function Project({ projectDetails, setProjectDetails }: ProjectProps) {
           title={detail.name || `Project ${index + 1}`}
           isVisible={detail.isVisible}
           setActiveId={setActiveId}
-          toggleHide={() =>
-            toggleHide(detail.id, projectDetails, setProjectDetails)
-          }
+          details={projectDetails}
+          setDetails={setProjectDetails}
         />
       ))}
       <button key='btnAdd' className='btn-add btn' onClick={handleClick}>

@@ -4,7 +4,6 @@ import DetailItem from './DetailItem';
 import generateUniqueId, { UUIDString } from '../lib/uniqueId';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCirclePlus } from '@fortawesome/free-solid-svg-icons';
-import toggleHide from '../lib/toggleHide';
 
 interface EducationProps {
   educationDetails: EducationDetails[];
@@ -46,18 +45,15 @@ function Education({ educationDetails, setEducationDetails }: EducationProps) {
   const detailList = (
     <>
       {educationDetails.map((detail, index) => (
-        <>
-          <DetailItem
-            key={detail.id}
-            id={detail.id}
-            title={detail.collegeName || `College ${index + 1}`}
-            isVisible={detail.isVisible}
-            setActiveId={setActiveId}
-            toggleHide={() =>
-              toggleHide(detail.id, educationDetails, setEducationDetails)
-            }
-          />
-        </>
+        <DetailItem
+          key={detail.id}
+          id={detail.id}
+          title={detail.collegeName || `College ${index + 1}`}
+          isVisible={detail.isVisible}
+          setActiveId={setActiveId}
+          details={educationDetails}
+          setDetails={setEducationDetails}
+        />
       ))}
       <button key='btnAdd' className='btn-add btn' onClick={handleClick}>
         <FontAwesomeIcon icon={faCirclePlus} />
