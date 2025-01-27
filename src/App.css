@@ -526,15 +526,6 @@ footer {
     }
   }
 
-  .btn {
-    transition: box-shadow 250ms ease;
-    transition-delay: 100ms;
-
-    &:hover {
-      transition: box-shadow 250ms ease;
-    }
-  }
-
   input,
   textarea {
     transition: border-color 250ms;
