@@ -203,10 +203,6 @@ main {
   font-size: 1.2rem;
   padding: var(--button-padding);
   box-shadow: var(--subtle-box-shadow);
-
-  &:hover {
-    box-shadow: 4px 4px 12px 2px rgb(0 0 0 / 0.5);
-  }
 }
 
 .btn-reset,
