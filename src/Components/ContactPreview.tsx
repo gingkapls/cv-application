@@ -17,43 +17,51 @@ function ContactPreview({
   );
   return (
     <address className='contact-preview detail-preview'>
-      <h2 className='full-name'>{fullName}</h2>
-      <span className='phone-number'>
-        <FontAwesomeIcon icon={faPhone} />
-        <a
-          target='_blank'
-          href={`tel: ${phoneNumber}`}
-          rel='noopener noreferrer'
-        >
-          {phoneNumber}
-        </a>
-      </span>
-      <span className='github'>
-        <FontAwesomeIcon icon={faGithub} />
-        <a
-          target='_blank'
-          href={`https://github.com/${github}`}
-          rel='noopener noreferrer'
-        >
-          {github}
-        </a>
-      </span>
-      <span className='linkedIn'>
-        <FontAwesomeIcon icon={faLinkedin} />
-        <a
-          target='_blank'
-          href={`https://linkedin.com/in/${linkedIn}`}
-          rel='noopener noreferrer'
-        >
-          {linkedIn}
-        </a>
-      </span>
-      <span className='gmail'>
-        <FontAwesomeIcon icon={faEnvelope} />
-        <a target='_blank' href={`mailto:${gmail}`} rel='noopener noreferrer'>
-          {gmail}
-        </a>
-      </span>
+      {fullName && <h2 className='full-name'>{fullName}</h2>}
+      {phoneNumber && (
+        <span className='phone-number'>
+          <FontAwesomeIcon icon={faPhone} />
+          <a
+            target='_blank'
+            href={`tel: ${phoneNumber}`}
+            rel='noopener noreferrer'
+          >
+            {phoneNumber}
+          </a>
+        </span>
+      )}
+      {github && (
+        <span className='github'>
+          <FontAwesomeIcon icon={faGithub} />
+          <a
+            target='_blank'
+            href={`https://github.com/${github}`}
+            rel='noopener noreferrer'
+          >
+            {github}
+          </a>
+        </span>
+      )}
+      {linkedIn && (
+        <span className='linkedIn'>
+          <FontAwesomeIcon icon={faLinkedin} />
+          <a
+            target='_blank'
+            href={`https://linkedin.com/in/${linkedIn}`}
+            rel='noopener noreferrer'
+          >
+            {linkedIn}
+          </a>
+        </span>
+      )}
+      {gmail && (
+        <span className='gmail'>
+          <FontAwesomeIcon icon={faEnvelope} />
+          <a target='_blank' href={`mailto:${gmail}`} rel='noopener noreferrer'>
+            {gmail}
+          </a>
+        </span>
+      )}
     </address>
   );
 }

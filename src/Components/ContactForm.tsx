@@ -39,7 +39,7 @@ function ContactForm({ contactDetails, setContactDetails }: ContactFormProps) {
         name='phoneNumber'
         type='tel'
         value={phoneNumber}
-        placeholder='e.g. 123-456-7890'
+        placeholder='e.g. +91 123-456-7890'
         onChange={handleFieldChange}
       />
       <Input
