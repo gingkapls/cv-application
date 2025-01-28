@@ -18,6 +18,14 @@ function ContactForm({ contactDetails, setContactDetails }: ContactFormProps) {
   function handleFieldChange(e: ChangeEvent<HTMLInputElement>) {
     const field = e.target.name;
     const value = e.target.value.trimStart();
+
+    if (e.target.validity.patternMismatch) {
+      e.target.setCustomValidity('Please don\'t use special characters');
+      e.target.reportValidity();
+      return;
+    }
+
+    e.target.setCustomValidity('');
     const newDetails = { ...contactDetails, [field]: value };
     setContactDetails(newDetails);
   }
@@ -40,6 +48,7 @@ function ContactForm({ contactDetails, setContactDetails }: ContactFormProps) {
         type='tel'
         value={phoneNumber}
         placeholder='e.g. +91 123-456-7890'
+        pattern='[+]?([0-9]|-|\s)*'
         onChange={handleFieldChange}
       />
       <Input
@@ -47,12 +56,14 @@ function ContactForm({ contactDetails, setContactDetails }: ContactFormProps) {
         name='github'
         value={github}
         placeholder='e.g. torvalds'
+        pattern='[^\!\#\$\%\^\&\*\(\)\\\|\[\]\{\}\;\:]*'
         onChange={handleFieldChange}
       />
       <Input
         label='LinkedIn Profile'
         name='linkedIn'
         value={linkedIn}
+        pattern='[^\!\#\$\%\^\&\*\(\)\\\|\[\]\{\}\;\:]*'
         placeholder='e.g. linustorvalds'
         onChange={handleFieldChange}
       />
@@ -61,6 +72,7 @@ function ContactForm({ contactDetails, setContactDetails }: ContactFormProps) {
         type='email'
         name='gmail'
         value={gmail}
+        pattern='[^\!\#\$\%\^\&\*\(\)\\\|\[\]\{\}\;\:]*'
         placeholder='e.g. linus@linuxfoundation.org'
         onChange={handleFieldChange}
       />

@@ -7,6 +7,7 @@ interface InputProps {
   required?: boolean;
   hint?: string;
   placeholder?: string;
+  pattern?: string,
   type?: string;
   onChange: ChangeEventHandler;
 }
@@ -18,6 +19,7 @@ function Input({
   type = 'text',
   hint,
   required = false,
+  pattern,
   placeholder,
   onChange,
 }: InputProps) {
@@ -41,6 +43,7 @@ function Input({
           value={value}
           onChange={onChange}
           placeholder={placeholder}
+          pattern={pattern}
           required={required}
         />
       </label>
