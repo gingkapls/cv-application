@@ -7,7 +7,7 @@ import generateUniqueId from './uniqueId';
 
 const initialContactDetails = {
   fullName: 'John Doe',
-  phoneNumber: '123-456-7890',
+  phoneNumber: '+91 123-456-7890',
   github: 'johnDoe',
   linkedIn: 'johnDoe',
   gmail: 'johnDoe@gmail.com',
