@@ -7,6 +7,7 @@ interface ContactDetails {
   github: string;
   linkedIn: string;
   gmail: string;
+  [key: string]: string;
 }
 
 interface ContactFormProps {

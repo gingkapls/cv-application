@@ -6,6 +6,8 @@ interface SkillsDetails {
   frameworks: string;
   devTools: string;
   libraries: string;
+
+  [key: string]: string | boolean;
 }
 
 interface SkillsFormProps {

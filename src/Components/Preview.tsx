@@ -55,7 +55,7 @@ function Preview({
   );
 
   const visibleSkill = Object.values(skillsDetails).filter(
-    (skill) => skill.length
+    (skill) => typeof skill !== 'boolean' && skill.length
   ).length;
 
   return (

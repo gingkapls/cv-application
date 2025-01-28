@@ -116,6 +116,7 @@ const preamble = `
 `;
 
 type emptyString = '';
+
 type detailType =
   | ContactDetails
   | EducationDetails
@@ -153,7 +154,7 @@ function escapeStr(str: string): string {
 function escapeDetails<T extends detailType>(obj: T): T {
   const newObj = { ...obj };
   for (const [k, v] of Object.entries(newObj)) {
-    newObj[k] = typeof newObj[k] === 'string' ? escapeStr(v) : v;
+    newObj[k] = typeof v == 'string' ? escapeStr(v) : v;
   }
   return newObj;
 }

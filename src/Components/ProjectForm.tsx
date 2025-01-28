@@ -13,6 +13,8 @@ interface ProjectDetails {
   isVisible: boolean;
   startDate: string;
   endDate: string;
+
+  [key: string]: string | boolean;
 }
 
 interface ProjectFormProps {
@@ -38,7 +40,7 @@ function ProjectForm({
   function handleFieldChange(e: ChangeEvent<HTMLInputElement>) {
     const field = e.target.name;
     const value = field.includes('Date')
-      ? parseDate(e.target.value)
+      ? parseDate(e.target.value).toJSON()
       : e.target.value.trimStart();
     const originalDetails = projectDetails.at(detailIndex)!;
     const newDetails = { ...originalDetails, [field]: value };
