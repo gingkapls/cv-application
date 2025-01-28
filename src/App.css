@@ -410,6 +410,7 @@ form {
 
 .preview-item {
   margin: var(--card-side-padding);
+  gap: 4px 8px;
 }
 
 .education-preview .preview-item {
