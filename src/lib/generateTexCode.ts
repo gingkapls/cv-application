@@ -116,6 +116,13 @@ const preamble = `
 `;
 
 type emptyString = '';
+type detailType =
+  | ContactDetails
+  | EducationDetails
+  | ExperienceDetails
+  | ProjectDetails
+  | SkillsDetails;
+
 function conditionallyRender(
   str: string | string[],
   src: string
@@ -123,13 +130,38 @@ function conditionallyRender(
   return str.length === 0 ? '' : src;
 }
 
-function generateContactSrc({
-  fullName,
-  phoneNumber,
-  linkedIn,
-  github,
-  gmail,
-}: ContactDetails) {
+const escapeMap = new Map<string, string>([
+  ['#', '\\#'],
+  ['$', '\\$'],
+  ['%', '\\%'],
+  ['&', '\\&'],
+  ['_', '\\_'],
+  ['{', '\\{'],
+  ['}', '\\}'],
+  ['\\', '\\textbackslash{}'],
+  ['^', '\\textasciicircum{}'],
+  ['~', '\\textasciitilde{}'],
+]);
+
+function escapeStr(str: string): string {
+  return str
+    .split('')
+    .map((char) => (escapeMap.has(char) ? escapeMap.get(char) : char))
+    .join('');
+}
+
+function escapeDetails<T extends detailType>(obj: T): T {
+  const newObj = { ...obj };
+  for (const [k, v] of Object.entries(newObj)) {
+    newObj[k] = typeof newObj[k] === 'string' ? escapeStr(v) : v;
+  }
+  return newObj;
+}
+
+function generateContactSrc(details: ContactDetails) {
+  const { fullName, phoneNumber, linkedIn, github, gmail } =
+    escapeDetails(details);
+
   return `
 % -------------------- HEADING--------------------
 
@@ -170,13 +202,10 @@ function generateContactSrc({
     `;
 }
 
-function generateEducationDetailItem({
-  collegeName,
-  degree,
-  gpa,
-  startDate,
-  endDate,
-}: EducationDetails) {
+function generateEducationDetailItem(details: EducationDetails) {
+  const { collegeName, degree, gpa, startDate, endDate } =
+    escapeDetails(details);
+
   const duration = getDuration(startDate, endDate).join(' -- ');
   return `
     \\resumeSubheading
@@ -213,7 +242,7 @@ function generateEducationSrc(
     \\vspace{-5pt}
 
     \\subsection{Coursework}
-    \\textbf{Courses:} ${coursework} \\\\
+    \\textbf{Courses:} ${escapeStr(coursework)} \\\\
     `;
 
   const end = `
@@ -247,14 +276,10 @@ function generateResumeListItem(description: string) {
   );
 }
 
-function generateExperienceDetailItem({
-  orgName,
-  jobTitle,
-  location,
-  description,
-  startDate,
-  endDate,
-}: ExperienceDetails) {
+function generateExperienceDetailItem(details: ExperienceDetails) {
+  const { orgName, jobTitle, location, description, startDate, endDate } =
+    escapeDetails(details);
+
   const duration = getDuration(startDate, endDate).join(' -- ');
   const start = `
     \\resumeSubheading
@@ -299,13 +324,10 @@ function generateExperienceSrc(
   );
 }
 
-function generateProjectDetailsItem({
-  name,
-  techUsed,
-  description,
-  startDate,
-  endDate,
-}: ProjectDetails) {
+function generateProjectDetailsItem(details: ProjectDetails) {
+  const { name, techUsed, description, startDate, endDate } =
+    escapeDetails(details);
+
   const duration = getDuration(startDate, endDate).join(' -- ');
   const start = `
     \\resumeProjectHeading
@@ -344,12 +366,9 @@ function generateProjectSrc(projectDetails: ProjectDetails[]) {
   );
 }
 
-function generateSkillsSrc({
-  languages,
-  frameworks,
-  libraries,
-  devTools,
-}: SkillsDetails) {
+function generateSkillsSrc(details: SkillsDetails) {
+  const { languages, frameworks, libraries, devTools } = escapeDetails(details);
+
   const start = `
 % -------------------- SKILLS --------------------
 \\section{Skills}
