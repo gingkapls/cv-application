@@ -136,12 +136,17 @@ function generateContactSrc({
 \\vspace{-5pt}
 
 \\begin{center}
+      ${conditionallyRender(
+        fullName,
+        `
+        \\textbf{\\Huge \\scshape ${fullName}} \\\\ \\vspace{8pt}
+        `
+      )}
     ${conditionallyRender(
       phoneNumber,
       `
-      \\textbf{\\Huge \\scshape ${fullName}} \\\\ \\vspace{8pt}
       \\faIcon{phone}
-      \\small \\href{tel:+${phoneNumber}}{\\underline{+${phoneNumber}}} $ $`
+      \\small \\href{tel:${phoneNumber}}{\\underline{${phoneNumber}}} $ $`
     )}
     ${conditionallyRender(
       github,
