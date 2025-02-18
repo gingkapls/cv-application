@@ -34,7 +34,7 @@ function EducationPreviewItem({
     isAnonymized
   );
 
-  const [startDate, endDate] = getDuration(
+  const duration = getDuration(
     educationDetails.startDate,
     educationDetails.endDate
   );
@@ -42,9 +42,7 @@ function EducationPreviewItem({
   return (
     <section className='preview-item'>
       <h3 className='college subheading'>{collegeName}</h3>
-      <span className='duration'>
-        {startDate} – {endDate}
-      </span>
+      <span className='duration'>{duration}</span>
       <h4 className='degree'>{degree}</h4>
       {gpa && <span className='gpa'>GPA: {gpa}</span>}
     </section>

@@ -14,7 +14,7 @@ function EducationPreviewItem({
     experienceDetails,
     isAnonymized
   );
-  const [startDate, endDate] = getDuration(
+  const duration = getDuration(
     experienceDetails.startDate,
     experienceDetails.endDate
   );
@@ -22,14 +22,12 @@ function EducationPreviewItem({
   return (
     <section className='preview-item'>
       <h3 className='job-title subheading'>{jobTitle}</h3>
-      <span className='duration'>
-        {startDate} – {endDate}
-      </span>
+      <span className='duration'>{duration}</span>
       <h4 className='org-name'>{orgName}</h4>
       <span className='location'>{location}</span>
-        {description.length !== 0 && (
-          <PreviewItemDescription details={experienceDetails} />
-        )}
+      {description.length !== 0 && (
+        <PreviewItemDescription details={experienceDetails} />
+      )}
     </section>
   );
 }

@@ -25,22 +25,17 @@ function shortenDate(dateString: string) {
   return `${month}. ${year}`;
 }
 
-function getDuration(startDateString: string, endDateString: string) {
-  const endDate = parseDate(endDateString);
-  const start = `${shortenDate(startDateString)}`;
-  const endMonth = endDate.getMonth();
-  const endYear = endDate.getFullYear();
+function getDuration(startDateString: string, endDateString: string): string {
+  const start = shortenDate(startDateString);
+  const end = shortenDate(endDateString);
+  const present = shortenDate(new Date().toJSON());
+  console.log({ start, end, present });
 
-  const presentDate = new Date();
-  const thisMonth = presentDate.getMonth();
-  const thisYear = presentDate.getFullYear();
+  if (start === end) return `${start}`;
 
-  const end =
-    endMonth === thisMonth && endYear === thisYear
-      ? 'Present'
-      : `${shortenDate(endDateString)}`;
+  if (end === present) return `${start} - Present`;
 
-  return [start, end];
+  return `${start} -- ${end}`;
 }
 
 export { parseDate, formatDate, shortenDate, getDuration };

@@ -207,7 +207,7 @@ function generateEducationDetailItem(details: EducationDetails) {
   const { collegeName, degree, gpa, startDate, endDate } =
     escapeDetails(details);
 
-  const duration = getDuration(startDate, endDate).join(' -- ');
+  const duration = getDuration(startDate, endDate);
   return `
     \\resumeSubheading
       {${collegeName}}{${duration}}
@@ -281,7 +281,7 @@ function generateExperienceDetailItem(details: ExperienceDetails) {
   const { orgName, jobTitle, location, description, startDate, endDate } =
     escapeDetails(details);
 
-  const duration = getDuration(startDate, endDate).join(' -- ');
+  const duration = getDuration(startDate, endDate);
   const start = `
     \\resumeSubheading
       {${jobTitle}}{${duration}}
@@ -329,7 +329,7 @@ function generateProjectDetailsItem(details: ProjectDetails) {
   const { name, techUsed, description, startDate, endDate } =
     escapeDetails(details);
 
-  const duration = getDuration(startDate, endDate).join(' -- ');
+  const duration = getDuration(startDate, endDate);
   const start = `
     \\resumeProjectHeading
           {\\textbf{${name}} $|$ \\emph{${techUsed}}}{${duration}}

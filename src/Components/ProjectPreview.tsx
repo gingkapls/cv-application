@@ -8,7 +8,7 @@ function ProjectPreviewItem({
   projectDetails: ProjectDetails;
 }) {
   const { name, techUsed, description } = projectDetails;
-  const [startDate, endDate] = getDuration(
+  const duration = getDuration(
     projectDetails.startDate,
     projectDetails.endDate
   );
@@ -20,9 +20,7 @@ function ProjectPreviewItem({
         {techUsed.length !== 0 && ' |'}
         <span className='tech-used'>{techUsed}</span>
       </div>
-      <span className='duration'>
-        {startDate} – {endDate}
-      </span>
+      <span className='duration'>{duration}</span>
       {description.length !== 0 && (
         <PreviewItemDescription details={projectDetails} />
       )}
