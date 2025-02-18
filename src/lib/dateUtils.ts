@@ -29,7 +29,6 @@ function getDuration(startDateString: string, endDateString: string): string {
   const start = shortenDate(startDateString);
   const end = shortenDate(endDateString);
   const present = shortenDate(new Date().toJSON());
-  console.log({ start, end, present });
 
   if (start === end) return `${start}`;
 
