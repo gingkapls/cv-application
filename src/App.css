@@ -399,13 +399,13 @@ form {
     content: '|  ';
   }
 
-  & a {
-    color: var(--visited-link-color);
-  }
-
   & svg {
     margin-right: 8px;
   }
+}
+
+a {
+  color: var(--visited-link-color);
 }
 
 .preview-item {
@@ -471,7 +471,13 @@ form {
 
   .tech-used {
     font-style: italic;
-    margin-left: 4px;
+
+    &:not(:empty)::before {
+      margin: 0 8px;
+      content: '|';
+      font-weight: 700;
+      color: var(--hint-text-color);
+    }
   }
 }
 

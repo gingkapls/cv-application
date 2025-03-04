@@ -13,10 +13,9 @@ function ProjectPreviewItem({
     <section className='preview-item'>
       <div className='title'>
         <h3 className='name'>{name}</h3>
-        {techUsed.length !== 0 && ' |'}
         <span className='tech-used'>{techUsed}</span>
       </div>
-      <a href={parseLink(link)} target="_blank" rel='noopener noreferrer' className='duration'>{link}</a>
+      <a href={parseLink(link)} target="_blank" rel='noopener noreferrer'>{link}</a>
       {description.length !== 0 && (
         <PreviewItemDescription details={projectDetails} />
       )}
