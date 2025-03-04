@@ -21,6 +21,7 @@ function Project({ projectDetails, setProjectDetails }: ProjectProps) {
       name: '',
       techUsed: '',
       description: '',
+      link: '',
       startDate: new Date().toJSON(),
       endDate: new Date().toJSON(),
       isVisible: true,

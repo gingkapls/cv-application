@@ -45,8 +45,7 @@ const initialProjectDetails = [
     name: 'First Project',
     techUsed: 'Javascript',
     description: 'Very cool!',
-    startDate: new Date().toJSON(),
-    endDate: new Date().toJSON(),
+    link: 'github.com',
     isVisible: true,
   },
 ] satisfies ProjectDetails[];

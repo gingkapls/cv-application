@@ -5,6 +5,7 @@ import { ProjectDetails } from '../Components/ProjectForm';
 import { SkillsDetails } from '../Components/SkillsForm';
 import { anonymizeDetails } from './anonymizeDetails';
 import { getDuration } from './dateUtils';
+import { parseLink } from './parseLink';
 
 const preamble = `
 %-------------------------
@@ -326,13 +327,13 @@ function generateExperienceSrc(
 }
 
 function generateProjectDetailsItem(details: ProjectDetails) {
-  const { name, techUsed, description, startDate, endDate } =
-    escapeDetails(details);
+  const { name, techUsed, description, link } = escapeDetails(details);
 
-  const duration = getDuration(startDate, endDate);
   const start = `
     \\resumeProjectHeading
-          {\\textbf{${name}} $|$ \\emph{${techUsed}}}{${duration}}
+          {\\textbf{${name}} $|$ \\emph{${techUsed}}}{\\href{${parseLink(
+    link
+  )}}{\\underline{${link}}} $  $}
     `;
 
   const items = generateResumeListItem(description);

@@ -2,7 +2,6 @@ import { ChangeEvent, Dispatch, FormEvent, SetStateAction } from 'react';
 import { UUIDString } from '../lib/uniqueId';
 import Input from './Input';
 import TextArea from './TextArea';
-import { formatDate, parseDate } from '../lib/dateUtils';
 import FormActions from './FormActions';
 
 interface ProjectDetails {
@@ -11,9 +10,7 @@ interface ProjectDetails {
   techUsed: string;
   description: string;
   isVisible: boolean;
-  startDate: string;
-  endDate: string;
-
+  link: string;
   [key: string]: string | boolean;
 }
 
@@ -34,14 +31,11 @@ function ProjectForm({
     (detail: ProjectDetails) => detail.id === id
   );
 
-  const { name, techUsed, description, startDate, endDate } =
-    projectDetails.at(detailIndex)!;
+  const { name, techUsed, description, link } = projectDetails.at(detailIndex)!;
 
   function handleFieldChange(e: ChangeEvent<HTMLInputElement>) {
     const field = e.target.name;
-    const value = field.includes('Date')
-      ? parseDate(e.target.value).toJSON()
-      : e.target.value.trimStart();
+    const value = e.target.value.trimStart();
     const originalDetails = projectDetails.at(detailIndex)!;
     const newDetails = { ...originalDetails, [field]: value };
 
@@ -91,20 +85,13 @@ function ProjectForm({
       />
 
       <Input
-        label='Start Date: '
-        type='Date'
-        name='startDate'
-        value={formatDate(startDate)}
+        label='Project Link'
+        name='link'
+        value={link}
+        placeholder='e.g. https://github.com/username/project'
         onChange={handleFieldChange}
       />
 
-      <Input
-        label='End Date: '
-        type='Date'
-        name='endDate'
-        value={formatDate(endDate)}
-        onChange={handleFieldChange}
-      />
       <FormActions handleDelete={handleDelete} />
     </form>
   );

@@ -1,4 +1,4 @@
-import { getDuration } from '../lib/dateUtils';
+import { parseLink } from '../lib/parseLink';
 import PreviewItemDescription from './PreviewItemDescription';
 import { ProjectDetails } from './ProjectForm';
 
@@ -7,11 +7,7 @@ function ProjectPreviewItem({
 }: {
   projectDetails: ProjectDetails;
 }) {
-  const { name, techUsed, description } = projectDetails;
-  const duration = getDuration(
-    projectDetails.startDate,
-    projectDetails.endDate
-  );
+  const { name, techUsed, description, link } = projectDetails;
 
   return (
     <section className='preview-item'>
@@ -20,7 +16,7 @@ function ProjectPreviewItem({
         {techUsed.length !== 0 && ' |'}
         <span className='tech-used'>{techUsed}</span>
       </div>
-      <span className='duration'>{duration}</span>
+      <a href={parseLink(link)} target="_blank" rel='noopener noreferrer' className='duration'>{link}</a>
       {description.length !== 0 && (
         <PreviewItemDescription details={projectDetails} />
       )}
