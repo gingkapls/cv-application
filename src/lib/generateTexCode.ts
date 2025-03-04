@@ -331,9 +331,11 @@ function generateProjectDetailsItem(details: ProjectDetails) {
 
   const start = `
     \\resumeProjectHeading
-          {\\textbf{${name}} $|$ \\emph{${techUsed}}}{\\href{${parseLink(
-    link
-  )}}{\\underline{${link}}} $  $}
+          {\\textbf{${name}} ${conditionallyRender(techUsed, `$|$ \\emph{${techUsed}}`)}}
+          ${conditionallyRender(
+            link,
+            `{\\href{${parseLink(link)}}{\\underline{${link}}} $  $}`
+          )}
     `;
 
   const items = generateResumeListItem(description);

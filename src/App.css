@@ -409,7 +409,6 @@ a {
 }
 
 .preview-item {
-  margin: var(--card-side-padding);
   gap: 4px 8px;
 }
 
@@ -480,13 +479,12 @@ a {
     }
   }
 }
+.section-heading {
+  margin-bottom: calc(var(--card-side-padding) / 2);
+}
 
 .skills-preview {
   font-size: 1rem;
-
-  & .section-heading {
-    margin-bottom: var(--card-side-padding);
-  }
 
   & table {
     width: 100%;
