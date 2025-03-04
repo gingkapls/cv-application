@@ -412,7 +412,7 @@ a {
 
 .preview-item {
   gap: 4px 8px;
-  margin-top: 4px;
+  margin-top: 12px;
   margin-left: var(--card-side-padding)
 }
 
