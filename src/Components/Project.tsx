@@ -22,8 +22,6 @@ function Project({ projectDetails, setProjectDetails }: ProjectProps) {
       techUsed: '',
       description: '',
       link: '',
-      startDate: new Date().toJSON(),
-      endDate: new Date().toJSON(),
       isVisible: true,
     } satisfies ProjectDetails;
 
