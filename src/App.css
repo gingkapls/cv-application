@@ -39,7 +39,7 @@
   font-weight: 400;
   line-height: 1.5;
   color: var(--text-color);
-  font-size: clamp(11px, 2.3vmin, 16px);
+  font-size: clamp(14px, 3vmin, 16px);
   --body-font: 'Lato';
   --heading-font: 'CMU Serif';
   font-family: var(--body-font);
@@ -339,10 +339,11 @@ form {
 
   .subheading {
     font-family: var(--heading-font);
-    font-weight: 700;
+    font-weight: 500;
   }
 
   .subsection-heading {
+    margin-top: 12px;
     font-weight: 400;
     font-size: 1.4rem;
     font-family: var(--heading-font);
@@ -401,7 +402,7 @@ form {
   }
 
   & svg {
-    margin: 0 4px;
+    margin: 0 8px;
   }
 }
 
@@ -411,6 +412,7 @@ a {
 
 .preview-item {
   gap: 4px 8px;
+  margin-left: var(--card-side-padding)
 }
 
 .education-preview .preview-item {

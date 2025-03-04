@@ -12,7 +12,7 @@ function ProjectPreviewItem({
   return (
     <section className='preview-item'>
       <div className='title'>
-        <h3 className='name'>{name}</h3>
+        <h3 className='name subheading'>{name}</h3>
         <span className='tech-used'>{techUsed}</span>
       </div>
       <a href={parseLink(link)} target="_blank" rel='noopener noreferrer'>{link}</a>
