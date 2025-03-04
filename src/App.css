@@ -396,11 +396,12 @@ form {
   }
 
   & span:not(:first-of-type)::before {
-    content: '|  ';
+    content: '|';
+    margin: 0 4px;
   }
 
   & svg {
-    margin-right: 8px;
+    margin: 0 4px;
   }
 }
 
