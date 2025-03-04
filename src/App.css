@@ -354,7 +354,7 @@ form {
   position: sticky;
   display: flex;
   flex-direction: column;
-  width: min(720px, 100%);
+  width: min(960px, 100%);
   height: min-content;
   aspect-ratio: 21 / 29;
   border: 1px solid var(--active-bg-color);
