@@ -59,7 +59,7 @@ function App() {
               setProjectDetails={setProjectDetails}
               setSkillsDetails={setSkillsDetails}
             />
-            <h1 className='app-title'>NovoResume</h1>
+            <h1 className='app-title'>SeeVee</h1>
 
             <AnonymizeButton
               isAnonymized={isAnonymized}
