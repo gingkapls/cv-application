@@ -38,7 +38,7 @@ function ContactPreview({
             href={`https://github.com/${github}`}
             rel='noopener noreferrer'
           >
-            {github}
+            github.com/{github}
           </a>
         </span>
       )}
@@ -50,7 +50,7 @@ function ContactPreview({
             href={`https://linkedin.com/in/${linkedIn}`}
             rel='noopener noreferrer'
           >
-            {linkedIn}
+            linkedin.com/in/{linkedIn}
           </a>
         </span>
       )}
