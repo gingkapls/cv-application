@@ -1,4 +1,3 @@
-import { Base64 } from 'js-base64';
 import generateTexCode from '../lib/generateTexCode';
 import { ContactDetails } from './ContactForm';
 import { EducationDetails } from './EducationForm';
@@ -7,7 +6,7 @@ import { ProjectDetails } from './ProjectForm';
 import { SkillsDetails } from './SkillsForm';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLeaf } from '@fortawesome/free-solid-svg-icons';
-import { FormEvent, useRef } from 'react';
+import { useRef } from 'react';
 
 interface TexActionsProps {
   contactDetails: ContactDetails;
